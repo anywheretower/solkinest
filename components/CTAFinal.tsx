@@ -41,7 +41,7 @@ export default function CTAFinal() {
         >
           ¿Lista para{" "}
           <span className="font-semibold" style={{ color: "var(--color-primary)" }}>
-            transformarte?
+            tu mejor versión?
           </span>
         </h2>
 
