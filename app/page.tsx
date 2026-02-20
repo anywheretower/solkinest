@@ -8,6 +8,7 @@ import Testimonios from "@/components/Testimonios";
 import FAQ from "@/components/FAQ";
 import InfoPractica from "@/components/InfoPractica";
 import Reservas from "@/components/Reservas";
+import AgendarOnline from "@/components/AgendarOnline";
 import Contraindicaciones from "@/components/Contraindicaciones";
 import CTAFinal from "@/components/CTAFinal";
 import Footer from "@/components/Footer";
@@ -26,6 +27,7 @@ export default function Home() {
       <FAQ />
       <InfoPractica />
       <Reservas />
+      <AgendarOnline />
       <Contraindicaciones />
       <CTAFinal />
       <Footer />
