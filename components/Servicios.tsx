@@ -24,10 +24,10 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
-  corporal: "#9e5840",
-  facial: "#b8924a",
-  masaje: "#7d6b57",
-  depilacion: "#5a7468",
+  corporal: "#1D6070",
+  facial: "#D4AF35",
+  masaje: "#1D8B9A",
+  depilacion: "#1DA6B8",
 };
 
 const services: ServiceData[] = [
@@ -205,8 +205,8 @@ function ServicioCard({ service }: { service: ServiceData }) {
       id={`servicio-${service.id}`}
       className="flex flex-col border transition-all duration-300 hover:shadow-lg"
       style={{
-        borderColor: open ? "#b8924a" : "#d9cfc2",
-        backgroundColor: "#fdfaf5",
+        borderColor: open ? "var(--color-primary)" : "var(--color-text-muted)",
+        backgroundColor: "var(--color-bg-white)",
       }}
     >
       {/* Card body */}
@@ -226,7 +226,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
           </span>
           <span
             className="text-xs"
-            style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)" }}
+            style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
           >
             {service.duration}
           </span>
@@ -235,7 +235,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
         {/* Name */}
         <h3
           className="text-xl md:text-2xl font-light mb-3 leading-tight"
-          style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
+          style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
         >
           {service.name}
         </h3>
@@ -243,7 +243,11 @@ function ServicioCard({ service }: { service: ServiceData }) {
         {/* Description */}
         <p
           className="text-sm leading-relaxed"
-          style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
+          style={{
+            color: "var(--color-text-body)",
+            fontFamily: "var(--font-montserrat)",
+            fontWeight: 400,
+          }}
         >
           {service.description}
         </p>
@@ -254,8 +258,8 @@ function ServicioCard({ service }: { service: ServiceData }) {
         onClick={() => setOpen(!open)}
         className="flex items-center justify-between px-6 py-4 border-t text-xs tracking-widest uppercase transition-colors duration-200"
         style={{
-          borderColor: "#d9cfc2",
-          color: open ? "#b8924a" : "#7d6b57",
+          borderColor: "var(--color-text-muted)",
+          color: open ? "var(--color-primary)" : "var(--color-text-secondary)",
           fontFamily: "var(--font-montserrat)",
           fontWeight: 500,
         }}
@@ -273,7 +277,10 @@ function ServicioCard({ service }: { service: ServiceData }) {
       {open && (
         <div
           className="px-6 pb-6 pt-4 border-t expanded-content"
-          style={{ borderColor: "#ede4d8", backgroundColor: "#faf7f0" }}
+          style={{
+            borderColor: "var(--color-bg-teal-soft)",
+            backgroundColor: "var(--color-bg-teal-whisper)",
+          }}
         >
           {/* Standard pricing */}
           {service.pricing && (
@@ -282,11 +289,14 @@ function ServicioCard({ service }: { service: ServiceData }) {
                 <div
                   key={i}
                   className="flex items-center justify-between py-2.5 border-b"
-                  style={{ borderColor: "#ede4d8" }}
+                  style={{ borderColor: "var(--color-bg-teal-soft)" }}
                 >
                   <span
                     className="text-sm"
-                    style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)" }}
+                    style={{
+                      color: "var(--color-text-body)",
+                      fontFamily: "var(--font-montserrat)",
+                    }}
                   >
                     {row.label}
                   </span>
@@ -294,14 +304,17 @@ function ServicioCard({ service }: { service: ServiceData }) {
                     {row.offer && (
                       <span
                         className="text-xs line-through opacity-40"
-                        style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)" }}
+                        style={{
+                          color: "var(--color-text-secondary)",
+                          fontFamily: "var(--font-montserrat)",
+                        }}
                       >
                         {row.value}
                       </span>
                     )}
                     <span
                       style={{
-                        color: row.offer ? "#9e5840" : "#1a0f07",
+                        color: row.offer ? "var(--color-primary)" : "var(--color-text)",
                         fontFamily: "var(--font-montserrat)",
                         fontSize: "1.1rem",
                         fontWeight: 600,
@@ -318,17 +331,17 @@ function ServicioCard({ service }: { service: ServiceData }) {
           {/* Special table — Post Operatorio */}
           {service.specialTable && (
             <div className="overflow-x-auto mb-4">
-              <table
-                className="w-full text-sm"
-                style={{ fontFamily: "var(--font-montserrat)" }}
-              >
+              <table className="w-full text-sm" style={{ fontFamily: "var(--font-montserrat)" }}>
                 <thead>
                   <tr>
                     {service.specialTable.headers.map((h) => (
                       <th
                         key={h}
                         className="text-left py-2 pr-4 text-[10px] tracking-wider uppercase font-medium border-b"
-                        style={{ color: "#b8924a", borderColor: "#ede4d8" }}
+                        style={{
+                          color: "var(--color-primary)",
+                          borderColor: "var(--color-bg-teal-soft)",
+                        }}
                       >
                         {h}
                       </th>
@@ -337,16 +350,24 @@ function ServicioCard({ service }: { service: ServiceData }) {
                 </thead>
                 <tbody>
                   {service.specialTable.rows.map((row, i) => (
-                    <tr key={i} className="border-b" style={{ borderColor: "#ede4d8" }}>
+                    <tr
+                      key={i}
+                      className="border-b"
+                      style={{ borderColor: "var(--color-bg-teal-soft)" }}
+                    >
                       {row.map((cell, j) => (
                         <td
                           key={j}
                           className="py-2.5 pr-4 text-sm"
                           style={{
-                            color: j === 0 ? "#1a0f07" : j >= 2 ? "#9e5840" : "#7d6b57",
+                            color:
+                              j === 0
+                                ? "var(--color-text)"
+                                : j >= 2
+                                ? "var(--color-primary-deep)"
+                                : "var(--color-text-body)",
                             fontWeight: j >= 2 ? 600 : 400,
-                            fontFamily:
-                              j >= 2 ? "var(--font-montserrat)" : "var(--font-montserrat)",
+                            fontFamily: "var(--font-montserrat)",
                             fontSize: j >= 2 ? "1rem" : "0.875rem",
                           }}
                         >
@@ -365,7 +386,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
             <div className="mb-4">
               <p
                 className="text-[10px] tracking-widest uppercase mb-3"
-                style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)" }}
+                style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
               >
                 Duración por tamaño de zona · Precio a consultar
               </p>
@@ -374,20 +395,26 @@ function ServicioCard({ service }: { service: ServiceData }) {
                   <div
                     key={row.size}
                     className="flex flex-col items-center py-3 border"
-                    style={{ borderColor: "#d9cfc2", backgroundColor: "#fdfaf5" }}
+                    style={{
+                      borderColor: "var(--color-text-muted)",
+                      backgroundColor: "var(--color-bg-white)",
+                    }}
                   >
                     <span
                       className="text-xl font-semibold mb-0.5"
                       style={{
                         fontFamily: "var(--font-montserrat)",
-                        color: "#1a0f07",
+                        color: "var(--color-text)",
                       }}
                     >
                       {row.size}
                     </span>
                     <span
                       className="text-[10px]"
-                      style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)" }}
+                      style={{
+                        color: "var(--color-text-secondary)",
+                        fontFamily: "var(--font-montserrat)",
+                      }}
                     >
                       {row.duration}
                     </span>
@@ -402,7 +429,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
             <p
               className="text-xs leading-relaxed mt-3"
               style={{
-                color: "#9d8b7a",
+                color: "var(--color-text-secondary)",
                 fontFamily: "var(--font-montserrat)",
                 fontStyle: "italic",
               }}
@@ -416,10 +443,10 @@ function ServicioCard({ service }: { service: ServiceData }) {
             <p
               className="text-xs leading-relaxed mt-3 px-3 py-2.5 border-l-2"
               style={{
-                color: "#9e5840",
+                color: "var(--color-primary-deep)",
                 fontFamily: "var(--font-montserrat)",
-                borderColor: "#9e5840",
-                backgroundColor: "#9e584012",
+                borderColor: "var(--color-primary-deep)",
+                backgroundColor: "rgba(29,96,112,0.07)",
               }}
             >
               ⚠ {service.important}
@@ -449,24 +476,28 @@ export default function Servicios() {
     <section
       id="servicios"
       className="py-28 md:py-40 px-6"
-      style={{ backgroundColor: "#ede4d8" }}
+      style={{ backgroundColor: "var(--color-bg-teal-whisper)" }}
     >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex flex-col items-center mb-12">
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: "#9e5840", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
+            style={{
+              color: "var(--color-primary)",
+              fontFamily: "var(--font-montserrat)",
+              fontWeight: 400,
+            }}
           >
             Tratamientos
           </p>
           <h2
             className="text-4xl md:text-5xl font-light italic text-center mb-6"
-            style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
+            style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
           >
             Todos nuestros servicios
           </h2>
-          <div className="w-14 h-px bg-gold" />
+          <div className="w-14 h-px" style={{ backgroundColor: "var(--color-accent)" }} />
         </div>
 
         {/* Category filter */}
@@ -479,9 +510,14 @@ export default function Servicios() {
               style={{
                 fontFamily: "var(--font-montserrat)",
                 fontWeight: 500,
-                backgroundColor: filter === cat.key ? "#1a0f07" : "transparent",
-                color: filter === cat.key ? "#fdfaf5" : "#7d6b57",
-                border: `1px solid ${filter === cat.key ? "#1a0f07" : "#d9cfc2"}`,
+                backgroundColor:
+                  filter === cat.key ? "var(--color-primary-night)" : "transparent",
+                color: filter === cat.key ? "#ffffff" : "var(--color-text-body)",
+                border: `1px solid ${
+                  filter === cat.key
+                    ? "var(--color-primary-night)"
+                    : "var(--color-text-muted)"
+                }`,
               }}
             >
               {cat.label}

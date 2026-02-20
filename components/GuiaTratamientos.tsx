@@ -80,29 +80,40 @@ const guia = [
 
 export default function GuiaTratamientos() {
   return (
-    <section className="py-24 md:py-32 px-6" style={{ backgroundColor: "#1a0f07" }}>
+    <section
+      className="py-24 md:py-32 px-6"
+      style={{ backgroundColor: "var(--color-primary-night)" }}
+    >
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="flex flex-col items-center mb-14">
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
+            style={{
+              color: "var(--color-accent)",
+              fontFamily: "var(--font-montserrat)",
+              fontWeight: 400,
+            }}
           >
             Te ayudamos a elegir
           </p>
           <h2
             className="text-3xl md:text-4xl font-semibold text-center mb-4"
-            style={{ fontFamily: "var(--font-montserrat)", color: "#fdfaf5" }}
+            style={{ fontFamily: "var(--font-montserrat)", color: "#ffffff" }}
           >
             ¿No sabes qué tratamiento elegir?
           </h2>
           <p
             className="text-sm text-center mb-6 max-w-xl"
-            style={{ color: "#c4b5a5", fontFamily: "var(--font-montserrat)", fontWeight: 300 }}
+            style={{
+              color: "var(--color-text-secondary)",
+              fontFamily: "var(--font-montserrat)",
+              fontWeight: 300,
+            }}
           >
             Cuéntanos tu objetivo y te asesoramos sin compromiso.
           </p>
-          <div className="w-14 h-px" style={{ backgroundColor: "#b8924a" }} />
+          <div className="w-14 h-px" style={{ backgroundColor: "var(--color-accent)" }} />
         </div>
 
         {/* Grid */}
@@ -113,32 +124,46 @@ export default function GuiaTratamientos() {
               href={item.href}
               className="group flex flex-col gap-3 p-5 border transition-all duration-200"
               style={{
-                borderColor: "#b8924a20",
-                backgroundColor: "#ffffff08",
+                borderColor: "rgba(29,96,112,0.35)",
+                backgroundColor: "rgba(255,255,255,0.05)",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "#b8924a60";
-                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#ffffff12";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                  "rgba(29,166,184,0.6)";
+                (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
+                  "rgba(255,255,255,0.10)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "#b8924a20";
-                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#ffffff08";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                  "rgba(29,96,112,0.35)";
+                (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
+                  "rgba(255,255,255,0.05)";
               }}
             >
               <div className="flex items-start gap-3">
-                <div style={{ color: "#b8924a", flexShrink: 0, marginTop: 2 }}>
+                <div
+                  style={{
+                    color: "var(--color-accent)",
+                    flexShrink: 0,
+                    marginTop: 2,
+                  }}
+                >
                   {item.icon}
                 </div>
                 <div>
                   <p
                     className="font-semibold text-sm leading-snug mb-1.5"
-                    style={{ color: "#fdfaf5", fontFamily: "var(--font-montserrat)" }}
+                    style={{ color: "#ffffff", fontFamily: "var(--font-montserrat)" }}
                   >
                     {item.objetivo}
                   </p>
                   <p
                     className="text-xs leading-relaxed"
-                    style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
+                    style={{
+                      color: "var(--color-accent)",
+                      fontFamily: "var(--font-montserrat)",
+                      fontWeight: 400,
+                    }}
                   >
                     → {item.tratamiento}
                   </p>
@@ -151,7 +176,11 @@ export default function GuiaTratamientos() {
         {/* Footer note */}
         <p
           className="text-center text-xs mt-10"
-          style={{ color: "#6b5a4a", fontFamily: "var(--font-montserrat)", fontStyle: "italic" }}
+          style={{
+            color: "var(--color-text-secondary)",
+            fontFamily: "var(--font-montserrat)",
+            fontStyle: "italic",
+          }}
         >
           Haz clic en cualquier opción para ir directamente al tratamiento en la lista completa.
         </p>

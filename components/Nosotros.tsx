@@ -18,27 +18,31 @@ export default function Nosotros() {
     <section
       id="nosotros"
       className="py-28 md:py-40 px-6"
-      style={{ backgroundColor: "#fdfaf5" }}
+      style={{ backgroundColor: "var(--color-bg-cream)" }}
     >
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="flex flex-col items-center mb-20">
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
+            style={{
+              color: "var(--color-primary)",
+              fontFamily: "var(--font-montserrat)",
+              fontWeight: 400,
+            }}
           >
             Sobre Nosotros
           </p>
-          <div className="w-14 h-px bg-border-warm" />
+          <div className="w-14 h-px" style={{ backgroundColor: "var(--color-text-muted)" }} />
         </div>
 
         {/* Pull quote */}
         <blockquote
           className="text-3xl sm:text-4xl md:text-5xl font-light italic leading-tight text-center mb-12 max-w-3xl mx-auto"
-          style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
+          style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
         >
           Tecnología avanzada, técnicas manuales y dermocosméticos para{" "}
-          <span className="font-semibold not-italic" style={{ color: "#b8924a" }}>
+          <span className="font-semibold not-italic" style={{ color: "var(--color-primary)" }}>
             la mejor versión de ti
           </span>
         </blockquote>
@@ -46,7 +50,11 @@ export default function Nosotros() {
         {/* Body */}
         <p
           className="text-base leading-relaxed text-center mb-16 max-w-2xl mx-auto"
-          style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
+          style={{
+            color: "var(--color-text-body)",
+            fontFamily: "var(--font-montserrat)",
+            fontWeight: 400,
+          }}
         >
           En Solkinest combinamos tecnología avanzada, técnicas manuales
           especializadas y dermocosméticos profesionales para ayudarte a alcanzar
@@ -57,17 +65,17 @@ export default function Nosotros() {
         {/* Results grid */}
         <div
           className="grid grid-cols-2 md:grid-cols-4 gap-px mb-16"
-          style={{ backgroundColor: "#d9cfc2" }}
+          style={{ backgroundColor: "var(--color-text-muted)" }}
         >
           {resultados.map((r) => (
             <div
               key={r.label}
               className="flex flex-col items-center justify-center py-10 px-4"
-              style={{ backgroundColor: "#fdfaf5" }}
+              style={{ backgroundColor: "var(--color-bg-white)" }}
             >
               <span
                 className="text-xl mb-3"
-                style={{ color: "#b8924a", opacity: 0.5 }}
+                style={{ color: "var(--color-primary)", opacity: 0.5 }}
               >
                 {r.symbol}
               </span>
@@ -75,7 +83,7 @@ export default function Nosotros() {
                 className="text-xs tracking-widest uppercase"
                 style={{
                   fontFamily: "var(--font-montserrat)",
-                  color: "#7d6b57",
+                  color: "var(--color-text-body)",
                   fontWeight: 500,
                 }}
               >
@@ -89,7 +97,7 @@ export default function Nosotros() {
         <div>
           <p
             className="text-[10px] tracking-[0.45em] uppercase text-center mb-5"
-            style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)" }}
+            style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
           >
             Aparatología
           </p>
@@ -99,11 +107,11 @@ export default function Nosotros() {
                 key={tech}
                 className="px-4 py-2 text-[11px] tracking-wider uppercase border"
                 style={{
-                  borderColor: "#d9cfc2",
-                  color: "#7d6b57",
+                  borderColor: "var(--color-bg-teal-soft)",
+                  color: "var(--color-primary-deep)",
                   fontFamily: "var(--font-montserrat)",
-                  backgroundColor: "#f5edd8",
-                  fontWeight: 400,
+                  backgroundColor: "var(--color-bg-teal-soft)",
+                  fontWeight: 500,
                 }}
               >
                 {tech}

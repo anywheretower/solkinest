@@ -13,23 +13,30 @@ const lista = [
 
 export default function Contraindicaciones() {
   return (
-    <section className="py-10 px-6" style={{ backgroundColor: "#f5f0e8" }}>
+    <section
+      className="py-10 px-6"
+      style={{ backgroundColor: "var(--color-bg-neutral)" }}
+    >
       <div className="max-w-4xl mx-auto">
         <details className="group">
           <summary
             className="flex items-center justify-between gap-4 py-5 cursor-pointer list-none border-t border-b"
-            style={{ borderColor: "#d9cfc2" }}
+            style={{ borderColor: "var(--color-text-muted)" }}
           >
             <span
               className="text-sm font-semibold flex items-center gap-2"
-              style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)" }}
+              style={{ color: "var(--color-text-body)", fontFamily: "var(--font-montserrat)" }}
             >
-              <span style={{ color: "#9e5840" }}>⚠</span>
+              <span style={{ color: "var(--color-primary-deep)" }}>⚠</span>
               Contraindicaciones — Ver detalle
             </span>
             <span
               className="text-xs tracking-widest uppercase flex items-center gap-1.5"
-              style={{ color: "#9d8b7a", fontFamily: "var(--font-montserrat)", flexShrink: 0 }}
+              style={{
+                color: "var(--color-text-secondary)",
+                fontFamily: "var(--font-montserrat)",
+                flexShrink: 0,
+              }}
             >
               <span className="group-open:hidden">Ver</span>
               <span className="hidden group-open:inline">Cerrar</span>
@@ -50,22 +57,26 @@ export default function Contraindicaciones() {
           <div className="py-6">
             <p
               className="text-sm mb-5"
-              style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
+              style={{
+                color: "var(--color-text-body)",
+                fontFamily: "var(--font-montserrat)",
+                fontWeight: 400,
+              }}
             >
               Nuestros tratamientos con aparatología{" "}
-              <strong style={{ color: "#9e5840" }}>no se realizan</strong> en los
-              siguientes casos:
+              <strong style={{ color: "var(--color-primary-deep)" }}>no se realizan</strong>{" "}
+              en los siguientes casos:
             </p>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-4">
               {lista.map((item) => (
                 <li
                   key={item}
                   className="flex items-start gap-2.5 text-xs leading-relaxed"
-                  style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)" }}
+                  style={{ color: "var(--color-text-body)", fontFamily: "var(--font-montserrat)" }}
                 >
                   <span
                     className="mt-1.5 flex-shrink-0 w-1 h-1 rounded-full"
-                    style={{ backgroundColor: "#9e5840" }}
+                    style={{ backgroundColor: "var(--color-primary-deep)" }}
                   />
                   {item}
                 </li>
@@ -73,7 +84,10 @@ export default function Contraindicaciones() {
             </ul>
             <p
               className="text-xs italic"
-              style={{ color: "#9d8b7a", fontFamily: "var(--font-montserrat)" }}
+              style={{
+                color: "var(--color-text-secondary)",
+                fontFamily: "var(--font-montserrat)",
+              }}
             >
               ¿Tienes dudas? Escríbenos antes de agendar.
             </p>

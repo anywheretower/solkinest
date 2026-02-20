@@ -41,37 +41,40 @@ export default function Hero() {
   return (
     <section
       className="relative min-h-screen flex flex-col items-center justify-center px-6 pb-16 overflow-hidden"
-      style={{ backgroundColor: "#1a0f07" }}
+      style={{
+        background:
+          "linear-gradient(160deg, var(--color-bg-white) 0%, var(--color-bg-teal-whisper) 60%, var(--color-bg-teal-soft) 100%)",
+      }}
     >
-      {/* Warm gradient overlays */}
+      {/* Subtle teal radial */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 75% 90%, rgba(158, 88, 64, 0.22) 0%, transparent 55%), radial-gradient(ellipse at 20% 10%, rgba(184, 146, 74, 0.09) 0%, transparent 50%)",
+            "radial-gradient(ellipse at 70% 85%, rgba(29,166,184,0.10) 0%, transparent 55%), radial-gradient(ellipse at 20% 15%, rgba(212,175,53,0.07) 0%, transparent 50%)",
         }}
       />
 
       {/* Decorative corner — top left */}
-      <div className="absolute top-28 left-10 opacity-25">
-        <div className="w-px h-20 bg-gold" />
-        <div className="w-10 h-px bg-gold -mt-20" />
+      <div className="absolute top-28 left-10 opacity-30">
+        <div className="w-px h-20" style={{ backgroundColor: "var(--color-primary)" }} />
+        <div className="w-10 h-px -mt-20" style={{ backgroundColor: "var(--color-primary)" }} />
       </div>
 
       {/* Decorative corner — top right */}
-      <div className="absolute top-28 right-10 opacity-25 flex flex-col items-end">
-        <div className="w-px h-20 bg-gold" />
-        <div className="w-10 h-px bg-gold -mt-20" />
+      <div className="absolute top-28 right-10 opacity-30 flex flex-col items-end">
+        <div className="w-px h-20" style={{ backgroundColor: "var(--color-primary)" }} />
+        <div className="w-10 h-px -mt-20" style={{ backgroundColor: "var(--color-primary)" }} />
       </div>
 
       {/* Large background circles */}
       <div
         className="absolute right-[-18vw] top-[8%] w-[60vw] h-[60vw] rounded-full"
-        style={{ border: "1px solid rgba(184,146,74,0.06)" }}
+        style={{ border: "1px solid rgba(29,166,184,0.08)" }}
       />
       <div
         className="absolute left-[-22vw] bottom-[5%] w-[45vw] h-[45vw] rounded-full"
-        style={{ border: "1px solid rgba(184,146,74,0.05)" }}
+        style={{ border: "1px solid rgba(29,166,184,0.06)" }}
       />
 
       {/* Content */}
@@ -79,42 +82,51 @@ export default function Hero() {
         {/* Eyebrow */}
         <p
           className="text-[11px] tracking-[0.5em] uppercase mb-6 animate-hero-1"
-          style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)", fontWeight: 500 }}
+          style={{
+            color: "var(--color-primary)",
+            fontFamily: "var(--font-montserrat)",
+            fontWeight: 500,
+          }}
         >
           Estética Profesional · Viña del Mar
         </p>
 
-        {/* Gold rule */}
-        <div className="w-14 h-px mx-auto mb-10 bg-gold animate-hero-2" />
+        {/* Accent rule */}
+        <div
+          className="w-14 h-px mx-auto mb-10 animate-hero-2"
+          style={{ backgroundColor: "var(--color-accent)" }}
+        />
 
         {/* Main heading */}
         <h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-4 animate-hero-3"
-          style={{ fontFamily: "var(--font-montserrat)" }}
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] mb-4 animate-hero-3"
+          style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
         >
           Resultados reales con
           <br />
-          <span style={{ color: "#dfc896", fontWeight: 300 }}>
+          <span style={{ color: "var(--color-primary)", fontWeight: 300 }}>
             tecnología de vanguardia
           </span>
         </h1>
 
-        {/* Gold rule */}
-        <div className="w-14 h-px mx-auto mt-10 mb-10 bg-gold animate-hero-4" />
+        {/* Accent rule */}
+        <div
+          className="w-14 h-px mx-auto mt-10 mb-10 animate-hero-4"
+          style={{ backgroundColor: "var(--color-accent)" }}
+        />
 
         {/* Subtitle */}
         <p
           className="text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed animate-hero-4"
           style={{
-            color: "#ede4d8",
+            color: "var(--color-text-body)",
             fontFamily: "var(--font-montserrat)",
             fontWeight: 300,
-            opacity: 0.88,
           }}
         >
           Tratamientos estéticos corporales y faciales con aparatología de
           vanguardia y dermocosméticos profesionales.{" "}
-          <span style={{ color: "#dfc896" }}>
+          <span style={{ color: "var(--color-primary)", fontWeight: 500 }}>
             Resultados visibles desde la primera sesión.
           </span>
         </p>
@@ -127,8 +139,8 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-9 py-4 text-[11px] tracking-[0.25em] uppercase transition-all duration-300 hover:scale-105 active:scale-95"
             style={{
-              backgroundColor: "#b8924a",
-              color: "#1a0f07",
+              backgroundColor: "var(--color-primary)",
+              color: "#ffffff",
               fontFamily: "var(--font-montserrat)",
               fontWeight: 700,
             }}
@@ -147,17 +159,17 @@ export default function Hero() {
               key={i}
               className="flex items-center gap-2.5 px-4 py-3"
               style={{
-                backgroundColor: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(184,146,74,0.2)",
+                backgroundColor: "var(--color-bg-teal-soft)",
+                border: "1px solid rgba(29,166,184,0.2)",
               }}
             >
-              <span style={{ color: "#b8924a", flexShrink: 0 }}>{badge.icon}</span>
+              <span style={{ color: "var(--color-primary)", flexShrink: 0 }}>{badge.icon}</span>
               <span
                 className="text-[11px] leading-tight text-left"
                 style={{
-                  color: "#ede4d8",
+                  color: "var(--color-primary-deep)",
                   fontFamily: "var(--font-montserrat)",
-                  fontWeight: 400,
+                  fontWeight: 500,
                 }}
               >
                 {badge.text}
@@ -168,14 +180,16 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5 opacity-30 animate-hero-5">
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5 opacity-40 animate-hero-5"
+      >
         <span
-          className="text-[9px] tracking-[0.45em] uppercase text-white"
-          style={{ fontFamily: "var(--font-montserrat)" }}
+          className="text-[9px] tracking-[0.45em] uppercase"
+          style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-primary)" }}
         >
           Explorar
         </span>
-        <div className="w-px h-8 bg-gold" />
+        <div className="w-px h-8" style={{ backgroundColor: "var(--color-primary)" }} />
       </div>
     </section>
   );

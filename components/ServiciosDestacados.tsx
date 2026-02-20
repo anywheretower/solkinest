@@ -10,8 +10,8 @@ const destacados = [
     desde: "$35.000",
     duration: "50 min",
     category: "Corporal",
-    catColor: "#9e5840",
-    accent: "#9e584018",
+    catColor: "#1D6070",
+    accent: "rgba(29,96,112,0.08)",
   },
   {
     id: 11,
@@ -20,8 +20,8 @@ const destacados = [
     desde: "A consultar",
     duration: "Según zona",
     category: "Depilación",
-    catColor: "#5a7468",
-    accent: "#5a746818",
+    catColor: "#1DA6B8",
+    accent: "rgba(29,166,184,0.08)",
   },
   {
     id: 4,
@@ -30,8 +30,8 @@ const destacados = [
     desde: "$35.000",
     duration: "50 min",
     category: "Facial",
-    catColor: "#b8924a",
-    accent: "#b8924a18",
+    catColor: "#D4AF35",
+    accent: "rgba(212,175,53,0.08)",
   },
   {
     id: 3,
@@ -40,41 +40,48 @@ const destacados = [
     desde: "$15.000",
     duration: "25 / 50 min",
     category: "Masaje",
-    catColor: "#7d6b57",
-    accent: "#7d6b5718",
+    catColor: "#1D8B9A",
+    accent: "rgba(29,139,154,0.08)",
   },
 ];
 
 export default function ServiciosDestacados() {
   return (
-    <section className="py-24 md:py-32 px-6" style={{ backgroundColor: "#fdfaf5" }}>
+    <section
+      className="py-24 md:py-32 px-6"
+      style={{ backgroundColor: "var(--color-bg-white)" }}
+    >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex flex-col items-center mb-14">
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
+            style={{
+              color: "var(--color-primary)",
+              fontFamily: "var(--font-montserrat)",
+              fontWeight: 400,
+            }}
           >
             Los más solicitados
           </p>
           <h2
             className="text-3xl md:text-4xl font-semibold text-center mb-6"
-            style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
+            style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
           >
             Tratamientos Destacados
           </h2>
-          <div className="w-14 h-px" style={{ backgroundColor: "#b8924a" }} />
+          <div className="w-14 h-px" style={{ backgroundColor: "var(--color-accent)" }} />
         </div>
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {destacados.map((s, i) => (
+          {destacados.map((s) => (
             <div
               key={s.id}
               className="flex flex-col border transition-shadow duration-300 hover:shadow-xl"
               style={{
-                borderColor: "#d9cfc2",
-                backgroundColor: "#fdfaf5",
+                borderColor: "var(--color-bg-teal-soft)",
+                backgroundColor: "var(--color-bg-white)",
                 borderTopWidth: 3,
                 borderTopColor: s.catColor,
               }}
@@ -95,7 +102,10 @@ export default function ServiciosDestacados() {
                   </span>
                   <span
                     className="text-[11px]"
-                    style={{ color: "#9d8b7a", fontFamily: "var(--font-montserrat)" }}
+                    style={{
+                      color: "var(--color-text-secondary)",
+                      fontFamily: "var(--font-montserrat)",
+                    }}
                   >
                     {s.duration}
                   </span>
@@ -103,14 +113,18 @@ export default function ServiciosDestacados() {
 
                 <h3
                   className="text-lg font-bold mb-3 leading-snug"
-                  style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
+                  style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
                 >
                   {s.name}
                 </h3>
 
                 <p
                   className="text-sm mb-6"
-                  style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
+                  style={{
+                    color: "var(--color-text-body)",
+                    fontFamily: "var(--font-montserrat)",
+                    fontWeight: 400,
+                  }}
                 >
                   {s.shortDesc}
                 </p>
@@ -118,17 +132,24 @@ export default function ServiciosDestacados() {
                 {/* Price */}
                 <div
                   className="flex items-baseline gap-1.5 px-4 py-3 mb-6"
-                  style={{ backgroundColor: s.accent, borderLeft: `3px solid ${s.catColor}` }}
+                  style={{
+                    backgroundColor: s.accent,
+                    borderLeft: `3px solid ${s.catColor}`,
+                  }}
                 >
                   <span
                     className="text-[10px] tracking-widest uppercase"
-                    style={{ color: s.catColor, fontFamily: "var(--font-montserrat)", fontWeight: 600 }}
+                    style={{
+                      color: s.catColor,
+                      fontFamily: "var(--font-montserrat)",
+                      fontWeight: 600,
+                    }}
                   >
                     Desde
                   </span>
                   <span
                     className="text-xl font-bold"
-                    style={{ color: "#1a0f07", fontFamily: "var(--font-montserrat)" }}
+                    style={{ color: "var(--color-text)", fontFamily: "var(--font-montserrat)" }}
                   >
                     {s.desde}
                   </span>
@@ -142,9 +163,9 @@ export default function ServiciosDestacados() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 py-4 text-[11px] tracking-widest uppercase border-t transition-colors duration-200"
                 style={{
-                  borderColor: "#d9cfc2",
-                  color: "#fdfaf5",
-                  backgroundColor: "#1a0f07",
+                  borderColor: "var(--color-bg-teal-soft)",
+                  color: "#ffffff",
+                  backgroundColor: "var(--color-primary-night)",
                   fontFamily: "var(--font-montserrat)",
                   fontWeight: 600,
                 }}
@@ -152,7 +173,8 @@ export default function ServiciosDestacados() {
                   (e.currentTarget as HTMLAnchorElement).style.backgroundColor = s.catColor;
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#1a0f07";
+                  (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
+                    "var(--color-primary-night)";
                 }}
               >
                 <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">

@@ -41,25 +41,27 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div
-      className="border-b"
-      style={{ borderColor: "#d9cfc2" }}
-    >
+    <div className="border-b" style={{ borderColor: "var(--color-text-muted)" }}>
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-5 text-left gap-4"
       >
         <span
           className="text-sm font-semibold leading-snug"
-          style={{ color: "#1a0f07", fontFamily: "var(--font-montserrat)" }}
+          style={{
+            color: open ? "var(--color-primary)" : "var(--color-text)",
+            fontFamily: "var(--font-montserrat)",
+          }}
         >
           {q}
         </span>
         <span
           className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-sm transition-transform duration-300"
           style={{
-            backgroundColor: open ? "#1a0f07" : "#ede4d8",
-            color: open ? "#fdfaf5" : "#7d6b57",
+            backgroundColor: open
+              ? "var(--color-primary-night)"
+              : "var(--color-bg-teal-soft)",
+            color: open ? "#ffffff" : "var(--color-text-body)",
             transform: open ? "rotate(45deg)" : "rotate(0deg)",
           }}
         >
@@ -71,7 +73,11 @@ function FAQItem({ q, a }: { q: string; a: string }) {
         <div className="pb-5 expanded-content">
           <p
             className="text-sm leading-relaxed"
-            style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
+            style={{
+              color: "var(--color-text-body)",
+              fontFamily: "var(--font-montserrat)",
+              fontWeight: 400,
+            }}
           >
             {a}
           </p>
@@ -83,27 +89,35 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 export default function FAQ() {
   return (
-    <section id="faq" className="py-24 md:py-32 px-6" style={{ backgroundColor: "#fdfaf5" }}>
+    <section
+      id="faq"
+      className="py-24 md:py-32 px-6"
+      style={{ backgroundColor: "var(--color-bg-neutral)" }}
+    >
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="flex flex-col items-center mb-14">
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
+            style={{
+              color: "var(--color-primary)",
+              fontFamily: "var(--font-montserrat)",
+              fontWeight: 400,
+            }}
           >
             Dudas frecuentes
           </p>
           <h2
             className="text-3xl md:text-4xl font-semibold text-center mb-6"
-            style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
+            style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
           >
             Preguntas Frecuentes
           </h2>
-          <div className="w-14 h-px" style={{ backgroundColor: "#b8924a" }} />
+          <div className="w-14 h-px" style={{ backgroundColor: "var(--color-accent)" }} />
         </div>
 
         {/* Items */}
-        <div className="border-t" style={{ borderColor: "#d9cfc2" }}>
+        <div className="border-t" style={{ borderColor: "var(--color-text-muted)" }}>
           {faqs.map((item) => (
             <FAQItem key={item.q} q={item.q} a={item.a} />
           ))}

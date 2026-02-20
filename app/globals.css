@@ -1,16 +1,34 @@
 @import "tailwindcss";
 
-@theme {
-  --color-cream: #fdfaf5;
-  --color-espresso: #1a0f07;
-  --color-gold: #b8924a;
-  --color-gold-light: #dfc896;
-  --color-gold-pale: #f5edd8;
-  --color-sand: #ede4d8;
-  --color-terracotta: #9e5840;
-  --color-muted: #7d6b57;
-  --color-border-warm: #d9cfc2;
+:root {
+  /* Principales */
+  --color-primary: #1DA6B8;
+  --color-primary-hover: #1D8B9A;
+  --color-primary-deep: #1D6070;
+  --color-primary-night: #163944;
 
+  /* Acentos dorados */
+  --color-accent: #D4AF35;
+  --color-accent-soft: #C9AF72;
+
+  /* Textos */
+  --color-text: #222020;
+  --color-text-body: #41474D;
+  --color-text-secondary: #838C95;
+  --color-text-muted: #B3B7BB;
+
+  /* Fondos */
+  --color-bg-white: #FFFFFF;
+  --color-bg-teal-whisper: #F1F7F7;
+  --color-bg-teal-soft: #E3F0F1;
+  --color-bg-cream: #F7F6F1;
+  --color-bg-neutral: #F4F4F5;
+
+  /* Funcional */
+  --color-whatsapp: #25D366;
+}
+
+@theme {
   --font-display: var(--font-montserrat);
   --font-body: var(--font-montserrat);
 }
@@ -26,8 +44,8 @@ html {
 }
 
 body {
-  background-color: #fdfaf5;
-  color: #1a0f07;
+  background-color: var(--color-bg-white);
+  color: var(--color-text);
   font-family: var(--font-montserrat), sans-serif;
   -webkit-font-smoothing: antialiased;
 }

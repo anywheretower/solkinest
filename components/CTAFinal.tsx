@@ -4,47 +4,54 @@ export default function CTAFinal() {
   return (
     <section
       className="py-28 md:py-44 px-6 relative overflow-hidden"
-      style={{ backgroundColor: "#f5edd8" }}
+      style={{ backgroundColor: "var(--color-bg-teal-soft)" }}
     >
       {/* Radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 50%, rgba(184, 146, 74, 0.14) 0%, transparent 65%)",
+            "radial-gradient(ellipse at 50% 50%, rgba(29,166,184,0.12) 0%, transparent 65%)",
         }}
       />
 
       {/* Top rule */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-border-warm" />
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{ backgroundColor: "var(--color-bg-teal-whisper)" }}
+      />
 
       {/* Decorative circle */}
       <div
-        className="absolute right-[-10vw] top-[-10vw] w-[50vw] h-[50vw] rounded-full border border-gold/10"
-        style={{ borderWidth: 1 }}
+        className="absolute right-[-10vw] top-[-10vw] w-[50vw] h-[50vw] rounded-full"
+        style={{ border: "1px solid rgba(29,166,184,0.12)" }}
       />
 
       <div className="relative z-10 max-w-3xl mx-auto text-center">
         <p
           className="text-[11px] tracking-[0.5em] uppercase mb-6"
-          style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)" }}
+          style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
         >
           Da el primer paso
         </p>
 
         <h2
           className="text-4xl sm:text-5xl md:text-6xl font-light italic leading-tight mb-8"
-          style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
+          style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
         >
           ¿Lista para{" "}
-          <span className="font-semibold" style={{ color: "#b8924a" }}>
+          <span className="font-semibold" style={{ color: "var(--color-primary)" }}>
             transformarte?
           </span>
         </h2>
 
         <p
           className="text-base leading-relaxed mb-12 max-w-xl mx-auto"
-          style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
+          style={{
+            color: "var(--color-text-body)",
+            fontFamily: "var(--font-montserrat)",
+            fontWeight: 400,
+          }}
         >
           Agenda tu hora hoy y comienza a ver resultados. Escríbenos por WhatsApp
           y te ayudamos a elegir el tratamiento ideal para ti.
@@ -57,8 +64,8 @@ export default function CTAFinal() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-10 py-5 text-[11px] tracking-[0.2em] uppercase transition-all duration-300 hover:scale-105 active:scale-95"
             style={{
-              backgroundColor: "#1a0f07",
-              color: "#fdfaf5",
+              backgroundColor: "var(--color-primary)",
+              color: "#ffffff",
               fontFamily: "var(--font-montserrat)",
               fontWeight: 600,
             }}
@@ -70,7 +77,7 @@ export default function CTAFinal() {
           </a>
           <span
             className="text-sm"
-            style={{ color: "#9d8b7a", fontFamily: "var(--font-montserrat)" }}
+            style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-montserrat)" }}
           >
             +56 9 5739 4822
           </span>
