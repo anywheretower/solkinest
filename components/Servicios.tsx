@@ -217,7 +217,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
             style={{
               color: catColor,
               backgroundColor: catColor + "18",
-              fontFamily: "var(--font-jost)",
+              fontFamily: "var(--font-montserrat)",
               fontWeight: 500,
             }}
           >
@@ -225,7 +225,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
           </span>
           <span
             className="text-xs"
-            style={{ color: "#b8924a", fontFamily: "var(--font-jost)" }}
+            style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)" }}
           >
             {service.duration}
           </span>
@@ -234,7 +234,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
         {/* Name */}
         <h3
           className="text-xl md:text-2xl font-light mb-3 leading-tight"
-          style={{ fontFamily: "var(--font-cormorant)", color: "#1a0f07" }}
+          style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
         >
           {service.name}
         </h3>
@@ -242,7 +242,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
         {/* Description */}
         <p
           className="text-sm leading-relaxed"
-          style={{ color: "#7d6b57", fontFamily: "var(--font-jost)", fontWeight: 400 }}
+          style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
         >
           {service.description}
         </p>
@@ -255,7 +255,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
         style={{
           borderColor: "#d9cfc2",
           color: open ? "#b8924a" : "#7d6b57",
-          fontFamily: "var(--font-jost)",
+          fontFamily: "var(--font-montserrat)",
           fontWeight: 500,
         }}
       >
@@ -285,7 +285,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
                 >
                   <span
                     className="text-sm"
-                    style={{ color: "#7d6b57", fontFamily: "var(--font-jost)" }}
+                    style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)" }}
                   >
                     {row.label}
                   </span>
@@ -293,7 +293,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
                     {row.offer && (
                       <span
                         className="text-xs line-through opacity-40"
-                        style={{ color: "#7d6b57", fontFamily: "var(--font-jost)" }}
+                        style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)" }}
                       >
                         {row.value}
                       </span>
@@ -301,7 +301,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
                     <span
                       style={{
                         color: row.offer ? "#9e5840" : "#1a0f07",
-                        fontFamily: "var(--font-cormorant)",
+                        fontFamily: "var(--font-montserrat)",
                         fontSize: "1.1rem",
                         fontWeight: 600,
                       }}
@@ -319,7 +319,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
             <div className="overflow-x-auto mb-4">
               <table
                 className="w-full text-sm"
-                style={{ fontFamily: "var(--font-jost)" }}
+                style={{ fontFamily: "var(--font-montserrat)" }}
               >
                 <thead>
                   <tr>
@@ -345,7 +345,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
                             color: j === 0 ? "#1a0f07" : j >= 2 ? "#9e5840" : "#7d6b57",
                             fontWeight: j >= 2 ? 600 : 400,
                             fontFamily:
-                              j >= 2 ? "var(--font-cormorant)" : "var(--font-jost)",
+                              j >= 2 ? "var(--font-montserrat)" : "var(--font-montserrat)",
                             fontSize: j >= 2 ? "1rem" : "0.875rem",
                           }}
                         >
@@ -364,7 +364,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
             <div className="mb-4">
               <p
                 className="text-[10px] tracking-widest uppercase mb-3"
-                style={{ color: "#b8924a", fontFamily: "var(--font-jost)" }}
+                style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)" }}
               >
                 Duración por tamaño de zona · Precio a consultar
               </p>
@@ -378,7 +378,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
                     <span
                       className="text-xl font-semibold mb-0.5"
                       style={{
-                        fontFamily: "var(--font-cormorant)",
+                        fontFamily: "var(--font-montserrat)",
                         color: "#1a0f07",
                       }}
                     >
@@ -386,7 +386,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
                     </span>
                     <span
                       className="text-[10px]"
-                      style={{ color: "#7d6b57", fontFamily: "var(--font-jost)" }}
+                      style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)" }}
                     >
                       {row.duration}
                     </span>
@@ -402,7 +402,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
               className="text-xs leading-relaxed mt-3"
               style={{
                 color: "#9d8b7a",
-                fontFamily: "var(--font-jost)",
+                fontFamily: "var(--font-montserrat)",
                 fontStyle: "italic",
               }}
             >
@@ -416,7 +416,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
               className="text-xs leading-relaxed mt-3 px-3 py-2.5 border-l-2"
               style={{
                 color: "#9e5840",
-                fontFamily: "var(--font-jost)",
+                fontFamily: "var(--font-montserrat)",
                 borderColor: "#9e5840",
                 backgroundColor: "#9e584012",
               }}
@@ -455,13 +455,13 @@ export default function Servicios() {
         <div className="flex flex-col items-center mb-12">
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: "#9e5840", fontFamily: "var(--font-jost)", fontWeight: 400 }}
+            style={{ color: "#9e5840", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
           >
             Tratamientos
           </p>
           <h2
             className="text-4xl md:text-5xl font-light italic text-center mb-6"
-            style={{ fontFamily: "var(--font-cormorant)", color: "#1a0f07" }}
+            style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
           >
             Nuestros Servicios
           </h2>
@@ -476,7 +476,7 @@ export default function Servicios() {
               onClick={() => setFilter(cat.key)}
               className="px-5 py-2 text-[11px] tracking-widest uppercase transition-all duration-200"
               style={{
-                fontFamily: "var(--font-jost)",
+                fontFamily: "var(--font-montserrat)",
                 fontWeight: 500,
                 backgroundColor: filter === cat.key ? "#1a0f07" : "transparent",
                 color: filter === cat.key ? "#fdfaf5" : "#7d6b57",

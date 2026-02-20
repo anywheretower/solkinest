@@ -44,7 +44,7 @@ export default function Hero() {
           className="text-[11px] tracking-[0.5em] uppercase mb-6 animate-hero-1"
           style={{
             color: "#b8924a",
-            fontFamily: "var(--font-jost)",
+            fontFamily: "var(--font-montserrat)",
             fontWeight: 400,
           }}
         >
@@ -57,7 +57,7 @@ export default function Hero() {
         {/* Main heading */}
         <h1
           className="text-5xl sm:text-6xl md:text-7xl lg:text-[86px] font-light italic text-white leading-[0.92] mb-4 animate-hero-3"
-          style={{ fontFamily: "var(--font-cormorant)" }}
+          style={{ fontFamily: "var(--font-montserrat)" }}
         >
           Tu bienestar
           <br />
@@ -77,7 +77,7 @@ export default function Hero() {
           className="text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed animate-hero-4"
           style={{
             color: "#ede4d8",
-            fontFamily: "var(--font-jost)",
+            fontFamily: "var(--font-montserrat)",
             fontWeight: 300,
             opacity: 0.88,
           }}
@@ -99,7 +99,7 @@ export default function Hero() {
             style={{
               backgroundColor: "#b8924a",
               color: "#1a0f07",
-              fontFamily: "var(--font-jost)",
+              fontFamily: "var(--font-montserrat)",
               fontWeight: 600,
             }}
           >
@@ -115,7 +115,7 @@ export default function Hero() {
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5 opacity-30 animate-hero-5">
         <span
           className="text-[9px] tracking-[0.45em] uppercase text-white"
-          style={{ fontFamily: "var(--font-jost)" }}
+          style={{ fontFamily: "var(--font-montserrat)" }}
         >
           Servicios
         </span>

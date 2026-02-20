@@ -11,13 +11,13 @@ export default function InfoPractica() {
         <div className="flex flex-col items-center mb-16">
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: "#b8924a", fontFamily: "var(--font-jost)" }}
+            style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)" }}
           >
             Dónde Encontrarnos
           </p>
           <h2
             className="text-3xl md:text-4xl font-light italic text-center mb-6"
-            style={{ fontFamily: "var(--font-cormorant)", color: "#1a0f07" }}
+            style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
           >
             Información Práctica
           </h2>
@@ -46,7 +46,7 @@ export default function InfoPractica() {
               </div>
               <h3
                 className="text-xl font-light"
-                style={{ fontFamily: "var(--font-cormorant)", color: "#1a0f07" }}
+                style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
               >
                 Horarios
               </h3>
@@ -56,13 +56,13 @@ export default function InfoPractica() {
               <div>
                 <p
                   className="text-[10px] tracking-wider uppercase mb-1 font-medium"
-                  style={{ color: "#9e5840", fontFamily: "var(--font-jost)" }}
+                  style={{ color: "#9e5840", fontFamily: "var(--font-montserrat)" }}
                 >
                   Lunes a Viernes
                 </p>
                 <p
                   className="text-sm mb-0.5"
-                  style={{ color: "#1a0f07", fontFamily: "var(--font-jost)" }}
+                  style={{ color: "#1a0f07", fontFamily: "var(--font-montserrat)" }}
                 >
                   11:00–15:00 y 16:00–19:00
                 </p>
@@ -70,7 +70,7 @@ export default function InfoPractica() {
                   className="text-xs"
                   style={{
                     color: "#9d8b7a",
-                    fontFamily: "var(--font-jost)",
+                    fontFamily: "var(--font-montserrat)",
                     fontStyle: "italic",
                   }}
                 >
@@ -80,13 +80,13 @@ export default function InfoPractica() {
               <div>
                 <p
                   className="text-[10px] tracking-wider uppercase mb-1 font-medium"
-                  style={{ color: "#9e5840", fontFamily: "var(--font-jost)" }}
+                  style={{ color: "#9e5840", fontFamily: "var(--font-montserrat)" }}
                 >
                   Sábados
                 </p>
                 <p
                   className="text-sm mb-0.5"
-                  style={{ color: "#1a0f07", fontFamily: "var(--font-jost)" }}
+                  style={{ color: "#1a0f07", fontFamily: "var(--font-montserrat)" }}
                 >
                   09:00–14:00
                 </p>
@@ -94,7 +94,7 @@ export default function InfoPractica() {
                   className="text-xs"
                   style={{
                     color: "#9d8b7a",
-                    fontFamily: "var(--font-jost)",
+                    fontFamily: "var(--font-montserrat)",
                     fontStyle: "italic",
                   }}
                 >
@@ -125,7 +125,7 @@ export default function InfoPractica() {
               </div>
               <h3
                 className="text-xl font-light"
-                style={{ fontFamily: "var(--font-cormorant)", color: "#1a0f07" }}
+                style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
               >
                 Ubicación
               </h3>
@@ -133,31 +133,31 @@ export default function InfoPractica() {
 
             <p
               className="text-sm font-medium"
-              style={{ color: "#1a0f07", fontFamily: "var(--font-jost)" }}
+              style={{ color: "#1a0f07", fontFamily: "var(--font-montserrat)" }}
             >
               1 Norte #841
             </p>
             <p
               className="text-sm"
-              style={{ color: "#7d6b57", fontFamily: "var(--font-jost)" }}
+              style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)" }}
             >
               Entre 1 y 2 Oriente
             </p>
             <p
               className="text-sm mt-3"
-              style={{ color: "#7d6b57", fontFamily: "var(--font-jost)" }}
+              style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)" }}
             >
               Condominio Progresur
             </p>
             <p
               className="text-sm"
-              style={{ color: "#7d6b57", fontFamily: "var(--font-jost)" }}
+              style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)" }}
             >
               Block B-2, Depto. 3
             </p>
             <p
               className="text-xs mt-4 italic"
-              style={{ color: "#9d8b7a", fontFamily: "var(--font-jost)" }}
+              style={{ color: "#9d8b7a", fontFamily: "var(--font-montserrat)" }}
             >
               Viña del Mar, Chile
             </p>
@@ -176,7 +176,7 @@ export default function InfoPractica() {
               </div>
               <h3
                 className="text-xl font-light"
-                style={{ fontFamily: "var(--font-cormorant)", color: "#1a0f07" }}
+                style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
               >
                 Contacto
               </h3>
@@ -184,7 +184,7 @@ export default function InfoPractica() {
 
             <p
               className="text-xs uppercase tracking-wider mb-1"
-              style={{ color: "#9d8b7a", fontFamily: "var(--font-jost)" }}
+              style={{ color: "#9d8b7a", fontFamily: "var(--font-montserrat)" }}
             >
               WhatsApp
             </p>
@@ -193,7 +193,7 @@ export default function InfoPractica() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-2xl transition-opacity hover:opacity-70"
-              style={{ fontFamily: "var(--font-cormorant)", color: "#1a0f07" }}
+              style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
             >
               +56 9 5739 4822
             </a>
@@ -207,7 +207,7 @@ export default function InfoPractica() {
                 style={{
                   backgroundColor: "#1a0f07",
                   color: "#fdfaf5",
-                  fontFamily: "var(--font-jost)",
+                  fontFamily: "var(--font-montserrat)",
                   fontWeight: 600,
                 }}
               >

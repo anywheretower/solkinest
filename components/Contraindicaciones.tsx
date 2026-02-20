@@ -21,13 +21,13 @@ export default function Contraindicaciones() {
         <div className="flex flex-col items-center mb-14">
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: "#9e5840", fontFamily: "var(--font-jost)" }}
+            style={{ color: "#9e5840", fontFamily: "var(--font-montserrat)" }}
           >
             Información Importante
           </p>
           <h2
             className="text-3xl md:text-4xl font-light italic text-center mb-6"
-            style={{ fontFamily: "var(--font-cormorant)", color: "#1a0f07" }}
+            style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
           >
             Contraindicaciones
           </h2>
@@ -40,7 +40,7 @@ export default function Contraindicaciones() {
         >
           <p
             className="text-base mb-8 leading-relaxed"
-            style={{ color: "#7d6b57", fontFamily: "var(--font-jost)", fontWeight: 400 }}
+            style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
           >
             Nuestros tratamientos corporales con aparatología{" "}
             <strong style={{ color: "#9e5840" }}>no se realizan</strong> en los
@@ -52,7 +52,7 @@ export default function Contraindicaciones() {
               <li
                 key={item}
                 className="flex items-start gap-3 text-sm leading-relaxed"
-                style={{ color: "#7d6b57", fontFamily: "var(--font-jost)" }}
+                style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)" }}
               >
                 <span
                   className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full"
@@ -67,7 +67,7 @@ export default function Contraindicaciones() {
             className="mt-8 text-xs leading-relaxed"
             style={{
               color: "#9d8b7a",
-              fontFamily: "var(--font-jost)",
+              fontFamily: "var(--font-montserrat)",
               fontStyle: "italic",
             }}
           >

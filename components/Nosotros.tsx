@@ -25,7 +25,7 @@ export default function Nosotros() {
         <div className="flex flex-col items-center mb-20">
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: "#b8924a", fontFamily: "var(--font-jost)", fontWeight: 400 }}
+            style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
           >
             Sobre Nosotros
           </p>
@@ -35,7 +35,7 @@ export default function Nosotros() {
         {/* Pull quote */}
         <blockquote
           className="text-3xl sm:text-4xl md:text-5xl font-light italic leading-tight text-center mb-12 max-w-3xl mx-auto"
-          style={{ fontFamily: "var(--font-cormorant)", color: "#1a0f07" }}
+          style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
         >
           Tecnología avanzada, técnicas manuales y dermocosméticos para{" "}
           <span className="font-semibold not-italic" style={{ color: "#b8924a" }}>
@@ -46,7 +46,7 @@ export default function Nosotros() {
         {/* Body */}
         <p
           className="text-base leading-relaxed text-center mb-16 max-w-2xl mx-auto"
-          style={{ color: "#7d6b57", fontFamily: "var(--font-jost)", fontWeight: 400 }}
+          style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
         >
           En Solkinest combinamos tecnología avanzada, técnicas manuales
           especializadas y dermocosméticos profesionales para ayudarte a alcanzar
@@ -74,7 +74,7 @@ export default function Nosotros() {
               <span
                 className="text-xs tracking-widest uppercase"
                 style={{
-                  fontFamily: "var(--font-jost)",
+                  fontFamily: "var(--font-montserrat)",
                   color: "#7d6b57",
                   fontWeight: 500,
                 }}
@@ -89,7 +89,7 @@ export default function Nosotros() {
         <div>
           <p
             className="text-[10px] tracking-[0.45em] uppercase text-center mb-5"
-            style={{ color: "#b8924a", fontFamily: "var(--font-jost)" }}
+            style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)" }}
           >
             Aparatología
           </p>
@@ -101,7 +101,7 @@ export default function Nosotros() {
                 style={{
                   borderColor: "#d9cfc2",
                   color: "#7d6b57",
-                  fontFamily: "var(--font-jost)",
+                  fontFamily: "var(--font-montserrat)",
                   backgroundColor: "#f5edd8",
                   fontWeight: 400,
                 }}

@@ -24,13 +24,13 @@ export default function Reservas() {
         <div className="flex flex-col items-center mb-16">
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: "#b8924a", fontFamily: "var(--font-jost)" }}
+            style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)" }}
           >
             Cómo Reservar
           </p>
           <h2
             className="text-3xl md:text-4xl font-light italic text-center text-white mb-6"
-            style={{ fontFamily: "var(--font-cormorant)" }}
+            style={{ fontFamily: "var(--font-montserrat)" }}
           >
             Reservas y Políticas
           </h2>
@@ -45,7 +45,7 @@ export default function Reservas() {
           >
             <h3
               className="text-xl font-light italic mb-7"
-              style={{ fontFamily: "var(--font-cormorant)", color: "#dfc896" }}
+              style={{ fontFamily: "var(--font-montserrat)", color: "#dfc896" }}
             >
               Datos de Transferencia
             </h3>
@@ -54,13 +54,13 @@ export default function Reservas() {
                 <div key={item.label}>
                   <span
                     className="block text-[10px] tracking-widest uppercase mb-0.5"
-                    style={{ color: "#b8924a", fontFamily: "var(--font-jost)" }}
+                    style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)" }}
                   >
                     {item.label}
                   </span>
                   <span
                     className="text-sm font-medium"
-                    style={{ color: "#ede4d8", fontFamily: "var(--font-jost)" }}
+                    style={{ color: "#ede4d8", fontFamily: "var(--font-montserrat)" }}
                   >
                     {item.value}
                   </span>
@@ -76,7 +76,7 @@ export default function Reservas() {
           >
             <h3
               className="text-xl font-light italic mb-7"
-              style={{ fontFamily: "var(--font-cormorant)", color: "#dfc896" }}
+              style={{ fontFamily: "var(--font-montserrat)", color: "#dfc896" }}
             >
               Políticas de Cancelación
             </h3>
@@ -85,7 +85,7 @@ export default function Reservas() {
                 <li
                   key={i}
                   className="flex items-start gap-3 text-sm leading-relaxed"
-                  style={{ color: "#c4b5a5", fontFamily: "var(--font-jost)" }}
+                  style={{ color: "#c4b5a5", fontFamily: "var(--font-montserrat)" }}
                 >
                   <span
                     className="flex-shrink-0 mt-2 w-1 h-1 rounded-full bg-gold"

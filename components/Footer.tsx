@@ -16,7 +16,7 @@ export default function Footer() {
 
         <p
           className="text-xs text-center"
-          style={{ color: "#4a3828", fontFamily: "var(--font-jost)" }}
+          style={{ color: "#4a3828", fontFamily: "var(--font-montserrat)" }}
         >
           © {new Date().getFullYear()} Solkinest SpA · Viña del Mar, Chile
         </p>
@@ -26,7 +26,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           className="text-xs tracking-widest uppercase transition-colors hover:text-gold"
-          style={{ color: "#6b5a4a", fontFamily: "var(--font-jost)" }}
+          style={{ color: "#6b5a4a", fontFamily: "var(--font-montserrat)" }}
         >
           +56 9 5739 4822
         </a>

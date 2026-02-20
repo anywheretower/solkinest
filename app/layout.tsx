@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
-  variable: "--font-cormorant",
-  display: "swap",
-});
-
-const jost = Jost({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-jost",
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -29,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${cormorant.variable} ${jost.variable}`}>
+    <html lang="es" className={montserrat.variable}>
       <body>{children}</body>
     </html>
   );

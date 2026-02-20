@@ -11,8 +11,8 @@
   --color-muted: #7d6b57;
   --color-border-warm: #d9cfc2;
 
-  --font-display: var(--font-cormorant);
-  --font-body: var(--font-jost);
+  --font-display: var(--font-montserrat);
+  --font-body: var(--font-montserrat);
 }
 
 *,
@@ -28,7 +28,7 @@ html {
 body {
   background-color: #fdfaf5;
   color: #1a0f07;
-  font-family: var(--font-jost), sans-serif;
+  font-family: var(--font-montserrat), sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -37,7 +37,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: var(--font-cormorant), serif;
+  font-family: var(--font-montserrat), sans-serif;
   line-height: 1.1;
 }
 

@@ -27,14 +27,14 @@ export default function CTAFinal() {
       <div className="relative z-10 max-w-3xl mx-auto text-center">
         <p
           className="text-[11px] tracking-[0.5em] uppercase mb-6"
-          style={{ color: "#b8924a", fontFamily: "var(--font-jost)" }}
+          style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)" }}
         >
           Da el primer paso
         </p>
 
         <h2
           className="text-4xl sm:text-5xl md:text-6xl font-light italic leading-tight mb-8"
-          style={{ fontFamily: "var(--font-cormorant)", color: "#1a0f07" }}
+          style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
         >
           ¿Lista para{" "}
           <span className="font-semibold" style={{ color: "#b8924a" }}>
@@ -44,7 +44,7 @@ export default function CTAFinal() {
 
         <p
           className="text-base leading-relaxed mb-12 max-w-xl mx-auto"
-          style={{ color: "#7d6b57", fontFamily: "var(--font-jost)", fontWeight: 400 }}
+          style={{ color: "#7d6b57", fontFamily: "var(--font-montserrat)", fontWeight: 400 }}
         >
           Agenda tu hora hoy y comienza a ver resultados. Escríbenos por WhatsApp
           y te ayudamos a elegir el tratamiento ideal para ti.
@@ -59,7 +59,7 @@ export default function CTAFinal() {
             style={{
               backgroundColor: "#1a0f07",
               color: "#fdfaf5",
-              fontFamily: "var(--font-jost)",
+              fontFamily: "var(--font-montserrat)",
               fontWeight: 600,
             }}
           >
@@ -70,7 +70,7 @@ export default function CTAFinal() {
           </a>
           <span
             className="text-sm"
-            style={{ color: "#9d8b7a", fontFamily: "var(--font-jost)" }}
+            style={{ color: "#9d8b7a", fontFamily: "var(--font-montserrat)" }}
           >
             +56 9 5739 4822
           </span>
