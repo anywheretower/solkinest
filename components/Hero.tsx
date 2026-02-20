@@ -102,7 +102,7 @@ export default function Hero() {
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] mb-4 animate-hero-3"
           style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
         >
-          Resultados reales con
+          Tu mejor versión con
           <br />
           <span style={{ color: "var(--color-primary)", fontWeight: 300 }}>
             tecnología de vanguardia
