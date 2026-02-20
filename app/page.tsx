@@ -1,12 +1,17 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Nosotros from "@/components/Nosotros";
+import ServiciosDestacados from "@/components/ServiciosDestacados";
+import GuiaTratamientos from "@/components/GuiaTratamientos";
 import Servicios from "@/components/Servicios";
-import Contraindicaciones from "@/components/Contraindicaciones";
+import Testimonios from "@/components/Testimonios";
+import FAQ from "@/components/FAQ";
 import InfoPractica from "@/components/InfoPractica";
 import Reservas from "@/components/Reservas";
+import Contraindicaciones from "@/components/Contraindicaciones";
 import CTAFinal from "@/components/CTAFinal";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export default function Home() {
   return (
@@ -14,12 +19,17 @@ export default function Home() {
       <Nav />
       <Hero />
       <Nosotros />
+      <ServiciosDestacados />
+      <GuiaTratamientos />
       <Servicios />
-      <Contraindicaciones />
+      <Testimonios />
+      <FAQ />
       <InfoPractica />
       <Reservas />
+      <Contraindicaciones />
       <CTAFinal />
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }

@@ -87,3 +87,18 @@ h5 {
 .expanded-content {
   animation: expandIn 0.25s ease forwards;
 }
+
+/* Scroll-triggered fade-in for sections */
+[data-fadein] {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.js-ready [data-fadein]:not(.in-view) {
+  opacity: 0;
+  transform: translateY(22px);
+}
+.js-ready [data-fadein].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -1,9 +1,46 @@
 const WA_LINK = "https://wa.me/56957394822";
 
+const badges = [
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    text: "11 tratamientos especializados",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    text: "Aparatología de última generación",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" strokeLinecap="round" />
+      </svg>
+    ),
+    text: "Soprano Ice Triláser",
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+        <circle cx="12" cy="9" r="2.5" />
+      </svg>
+    ),
+    text: "Viña del Mar",
+  },
+];
+
 export default function Hero() {
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center px-6 pb-16 overflow-hidden"
       style={{ backgroundColor: "#1a0f07" }}
     >
       {/* Warm gradient overlays */}
@@ -27,14 +64,14 @@ export default function Hero() {
         <div className="w-10 h-px bg-gold -mt-20" />
       </div>
 
-      {/* Large background circle */}
+      {/* Large background circles */}
       <div
-        className="absolute right-[-18vw] top-[8%] w-[60vw] h-[60vw] rounded-full border border-gold/5"
-        style={{ borderWidth: 1 }}
+        className="absolute right-[-18vw] top-[8%] w-[60vw] h-[60vw] rounded-full"
+        style={{ border: "1px solid rgba(184,146,74,0.06)" }}
       />
       <div
-        className="absolute left-[-22vw] bottom-[5%] w-[45vw] h-[45vw] rounded-full border border-gold/[0.06]"
-        style={{ borderWidth: 1 }}
+        className="absolute left-[-22vw] bottom-[5%] w-[45vw] h-[45vw] rounded-full"
+        style={{ border: "1px solid rgba(184,146,74,0.05)" }}
       />
 
       {/* Content */}
@@ -42,11 +79,7 @@ export default function Hero() {
         {/* Eyebrow */}
         <p
           className="text-[11px] tracking-[0.5em] uppercase mb-6 animate-hero-1"
-          style={{
-            color: "#b8924a",
-            fontFamily: "var(--font-montserrat)",
-            fontWeight: 400,
-          }}
+          style={{ color: "#b8924a", fontFamily: "var(--font-montserrat)", fontWeight: 500 }}
         >
           Estética Profesional · Viña del Mar
         </p>
@@ -56,16 +89,13 @@ export default function Hero() {
 
         {/* Main heading */}
         <h1
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-[86px] font-light italic text-white leading-[0.92] mb-4 animate-hero-3"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-4 animate-hero-3"
           style={{ fontFamily: "var(--font-montserrat)" }}
         >
-          Tu bienestar
+          Resultados reales con
           <br />
-          <span
-            className="font-semibold not-italic"
-            style={{ color: "#dfc896" }}
-          >
-            comienza aquí
+          <span style={{ color: "#dfc896", fontWeight: 300 }}>
+            tecnología de vanguardia
           </span>
         </h1>
 
@@ -90,7 +120,7 @@ export default function Hero() {
         </p>
 
         {/* CTA */}
-        <div className="animate-hero-5">
+        <div className="animate-hero-5 mb-14">
           <a
             href={WA_LINK}
             target="_blank"
@@ -100,7 +130,7 @@ export default function Hero() {
               backgroundColor: "#b8924a",
               color: "#1a0f07",
               fontFamily: "var(--font-montserrat)",
-              fontWeight: 600,
+              fontWeight: 700,
             }}
           >
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
@@ -108,6 +138,32 @@ export default function Hero() {
             </svg>
             Reserva tu hora · WhatsApp
           </a>
+        </div>
+
+        {/* Badges row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 animate-hero-5">
+          {badges.map((badge, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-2.5 px-4 py-3"
+              style={{
+                backgroundColor: "rgba(255,255,255,0.05)",
+                border: "1px solid rgba(184,146,74,0.2)",
+              }}
+            >
+              <span style={{ color: "#b8924a", flexShrink: 0 }}>{badge.icon}</span>
+              <span
+                className="text-[11px] leading-tight text-left"
+                style={{
+                  color: "#ede4d8",
+                  fontFamily: "var(--font-montserrat)",
+                  fontWeight: 400,
+                }}
+              >
+                {badge.text}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -117,7 +173,7 @@ export default function Hero() {
           className="text-[9px] tracking-[0.45em] uppercase text-white"
           style={{ fontFamily: "var(--font-montserrat)" }}
         >
-          Servicios
+          Explorar
         </span>
         <div className="w-px h-8 bg-gold" />
       </div>

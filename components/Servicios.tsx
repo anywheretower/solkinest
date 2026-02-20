@@ -202,6 +202,7 @@ function ServicioCard({ service }: { service: ServiceData }) {
 
   return (
     <div
+      id={`servicio-${service.id}`}
       className="flex flex-col border transition-all duration-300 hover:shadow-lg"
       style={{
         borderColor: open ? "#b8924a" : "#d9cfc2",
@@ -463,7 +464,7 @@ export default function Servicios() {
             className="text-4xl md:text-5xl font-light italic text-center mb-6"
             style={{ fontFamily: "var(--font-montserrat)", color: "#1a0f07" }}
           >
-            Nuestros Servicios
+            Todos nuestros servicios
           </h2>
           <div className="w-14 h-px bg-gold" />
         </div>
