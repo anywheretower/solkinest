@@ -1,80 +1,59 @@
 "use client";
 
-const guia = [
+import { motion } from "framer-motion";
+import { Ruler, Eye, Sparkles, Wind, Cross, Scissors, Baby } from "lucide-react";
+import { fadeUp, stagger, staggerItem, viewportConfig } from "@/lib/motion";
+import type { LucideIcon } from "lucide-react";
+
+type GuiaItem = {
+  objetivo: string;
+  tratamiento: string;
+  href: string;
+  icon: LucideIcon;
+};
+
+const guia: GuiaItem[] = [
   {
     objetivo: "Quiero reducir medidas",
     tratamiento: "Full Reductivo · Reductivo de Papada",
     href: "#servicio-1",
-    icon: (
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 2C8 2 5 6 5 10c0 5 7 12 7 12s7-7 7-12c0-4-3-8-7-8z" />
-        <path d="M9 10h6M12 7v6" strokeLinecap="round" />
-      </svg>
-    ),
+    icon: Ruler,
   },
   {
     objetivo: "Quiero eliminar la celulitis",
     tratamiento: "Anticelulítico Piernas y Glúteos",
     href: "#servicio-5",
-    icon: (
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M4 12c2-4 6-6 8-6s6 2 8 6-6 6-8 6-6-2-8-6z" />
-        <circle cx="12" cy="12" r="2" />
-      </svg>
-    ),
+    icon: Eye,
   },
   {
     objetivo: "Quiero rejuvenecer mi rostro",
     tratamiento: "Rejuvenecimiento Facial",
     href: "#servicio-4",
-    icon: (
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <circle cx="12" cy="8" r="5" />
-        <path d="M9 13.5c0 2 1 4 3 4s3-2 3-4" strokeLinecap="round" />
-      </svg>
-    ),
+    icon: Sparkles,
   },
   {
     objetivo: "Quiero relajarme",
     tratamiento: "Masaje de Relajación · Drenaje Linfático",
     href: "#servicio-3",
-    icon: (
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M4 16c2-6 14-6 16 0" strokeLinecap="round" />
-        <path d="M7 12c1-4 9-4 10 0" strokeLinecap="round" />
-        <path d="M10 8c.5-2 3.5-2 4 0" strokeLinecap="round" />
-      </svg>
-    ),
+    icon: Wind,
   },
   {
     objetivo: "Tuve una cirugía estética",
     tratamiento: "Drenaje Linfático Post Operatorio",
     href: "#servicio-7",
-    icon: (
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 2v20M2 12h20" strokeLinecap="round" />
-      </svg>
-    ),
+    icon: Cross,
   },
   {
     objetivo: "Quiero eliminar el vello",
     tratamiento: "Depilación Triláser Soprano Ice",
     href: "#servicio-11",
-    icon: (
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M6 3l12 18M18 3L6 21" strokeLinecap="round" />
-      </svg>
-    ),
+    icon: Scissors,
   },
   {
     objetivo: "Acabo de ser mamá",
     tratamiento: "Reductivo Post Parto",
     href: "#servicio-8",
-    icon: (
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 21C12 21 4 14 4 9a8 8 0 0116 0c0 5-8 12-8 12z" />
-      </svg>
-    ),
+    icon: Baby,
   },
 ];
 
@@ -86,7 +65,13 @@ export default function GuiaTratamientos() {
     >
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col items-center mb-14">
+        <motion.div
+          className="flex flex-col items-center mb-14"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
             style={{
@@ -114,76 +99,90 @@ export default function GuiaTratamientos() {
             Cuéntanos tu objetivo y te asesoramos sin compromiso.
           </p>
           <div className="w-14 h-px" style={{ backgroundColor: "var(--color-accent)" }} />
-        </div>
+        </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-          {guia.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="group flex flex-col gap-3 p-5 border transition-all duration-200"
-              style={{
-                borderColor: "rgba(29,96,112,0.35)",
-                backgroundColor: "rgba(255,255,255,0.05)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                  "rgba(29,166,184,0.6)";
-                (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-                  "rgba(255,255,255,0.10)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                  "rgba(29,96,112,0.35)";
-                (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-                  "rgba(255,255,255,0.05)";
-              }}
-            >
-              <div className="flex items-start gap-3">
-                <div
-                  style={{
-                    color: "var(--color-accent)",
-                    flexShrink: 0,
-                    marginTop: 2,
-                  }}
-                >
-                  {item.icon}
-                </div>
-                <div>
-                  <p
-                    className="font-semibold text-sm leading-snug mb-1.5"
-                    style={{ color: "#ffffff", fontFamily: "var(--font-montserrat)" }}
-                  >
-                    {item.objetivo}
-                  </p>
-                  <p
-                    className="text-xs leading-relaxed"
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
+          {guia.map((item) => {
+            const Icon = item.icon;
+            return (
+              <motion.a
+                key={item.href}
+                href={item.href}
+                variants={staggerItem}
+                className="group flex flex-col gap-3 p-5 border transition-all duration-200"
+                style={{
+                  borderColor: "rgba(29,96,112,0.35)",
+                  backgroundColor: "rgba(255,255,255,0.05)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                    "rgba(29,166,184,0.6)";
+                  (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
+                    "rgba(255,255,255,0.10)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                    "rgba(29,96,112,0.35)";
+                  (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
+                    "rgba(255,255,255,0.05)";
+                }}
+              >
+                <div className="flex items-start gap-3">
+                  <div
                     style={{
                       color: "var(--color-accent)",
-                      fontFamily: "var(--font-montserrat)",
-                      fontWeight: 400,
+                      flexShrink: 0,
+                      marginTop: 2,
                     }}
                   >
-                    → {item.tratamiento}
-                  </p>
+                    <Icon size={22} strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <p
+                      className="font-semibold text-sm leading-snug mb-1.5"
+                      style={{ color: "#ffffff", fontFamily: "var(--font-montserrat)" }}
+                    >
+                      {item.objetivo}
+                    </p>
+                    <p
+                      className="text-xs leading-relaxed"
+                      style={{
+                        color: "var(--color-accent)",
+                        fontFamily: "var(--font-montserrat)",
+                        fontWeight: 400,
+                      }}
+                    >
+                      → {item.tratamiento}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </a>
-          ))}
-        </div>
+              </motion.a>
+            );
+          })}
+        </motion.div>
 
         {/* Footer note */}
-        <p
+        <motion.p
           className="text-center text-xs mt-10"
           style={{
             color: "var(--color-text-secondary)",
             fontFamily: "var(--font-montserrat)",
-            fontStyle: "italic",
+            fontStyle: "normal",
           }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
         >
           Haz clic en cualquier opción para ir directamente al tratamiento en la lista completa.
-        </p>
+        </motion.p>
       </div>
     </section>
   );

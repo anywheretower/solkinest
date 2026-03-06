@@ -1,3 +1,9 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { CreditCard, ShieldCheck } from "lucide-react";
+import { fadeUp, stagger, staggerItem, viewportConfig } from "@/lib/motion";
+
 export default function Reservas() {
   const datosBancarios = [
     { label: "Nombre", value: "Solkinest SpA" },
@@ -21,7 +27,13 @@ export default function Reservas() {
       style={{ backgroundColor: "var(--color-primary-night)" }}
     >
       <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col items-center mb-16">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          className="flex flex-col items-center mb-16"
+        >
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
             style={{ color: "var(--color-accent)", fontFamily: "var(--font-montserrat)" }}
@@ -29,29 +41,42 @@ export default function Reservas() {
             Cómo Reservar
           </p>
           <h2
-            className="text-3xl md:text-4xl font-light italic text-center text-white mb-6"
+            className="text-3xl md:text-4xl font-semibold text-center text-white mb-6"
             style={{ fontFamily: "var(--font-montserrat)" }}
           >
             Reservas y Políticas
           </h2>
           <div className="w-14 h-px" style={{ backgroundColor: "var(--color-accent)" }} />
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          className="grid grid-cols-1 md:grid-cols-2 gap-5"
+        >
           {/* Datos bancarios */}
-          <div
-            className="p-8 border"
+          <motion.div
+            variants={staggerItem}
+            className="p-8"
             style={{
-              borderColor: "rgba(29,166,184,0.2)",
               backgroundColor: "rgba(255,255,255,0.05)",
             }}
           >
-            <h3
-              className="text-xl font-light italic mb-7"
-              style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-accent-soft)" }}
-            >
-              Datos de Transferencia
-            </h3>
+            <div className="flex items-center gap-3 mb-7">
+              <CreditCard
+                size={22}
+                strokeWidth={1.5}
+                style={{ color: "var(--color-accent-soft)" }}
+              />
+              <h3
+                className="text-xl font-light"
+                style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-accent-soft)" }}
+              >
+                Datos de Transferencia
+              </h3>
+            </div>
             <div className="space-y-4">
               {datosBancarios.map((item) => (
                 <div key={item.label}>
@@ -70,22 +95,29 @@ export default function Reservas() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Políticas */}
-          <div
-            className="p-8 border"
+          <motion.div
+            variants={staggerItem}
+            className="p-8"
             style={{
-              borderColor: "rgba(29,166,184,0.2)",
               backgroundColor: "rgba(255,255,255,0.05)",
             }}
           >
-            <h3
-              className="text-xl font-light italic mb-7"
-              style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-accent-soft)" }}
-            >
-              Políticas de Cancelación
-            </h3>
+            <div className="flex items-center gap-3 mb-7">
+              <ShieldCheck
+                size={22}
+                strokeWidth={1.5}
+                style={{ color: "var(--color-accent-soft)" }}
+              />
+              <h3
+                className="text-xl font-light"
+                style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-accent-soft)" }}
+              >
+                Políticas de Cancelación
+              </h3>
+            </div>
             <ul className="space-y-4">
               {politicas.map((pol, i) => (
                 <li
@@ -101,8 +133,8 @@ export default function Reservas() {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

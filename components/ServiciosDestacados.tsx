@@ -1,5 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { fadeUp, stagger, staggerItem, viewportConfig } from "@/lib/motion";
+
 const WA_LINK = "https://wa.me/56957394822";
 
 const destacados = [
@@ -53,7 +56,13 @@ export default function ServiciosDestacados() {
     >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col items-center mb-14">
+        <motion.div
+          className="flex flex-col items-center mb-14"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
             style={{
@@ -71,12 +80,18 @@ export default function ServiciosDestacados() {
             Tratamientos Destacados
           </h2>
           <div className="w-14 h-px" style={{ backgroundColor: "var(--color-accent)" }} />
-        </div>
+        </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
           {destacados.map((s) => (
-            <div
+            <motion.div
               key={s.id}
               className="flex flex-col border transition-shadow duration-300 hover:shadow-xl"
               style={{
@@ -85,6 +100,7 @@ export default function ServiciosDestacados() {
                 borderTopWidth: 3,
                 borderTopColor: s.catColor,
               }}
+              variants={staggerItem}
             >
               {/* Top */}
               <div className="p-6 flex-1">
@@ -182,9 +198,26 @@ export default function ServiciosDestacados() {
                 </svg>
                 Agendar por WhatsApp
               </a>
-            </div>
+              <a
+                href="#agendar"
+                className="flex items-center justify-center gap-2 py-4 text-[11px] tracking-widest uppercase border-t transition-colors duration-200 hover:opacity-85"
+                style={{
+                  borderColor: "var(--color-bg-teal-soft)",
+                  color: "var(--color-primary-night)",
+                  backgroundColor: "var(--color-bg-teal-soft)",
+                  fontFamily: "var(--font-montserrat)",
+                  fontWeight: 600,
+                }}
+              >
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <path d="M16 2v4M8 2v4M3 10h18" strokeLinecap="round" />
+                </svg>
+                Agendar en calendario
+              </a>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

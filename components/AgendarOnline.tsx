@@ -174,7 +174,7 @@ export default function AgendarOnline() {
             Disponibilidad
           </p>
           <h2
-            className="text-3xl md:text-4xl font-light italic text-center mb-6"
+            className="text-3xl md:text-4xl font-semibold text-center mb-6"
             style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
           >
             Agendar en Línea
@@ -511,7 +511,7 @@ export default function AgendarOnline() {
                 Reserva enviada
               </p>
               <h3
-                className="text-2xl font-light italic mb-7"
+                className="text-3xl md:text-4xl font-semibold mb-7"
                 style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
               >
                 ¡Gracias, {name}!
@@ -583,7 +583,7 @@ export default function AgendarOnline() {
               </div>
 
               <p
-                className="text-xs italic mb-7 max-w-xs leading-relaxed"
+                className="text-xs mb-7 max-w-xs leading-relaxed"
                 style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-montserrat)" }}
               >
                 Guarda tu código. Tu reserva se confirmará por WhatsApp a la brevedad.
@@ -709,7 +709,7 @@ export default function AgendarOnline() {
               </button>
 
               <p
-                className="text-xs italic"
+                className="text-xs"
                 style={{ color: "var(--color-text-muted)", fontFamily: "var(--font-montserrat)" }}
               >
                 La cancelación debe realizarse con al menos 3 horas de anticipación.

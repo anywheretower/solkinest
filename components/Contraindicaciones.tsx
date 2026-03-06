@@ -83,7 +83,7 @@ export default function Contraindicaciones() {
               ))}
             </ul>
             <p
-              className="text-xs italic"
+              className="text-xs"
               style={{
                 color: "var(--color-text-secondary)",
                 fontFamily: "var(--font-montserrat)",

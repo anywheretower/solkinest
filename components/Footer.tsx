@@ -1,5 +1,10 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { Instagram } from "lucide-react";
+import Image from "next/image";
+import { fadeUp, stagger, staggerItem, viewportConfig } from "@/lib/motion";
+
 const WA_LINK = "https://wa.me/56957394822";
 
 export default function Footer() {
@@ -13,16 +18,23 @@ export default function Footer() {
 
   return (
     <footer style={{ backgroundColor: "var(--color-primary-night)" }}>
-      {/* Main footer grid */}
-      <div className="max-w-6xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-        {/* Col 1: Brand */}
-        <div>
-          <span
-            className="block text-xl tracking-[0.3em] uppercase font-bold mb-3"
-            style={{ color: "var(--color-accent)", fontFamily: "var(--font-montserrat)" }}
-          >
-            Solkinest
-          </span>
+      {/* Main footer grid — asymmetric: brand col wider */}
+      <motion.div
+        className="max-w-6xl mx-auto px-6 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10"
+        variants={stagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+      >
+        {/* Col 1: Brand (wider) */}
+        <motion.div className="lg:col-span-2" variants={staggerItem}>
+          <Image
+            src="/logo-solkinest.png"
+            alt="Solkinest — Kinesiología & Estética"
+            width={180}
+            height={54}
+            className="h-16 w-auto mb-3 brightness-0 invert"
+          />
           <p
             className="text-xs leading-relaxed mb-6"
             style={{
@@ -33,7 +45,7 @@ export default function Footer() {
           >
             Estética profesional con tecnología de vanguardia.
             <br />
-            Viña del Mar, Chile.
+            Talca, Chile.
           </p>
           {/* Social icons */}
           <div className="flex items-center gap-3">
@@ -43,18 +55,7 @@ export default function Footer() {
               className="w-9 h-9 flex items-center justify-center border transition-colors"
               style={{ borderColor: "var(--color-primary-deep)" }}
             >
-              <svg
-                viewBox="0 0 24 24"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="rgba(255,255,255,0.35)"
-                strokeWidth="1.5"
-              >
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle cx="17.5" cy="6.5" r="0.5" fill="rgba(255,255,255,0.35)" stroke="none" />
-              </svg>
+              <Instagram size={16} color="rgba(255,255,255,0.35)" strokeWidth={1.5} />
             </a>
             <a
               href={WA_LINK}
@@ -69,10 +70,10 @@ export default function Footer() {
               </svg>
             </a>
           </div>
-        </div>
+        </motion.div>
 
         {/* Col 2: Nav links */}
-        <div>
+        <motion.div className="lg:col-span-1" variants={staggerItem}>
           <p
             className="text-[10px] tracking-[0.4em] uppercase mb-5 font-semibold"
             style={{ color: "var(--color-accent)", fontFamily: "var(--font-montserrat)" }}
@@ -101,10 +102,10 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
 
         {/* Col 3: Horarios */}
-        <div>
+        <motion.div className="lg:col-span-1" variants={staggerItem}>
           <p
             className="text-[10px] tracking-[0.4em] uppercase mb-5 font-semibold"
             style={{ color: "var(--color-accent)", fontFamily: "var(--font-montserrat)" }}
@@ -149,10 +150,10 @@ export default function Footer() {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Col 4: Contact */}
-        <div>
+        <motion.div className="lg:col-span-1" variants={staggerItem}>
           <p
             className="text-[10px] tracking-[0.4em] uppercase mb-5 font-semibold"
             style={{ color: "var(--color-accent)", fontFamily: "var(--font-montserrat)" }}
@@ -163,7 +164,7 @@ export default function Footer() {
             className="text-xs mb-1"
             style={{ color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-montserrat)" }}
           >
-            1 Norte #841, Viña del Mar
+            1 Norte #841, Talca
           </p>
           <p
             className="text-xs mb-4"
@@ -180,19 +181,23 @@ export default function Footer() {
           >
             +56 9 5739 4822
           </a>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Bottom bar */}
-      <div
+      <motion.div
         className="max-w-6xl mx-auto px-6 py-5 border-t flex flex-col sm:flex-row items-center justify-between gap-2"
         style={{ borderColor: "var(--color-primary-deep)" }}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
       >
         <p
           className="text-[11px]"
           style={{ color: "rgba(255,255,255,0.25)", fontFamily: "var(--font-montserrat)" }}
         >
-          © {new Date().getFullYear()} Solkinest SpA · Viña del Mar, Chile
+          © {new Date().getFullYear()} Solkinest SpA · Talca, Chile
         </p>
         <p
           className="text-[11px]"
@@ -200,7 +205,7 @@ export default function Footer() {
         >
           RUT 77.109.605-0
         </p>
-      </div>
+      </motion.div>
     </footer>
   );
 }

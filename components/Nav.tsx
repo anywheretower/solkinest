@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const WA_LINK = "https://wa.me/56957394822";
 
@@ -37,39 +38,47 @@ export default function Nav() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <a
-          href="#"
-          className="text-xl tracking-[0.3em] uppercase font-semibold transition-colors duration-500"
-          style={{
-            fontFamily: "var(--font-montserrat)",
-            color: scrolled ? "var(--color-primary-night)" : "#ffffff",
-          }}
-        >
-          Solkinest
+        <a href="#" className="flex-shrink-0">
+          <Image
+            src="/logo-solkinest.png"
+            alt="Solkinest — Kinesiología & Estética"
+            width={160}
+            height={48}
+            className="h-20 w-auto transition-opacity duration-500"
+            style={{ opacity: 1 }}
+            priority
+          />
         </a>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-xs tracking-widest uppercase transition-colors duration-300"
-              style={{
-                fontFamily: "var(--font-montserrat)",
-                color: scrolled ? "var(--color-text-body)" : "rgba(255,255,255,0.75)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.color = "var(--color-primary)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.color = scrolled
-                  ? "var(--color-text-body)"
-                  : "rgba(255,255,255,0.75)";
-              }}
-            >
-              {link.label}
-            </a>
+        {/* Desktop links with separators */}
+        <div className="hidden md:flex items-center ml-auto mr-4">
+          {links.map((link, i) => (
+            <div key={link.href} className="flex items-center">
+              <a
+                href={link.href}
+                className="text-[10px] tracking-widest uppercase transition-colors duration-300 px-3"
+                style={{
+                  fontFamily: "var(--font-montserrat)",
+                  color: scrolled ? "var(--color-primary-deep)" : "#ffffff",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--color-primary)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.color = scrolled ? "var(--color-primary-deep)" : "#ffffff";
+                }}
+              >
+                {link.label}
+              </a>
+              {i < links.length - 1 && (
+                <span
+                  className="text-[10px] opacity-30 select-none"
+                  style={{ color: scrolled ? "var(--color-primary-deep)" : "#ffffff" }}
+                >
+                  |
+                </span>
+              )}
+            </div>
           ))}
         </div>
 
@@ -83,7 +92,7 @@ export default function Nav() {
             fontFamily: "var(--font-montserrat)",
             fontWeight: 600,
             backgroundColor: scrolled ? "var(--color-primary)" : "var(--color-accent)",
-            color: scrolled ? "#ffffff" : "var(--color-primary-night)",
+            color: "#ffffff",
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLAnchorElement).style.backgroundColor = scrolled
@@ -107,7 +116,7 @@ export default function Nav() {
           className="md:hidden p-2 transition-colors"
           style={{ color: scrolled ? "var(--color-primary-night)" : "#ffffff" }}
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Abrir menú"
+          aria-label="Abrir menu"
         >
           <div className="w-5 flex flex-col gap-1.5">
             <span

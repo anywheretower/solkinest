@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { fadeUp, viewportConfig } from "@/lib/motion";
+
 const WA_LINK = "https://wa.me/56957394822";
 
 export default function CTAFinal() {
@@ -27,7 +32,13 @@ export default function CTAFinal() {
         style={{ border: "1px solid rgba(29,166,184,0.12)" }}
       />
 
-      <div className="relative z-10 max-w-3xl mx-auto text-center">
+      <motion.div
+        className="relative z-10 max-w-3xl mx-auto text-center"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+      >
         <p
           className="text-[11px] tracking-[0.5em] uppercase mb-6"
           style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
@@ -36,7 +47,7 @@ export default function CTAFinal() {
         </p>
 
         <h2
-          className="text-4xl sm:text-5xl md:text-6xl font-light italic leading-tight mb-8"
+          className="text-3xl md:text-4xl font-semibold leading-tight mb-8"
           style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
         >
           ¿Lista para{" "}
@@ -62,7 +73,7 @@ export default function CTAFinal() {
             href={WA_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-10 py-5 text-[11px] tracking-[0.2em] uppercase transition-all duration-300 hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-3 px-10 py-5 text-[11px] tracking-[0.2em] uppercase transition-colors duration-300 hover:opacity-90"
             style={{
               backgroundColor: "var(--color-primary)",
               color: "#ffffff",
@@ -82,7 +93,7 @@ export default function CTAFinal() {
             +56 9 5739 4822
           </span>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

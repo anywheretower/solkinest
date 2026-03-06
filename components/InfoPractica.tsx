@@ -1,222 +1,285 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Clock, MapPin, Send } from "lucide-react";
+import Image from "next/image";
+import { fadeUp, stagger, staggerItem, viewportConfig } from "@/lib/motion";
+import { useState } from "react";
+
 const WA_LINK = "https://wa.me/56957394822";
 
 export default function InfoPractica() {
+  const [form, setForm] = useState({ nombre: "", telefono: "", mensaje: "" });
+  const [enviado, setEnviado] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const texto = `Hola, soy ${form.nombre}. ${form.mensaje}`;
+    const url = `${WA_LINK}?text=${encodeURIComponent(texto)}`;
+    window.open(url, "_blank");
+    setEnviado(true);
+    setTimeout(() => setEnviado(false), 3000);
+  };
+
   return (
     <section
       id="contacto"
-      className="py-24 md:py-32 px-6"
-      style={{ backgroundColor: "var(--color-primary-deep)" }}
+      className="relative min-h-[700px] overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col items-center mb-16">
-          <p
-            className="text-[11px] tracking-[0.5em] uppercase mb-5"
-            style={{ color: "var(--color-accent)", fontFamily: "var(--font-montserrat)" }}
-          >
-            Dónde Encontrarnos
-          </p>
-          <h2
-            className="text-3xl md:text-4xl font-semibold text-center mb-6"
-            style={{ fontFamily: "var(--font-montserrat)", color: "#ffffff" }}
-          >
-            Información Práctica
-          </h2>
-          <div className="w-14 h-px" style={{ backgroundColor: "var(--color-accent)" }} />
-        </div>
+      {/* Background image */}
+      <Image
+        src="/contacto-bg.png"
+        alt=""
+        fill
+        className="object-cover z-0 -scale-x-100"
+      />
 
-        {/* Info cards row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          {/* Horarios */}
-          <div
-            className="p-8 border"
-            style={{
-              borderColor: "rgba(255,255,255,0.1)",
-              backgroundColor: "var(--color-bg-white)",
-            }}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div style={{ color: "var(--color-primary)" }}>
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 6v6l4 2" strokeLinecap="round" />
-                </svg>
-              </div>
-              <h3
-                className="text-base font-semibold"
+      {/* White gradient overlay — same as Hero */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background: "linear-gradient(to right, #ffffff 0%, #ffffff 20%, rgba(255,255,255,0) 70%)",
+        }}
+      />
+
+      {/* Contenido */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 md:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Columna izquierda — todo el contenido */}
+          <div>
+            {/* Header */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              className="mb-12"
+            >
+              <p
+                className="text-[11px] tracking-[0.5em] uppercase mb-5"
+                style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
+              >
+                Dónde Encontrarnos
+              </p>
+              <h2
+                className="text-3xl md:text-4xl font-semibold mb-6"
                 style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
               >
-                Horarios
-              </h3>
-            </div>
-            <div className="space-y-5">
-              <div>
-                <p
-                  className="text-[10px] tracking-wider uppercase mb-1 font-semibold"
-                  style={{ color: "var(--color-primary-deep)", fontFamily: "var(--font-montserrat)" }}
-                >
-                  Lunes a Viernes
-                </p>
-                <p
-                  className="text-sm mb-0.5"
-                  style={{ color: "var(--color-text)", fontFamily: "var(--font-montserrat)" }}
-                >
-                  11:00–15:00 y 16:00–19:00
-                </p>
-                <p
-                  className="text-xs italic"
-                  style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-montserrat)" }}
-                >
-                  Última hora: 14:00 y 18:00
-                </p>
-              </div>
-              <div>
-                <p
-                  className="text-[10px] tracking-wider uppercase mb-1 font-semibold"
-                  style={{ color: "var(--color-primary-deep)", fontFamily: "var(--font-montserrat)" }}
-                >
-                  Sábados
-                </p>
-                <p
-                  className="text-sm mb-0.5"
-                  style={{ color: "var(--color-text)", fontFamily: "var(--font-montserrat)" }}
-                >
-                  09:00–14:00
-                </p>
-                <p
-                  className="text-xs italic"
-                  style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-montserrat)" }}
-                >
-                  Última hora: 13:00
-                </p>
-              </div>
-            </div>
-          </div>
+                Información Práctica
+              </h2>
+              <div className="w-14 h-px" style={{ backgroundColor: "var(--color-accent)" }} />
+            </motion.div>
 
-          {/* Ubicación */}
-          <div
-            className="p-8 border"
-            style={{
-              borderColor: "rgba(255,255,255,0.1)",
-              backgroundColor: "var(--color-bg-white)",
-            }}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div style={{ color: "var(--color-primary)" }}>
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-                  <circle cx="12" cy="9" r="2.5" />
-                </svg>
-              </div>
-              <h3
-                className="text-base font-semibold"
-                style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
+            {/* Info cards — 3 columnas */}
+            <motion.div
+              variants={stagger}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8"
+            >
+              {/* Horarios */}
+              <motion.div
+                variants={staggerItem}
+                className="p-6"
+                style={{
+                  backgroundColor: "transparent",
+                }}
               >
-                Ubicación
-              </h3>
-            </div>
-            <p
-              className="text-sm font-medium"
-              style={{ color: "var(--color-text)", fontFamily: "var(--font-montserrat)" }}
-            >
-              1 Norte #841
-            </p>
-            <p
-              className="text-sm"
-              style={{ color: "var(--color-text-body)", fontFamily: "var(--font-montserrat)" }}
-            >
-              Entre 1 y 2 Oriente
-            </p>
-            <p
-              className="text-sm mt-3"
-              style={{ color: "var(--color-text-body)", fontFamily: "var(--font-montserrat)" }}
-            >
-              Condominio Progresur
-            </p>
-            <p
-              className="text-sm"
-              style={{ color: "var(--color-text-body)", fontFamily: "var(--font-montserrat)" }}
-            >
-              Block B-2, Depto. 3
-            </p>
-            <p
-              className="text-xs mt-3 italic"
-              style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-montserrat)" }}
-            >
-              Viña del Mar, Chile
-            </p>
-          </div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div style={{ color: "var(--color-primary)" }}>
+                    <Clock size={18} strokeWidth={1.5} />
+                  </div>
+                  <h3
+                    className="text-sm font-semibold"
+                    style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
+                  >
+                    Horarios
+                  </h3>
+                </div>
+                <div>
+                  <p
+                    className="text-[10px] tracking-wider uppercase mb-1 font-semibold"
+                    style={{ color: "var(--color-primary-deep)", fontFamily: "var(--font-montserrat)" }}
+                  >
+                    Lunes a Viernes
+                  </p>
+                  <p
+                    className="text-sm mb-0.5"
+                    style={{ color: "var(--color-text)", fontFamily: "var(--font-montserrat)" }}
+                  >
+                    11:00–15:00 y 16:00–19:00
+                  </p>
+                  <p
+                    className="text-xs"
+                    style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-montserrat)" }}
+                  >
+                    Última hora: 14:00 y 18:00
+                  </p>
+                </div>
+                <div className="mt-4">
+                  <p
+                    className="text-[10px] tracking-wider uppercase mb-1 font-semibold"
+                    style={{ color: "var(--color-primary-deep)", fontFamily: "var(--font-montserrat)" }}
+                  >
+                    Sábados
+                  </p>
+                  <p
+                    className="text-sm mb-0.5"
+                    style={{ color: "var(--color-text)", fontFamily: "var(--font-montserrat)" }}
+                  >
+                    09:00–14:00
+                  </p>
+                  <p
+                    className="text-xs"
+                    style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-montserrat)" }}
+                  >
+                    Última hora: 13:00
+                  </p>
+                </div>
+              </motion.div>
+                {/* Ubicación */}
+                <motion.div
+                  variants={staggerItem}
+                  className="p-6"
+                  style={{
+                    borderColor: "var(--color-bg-teal-soft)",
+                    backgroundColor: "transparent",
+                  }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div style={{ color: "var(--color-primary)" }}>
+                      <MapPin size={18} strokeWidth={1.5} />
+                    </div>
+                    <h3
+                      className="text-sm font-semibold"
+                      style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
+                    >
+                      Ubicación
+                    </h3>
+                  </div>
+                  <p
+                    className="text-sm font-medium"
+                    style={{ color: "var(--color-text)", fontFamily: "var(--font-montserrat)" }}
+                  >
+                    1 Norte #841
+                  </p>
+                  <p
+                    className="text-sm"
+                    style={{ color: "var(--color-text-body)", fontFamily: "var(--font-montserrat)" }}
+                  >
+                    Entre 1 y 2 Oriente
+                  </p>
+                  <p
+                    className="text-sm mt-2"
+                    style={{ color: "var(--color-text-body)", fontFamily: "var(--font-montserrat)" }}
+                  >
+                    Condominio Progresur
+                  </p>
+                  <p
+                    className="text-sm"
+                    style={{ color: "var(--color-text-body)", fontFamily: "var(--font-montserrat)" }}
+                  >
+                    Block B-2, Depto. 3
+                  </p>
+                  <p
+                    className="text-xs mt-2"
+                    style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-montserrat)" }}
+                  >
+                    Talca, Chile
+                  </p>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=1+Norte+841,+Talca,+Chile"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 mt-4 px-4 py-2.5 text-[11px] tracking-widest uppercase transition-all hover:opacity-85"
+                    style={{
+                      backgroundColor: "var(--color-primary-night)",
+                      color: "#ffffff",
+                      fontFamily: "var(--font-montserrat)",
+                      fontWeight: 600,
+                    }}
+                  >
+                    <MapPin size={13} strokeWidth={1.5} />
+                    Ver en Google Maps
+                  </a>
+                </motion.div>
+            </motion.div>
 
-          {/* Contacto */}
-          <div
-            className="p-8 border"
-            style={{
-              borderColor: "rgba(255,255,255,0.1)",
-              backgroundColor: "var(--color-bg-white)",
-            }}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div style={{ color: "var(--color-primary)" }}>
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-              </div>
-              <h3
-                className="text-base font-semibold"
-                style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
+            {/* Formulario de contacto */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+            >
+              <p
+                className="text-[11px] tracking-[0.3em] uppercase mb-4"
+                style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
               >
-                Contacto
-              </h3>
-            </div>
-            <p
-              className="text-xs uppercase tracking-wider mb-1"
-              style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-montserrat)" }}
-            >
-              WhatsApp
-            </p>
-            <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xl font-bold transition-opacity hover:opacity-70 block mb-6"
-              style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
-            >
-              +56 9 5739 4822
-            </a>
-            <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 text-[11px] tracking-widest uppercase transition-all hover:opacity-85"
-              style={{
-                backgroundColor: "var(--color-primary-night)",
-                color: "#ffffff",
-                fontFamily: "var(--font-montserrat)",
-                fontWeight: 600,
-              }}
-            >
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-              </svg>
-              Escribir ahora
-            </a>
-          </div>
-        </div>
+                Escríbenos directamente
+              </p>
+              <form onSubmit={handleSubmit} className="space-y-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <input
+                    type="text"
+                    placeholder="Tu nombre"
+                    required
+                    value={form.nombre}
+                    onChange={(e) => setForm({ ...form, nombre: e.target.value })}
+                    className="px-4 py-2.5 text-sm rounded-sm border-none focus:ring-2 focus:outline-none"
+                    style={{
+                      backgroundColor: "var(--color-bg-teal-soft)",
+                      color: "var(--color-text)",
+                      fontFamily: "var(--font-montserrat)",
+                    }}
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Tu teléfono"
+                    value={form.telefono}
+                    onChange={(e) => setForm({ ...form, telefono: e.target.value })}
+                    className="px-4 py-2.5 text-sm rounded-sm border-none focus:ring-2 focus:outline-none"
+                    style={{
+                      backgroundColor: "var(--color-bg-teal-soft)",
+                      color: "var(--color-text)",
+                      fontFamily: "var(--font-montserrat)",
+                    }}
+                  />
+                </div>
+                <textarea
+                  placeholder="¿En qué podemos ayudarte?"
+                  required
+                  rows={3}
+                  value={form.mensaje}
+                  onChange={(e) => setForm({ ...form, mensaje: e.target.value })}
+                  className="w-full px-4 py-2.5 text-sm rounded-sm border-none focus:ring-2 focus:outline-none resize-none"
+                  style={{
+                    backgroundColor: "var(--color-bg-teal-soft)",
+                    color: "var(--color-text)",
+                    fontFamily: "var(--font-montserrat)",
+                  }}
+                />
+                <button
+                  type="submit"
+                  className="inline-flex items-center gap-2 px-6 py-3 text-[11px] tracking-widest uppercase transition-all hover:opacity-85"
+                  style={{
+                    backgroundColor: "var(--color-primary)",
+                    color: "#ffffff",
+                    fontFamily: "var(--font-montserrat)",
+                    fontWeight: 600,
+                  }}
+                >
+                  <Send size={13} />
+                  {enviado ? "¡Mensaje enviado!" : "Enviar por WhatsApp"}
+                </button>
+              </form>
+            </motion.div>
 
-        {/* Google Maps */}
-        <div
-          className="w-full overflow-hidden"
-          style={{ height: 320, border: "1px solid rgba(255,255,255,0.1)" }}
-        >
-          <iframe
-            src="https://maps.google.com/maps?q=1+Norte+841,+Viña+del+Mar,+Chile&output=embed"
-            width="100%"
-            height="320"
-            style={{ border: 0, display: "block" }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Ubicación Solkinest"
-          />
+          </div>
+
+          {/* Columna derecha — vacía para imagen de fondo */}
+          <div className="hidden lg:block" />
         </div>
       </div>
     </section>

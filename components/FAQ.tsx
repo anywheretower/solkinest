@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import { fadeUp, stagger, staggerItem, viewportConfig } from "@/lib/motion";
 
 const faqs = [
   {
@@ -41,7 +44,11 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border-b" style={{ borderColor: "var(--color-text-muted)" }}>
+    <motion.div
+      variants={staggerItem}
+      className="border-b"
+      style={{ borderColor: "var(--color-text-muted)" }}
+    >
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-5 text-left gap-4"
@@ -56,34 +63,49 @@ function FAQItem({ q, a }: { q: string; a: string }) {
           {q}
         </span>
         <span
-          className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-sm transition-transform duration-300"
+          className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300"
           style={{
             backgroundColor: open
               ? "var(--color-primary-night)"
               : "var(--color-bg-teal-soft)",
             color: open ? "#ffffff" : "var(--color-text-body)",
-            transform: open ? "rotate(45deg)" : "rotate(0deg)",
           }}
         >
-          +
+          <ChevronDown
+            size={14}
+            className="transition-transform duration-300"
+            style={{
+              transform: open ? "rotate(180deg)" : "rotate(0deg)",
+            }}
+          />
         </span>
       </button>
 
-      {open && (
-        <div className="pb-5 expanded-content">
-          <p
-            className="text-sm leading-relaxed"
-            style={{
-              color: "var(--color-text-body)",
-              fontFamily: "var(--font-montserrat)",
-              fontWeight: 400,
-            }}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden"
           >
-            {a}
-          </p>
-        </div>
-      )}
-    </div>
+            <div className="pb-5">
+              <p
+                className="text-sm leading-relaxed"
+                style={{
+                  color: "var(--color-text-body)",
+                  fontFamily: "var(--font-montserrat)",
+                  fontWeight: 400,
+                }}
+              >
+                {a}
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
@@ -96,7 +118,13 @@ export default function FAQ() {
     >
       <div className="max-w-3xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col items-center mb-14">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          className="flex flex-col items-center mb-14"
+        >
           <p
             className="text-[11px] tracking-[0.5em] uppercase mb-5"
             style={{
@@ -114,14 +142,21 @@ export default function FAQ() {
             Preguntas Frecuentes
           </h2>
           <div className="w-14 h-px" style={{ backgroundColor: "var(--color-accent)" }} />
-        </div>
+        </motion.div>
 
         {/* Items */}
-        <div className="border-t" style={{ borderColor: "var(--color-text-muted)" }}>
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          className="border-t"
+          style={{ borderColor: "var(--color-text-muted)" }}
+        >
           {faqs.map((item) => (
             <FAQItem key={item.q} q={item.q} a={item.a} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

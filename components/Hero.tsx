@@ -1,105 +1,100 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { CheckCircle, Zap, Sun, MapPin } from "lucide-react";
+import Image from "next/image";
+import { stagger, staggerItem } from "@/lib/motion";
+
 const WA_LINK = "https://wa.me/56957394822";
 
 const badges = [
   {
-    icon: (
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    icon: <CheckCircle size={16} strokeWidth={1.5} />,
     text: "11 tratamientos especializados",
   },
   {
-    icon: (
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    icon: <Zap size={16} strokeWidth={1.5} />,
     text: "Aparatología de última generación",
   },
   {
-    icon: (
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <circle cx="12" cy="12" r="3" />
-        <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" strokeLinecap="round" />
-      </svg>
-    ),
+    icon: <Sun size={16} strokeWidth={1.5} />,
     text: "Soprano Ice Triláser",
   },
   {
-    icon: (
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-        <circle cx="12" cy="9" r="2.5" />
-      </svg>
-    ),
-    text: "Viña del Mar",
+    icon: <MapPin size={16} strokeWidth={1.5} />,
+    text: "Talca",
   },
 ];
+
+const heroStagger = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.18, delayChildren: 0.2 },
+  },
+} as const;
+
+const heroItem = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut" as const },
+  },
+} as const;
 
 export default function Hero() {
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 pb-16 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(160deg, var(--color-bg-white) 0%, var(--color-bg-teal-whisper) 60%, var(--color-bg-teal-soft) 100%)",
-      }}
+      className="relative min-h-[90vh] flex flex-col items-start justify-center overflow-hidden"
     >
-      {/* Subtle teal radial */}
+      {/* Background image */}
+      <Image
+        src="/hero-bg.png"
+        alt=""
+        fill
+        className="object-cover z-0 -scale-x-100"
+        priority
+      />
+
+      {/* White gradient overlay left to right */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 z-[1] pointer-events-none"
         style={{
-          background:
-            "radial-gradient(ellipse at 70% 85%, rgba(29,166,184,0.10) 0%, transparent 55%), radial-gradient(ellipse at 20% 15%, rgba(212,175,53,0.07) 0%, transparent 50%)",
+          background: "linear-gradient(to right, #ffffff 0%, #ffffff 20%, rgba(255,255,255,0) 70%)",
         }}
       />
 
-      {/* Decorative corner — top left */}
-      <div className="absolute top-28 left-10 opacity-30">
-        <div className="w-px h-20" style={{ backgroundColor: "var(--color-primary)" }} />
-        <div className="w-10 h-px -mt-20" style={{ backgroundColor: "var(--color-primary)" }} />
-      </div>
-
-      {/* Decorative corner — top right */}
-      <div className="absolute top-28 right-10 opacity-30 flex flex-col items-end">
-        <div className="w-px h-20" style={{ backgroundColor: "var(--color-primary)" }} />
-        <div className="w-10 h-px -mt-20" style={{ backgroundColor: "var(--color-primary)" }} />
-      </div>
-
-      {/* Large background circles */}
-      <div
-        className="absolute right-[-18vw] top-[8%] w-[60vw] h-[60vw] rounded-full"
-        style={{ border: "1px solid rgba(29,166,184,0.08)" }}
-      />
-      <div
-        className="absolute left-[-22vw] bottom-[5%] w-[45vw] h-[45vw] rounded-full"
-        style={{ border: "1px solid rgba(29,166,184,0.06)" }}
-      />
-
       {/* Content */}
-      <div className="relative z-10 text-center max-w-4xl mx-auto">
+      <motion.div
+        className="relative z-10 text-left max-w-7xl w-full mx-auto px-6"
+        variants={heroStagger}
+        initial="hidden"
+        animate="visible"
+      >
         {/* Eyebrow */}
-        <p
-          className="text-[11px] tracking-[0.5em] uppercase mb-6 animate-hero-1"
+        <motion.p
+          variants={heroItem}
+          className="text-[11px] tracking-[0.5em] uppercase mb-6"
           style={{
             color: "var(--color-primary)",
             fontFamily: "var(--font-montserrat)",
             fontWeight: 500,
           }}
         >
-          Estética Profesional · Viña del Mar
-        </p>
+          Estética Profesional · Talca
+        </motion.p>
 
         {/* Accent rule */}
-        <div
-          className="w-14 h-px mx-auto mb-10 animate-hero-2"
+        <motion.div
+          variants={heroItem}
+          className="w-14 h-px mb-10"
           style={{ backgroundColor: "var(--color-accent)" }}
         />
 
         {/* Main heading */}
-        <h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] mb-4 animate-hero-3"
+        <motion.h1
+          variants={heroItem}
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[0.7] mb-4"
           style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
         >
           Tu mejor versión con
@@ -107,17 +102,19 @@ export default function Hero() {
           <span style={{ color: "var(--color-primary)", fontWeight: 300 }}>
             tecnología de vanguardia
           </span>
-        </h1>
+        </motion.h1>
 
         {/* Accent rule */}
-        <div
-          className="w-14 h-px mx-auto mt-10 mb-10 animate-hero-4"
+        <motion.div
+          variants={heroItem}
+          className="w-14 h-px mt-10 mb-10"
           style={{ backgroundColor: "var(--color-accent)" }}
         />
 
         {/* Subtitle */}
-        <p
-          className="text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed animate-hero-4"
+        <motion.p
+          variants={heroItem}
+          className="text-xs md:text-sm mb-12 leading-relaxed max-w-md"
           style={{
             color: "var(--color-text-body)",
             fontFamily: "var(--font-montserrat)",
@@ -129,15 +126,15 @@ export default function Hero() {
           <span style={{ color: "var(--color-primary)", fontWeight: 500 }}>
             Resultados visibles desde la primera sesión.
           </span>
-        </p>
+        </motion.p>
 
-        {/* CTA */}
-        <div className="animate-hero-5 mb-14">
+        {/* CTAs */}
+        <motion.div variants={heroItem} className="mb-14 flex flex-col gap-1.5 max-w-sm">
           <a
             href={WA_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-9 py-4 text-[11px] tracking-[0.25em] uppercase transition-all duration-300 hover:scale-105 active:scale-95"
+            className="inline-flex items-center justify-center gap-3 w-full px-9 py-4 text-[11px] tracking-[0.25em] uppercase transition-all duration-300 hover:opacity-90"
             style={{
               backgroundColor: "var(--color-primary)",
               color: "#ffffff",
@@ -150,22 +147,45 @@ export default function Hero() {
             </svg>
             Reserva tu hora · WhatsApp
           </a>
-        </div>
+          <a
+            href="#agendar"
+            className="inline-flex items-center justify-center gap-3 w-full px-9 py-4 text-[11px] tracking-[0.25em] uppercase transition-all duration-300 hover:opacity-90"
+            style={{
+              backgroundColor: "var(--color-primary-night)",
+              color: "#ffffff",
+              fontFamily: "var(--font-montserrat)",
+              fontWeight: 700,
+            }}
+          >
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <path d="M16 2v4M8 2v4M3 10h18" strokeLinecap="round" />
+            </svg>
+            Agenda directo en calendario
+          </a>
+        </motion.div>
 
         {/* Badges row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 animate-hero-5">
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-2 max-w-4xl"
+        >
           {badges.map((badge, i) => (
-            <div
+            <motion.div
               key={i}
-              className="flex items-center gap-2.5 px-4 py-3"
+              variants={staggerItem}
+              className="flex items-center gap-3 px-5 py-4 rounded-sm"
               style={{
                 backgroundColor: "var(--color-bg-teal-soft)",
-                border: "1px solid rgba(29,166,184,0.2)",
+                border: "none",
               }}
             >
               <span style={{ color: "var(--color-primary)", flexShrink: 0 }}>{badge.icon}</span>
               <span
-                className="text-[11px] leading-tight text-left"
+                className="text-xs leading-tight text-left"
                 style={{
                   color: "var(--color-primary-deep)",
                   fontFamily: "var(--font-montserrat)",
@@ -174,23 +194,11 @@ export default function Hero() {
               >
                 {badge.text}
               </span>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      {/* Scroll indicator */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5 opacity-40 animate-hero-5"
-      >
-        <span
-          className="text-[9px] tracking-[0.45em] uppercase"
-          style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-primary)" }}
-        >
-          Explorar
-        </span>
-        <div className="w-px h-8" style={{ backgroundColor: "var(--color-primary)" }} />
-      </div>
     </section>
   );
 }

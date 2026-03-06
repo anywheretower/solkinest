@@ -19,9 +19,9 @@ export default function Home() {
     <>
       <Nav />
       <Hero />
-      <Nosotros />
       <ServiciosDestacados />
       <GuiaTratamientos />
+      <Nosotros />
       <Servicios />
       <Testimonios />
       <FAQ />
