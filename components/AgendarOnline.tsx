@@ -1,15 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const WA_NUMBER = "56957394822";
 
 type Step = "calendar" | "form" | "success";
 type WeekOffset = 0 | 1;
 
+interface ApiSlot {
+  start: string;
+  end: string;
+  available: boolean;
+}
+
 interface SelectedSlot {
-  date: Date;
+  start: string;
+  end: string;
   time: string;
+  date: Date;
 }
 
 const SERVICES = [
@@ -26,8 +34,6 @@ const SERVICES = [
   "Depilación Triláser Soprano Ice",
 ];
 
-const WEEKDAY_SLOTS = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
-const SATURDAY_SLOTS = ["10:00", "11:00", "12:00"];
 const DAY_LABELS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
 const MONTHS_SHORT = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
 const MONTHS_FULL = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
@@ -36,7 +42,7 @@ const DAY_NAMES_FULL = ["domingo", "lunes", "martes", "miércoles", "jueves", "v
 function getMonday(date: Date): Date {
   const d = new Date(date);
   d.setHours(0, 0, 0, 0);
-  const dow = d.getDay(); // 0=Sun
+  const dow = d.getDay();
   const diff = dow === 0 ? -6 : 1 - dow;
   d.setDate(d.getDate() + diff);
   return d;
@@ -52,28 +58,8 @@ function generateWeekDays(weekOffset: WeekOffset): Date[] {
   });
 }
 
-function getSlotsForDate(date: Date): string[] {
-  const dow = date.getDay();
-  if (dow === 6) return SATURDAY_SLOTS;
-  if (dow === 0) return [];
-  return WEEKDAY_SLOTS;
-}
-
-function isSlotPast(date: Date, time: string): boolean {
-  const now = new Date();
-  const [h, m] = time.split(":").map(Number);
-  const slotTime = new Date(date);
-  slotTime.setHours(h, m, 0, 0);
-  return slotTime <= now;
-}
-
-function generateCode(): string {
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  return "SK-" + Array.from({ length: 6 }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
-}
-
 function getDayLabel(date: Date): string {
-  const dow = date.getDay(); // 1=Mon..6=Sat
+  const dow = date.getDay();
   if (dow === 0) return "Dom";
   return DAY_LABELS[dow - 1];
 }
@@ -85,11 +71,29 @@ function isToday(date: Date): boolean {
     date.getFullYear() === now.getFullYear();
 }
 
+function isSameDay(a: Date, b: Date): boolean {
+  return a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate();
+}
+
+function formatTime(isoString: string): string {
+  const d = new Date(isoString);
+  return d.toLocaleTimeString("es-CL", { hour: "2-digit", minute: "2-digit", hour12: false });
+}
+
 export default function AgendarOnline() {
   const [step, setStep] = useState<Step>("calendar");
   const [weekOffset, setWeekOffset] = useState<WeekOffset>(0);
   const [selectedSlot, setSelectedSlot] = useState<SelectedSlot | null>(null);
   const [bookingCode, setBookingCode] = useState("");
+  const [bookingEventId, setBookingEventId] = useState("");
+
+  // API slots
+  const [slots, setSlots] = useState<ApiSlot[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   // Booking form
   const [name, setName] = useState("");
@@ -103,28 +107,104 @@ export default function AgendarOnline() {
 
   const weekDays = generateWeekDays(weekOffset);
 
-  function handleSlotClick(date: Date, time: string) {
-    if (isSlotPast(date, time)) return;
-    setSelectedSlot({ date: new Date(date), time });
+  const fetchSlots = useCallback(async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const from = new Date(weekDays[0]);
+      from.setHours(0, 0, 0, 0);
+      const to = new Date(weekDays[weekDays.length - 1]);
+      to.setHours(23, 59, 59, 999);
+
+      const res = await fetch(
+        `/api/slots?from=${from.toISOString()}&to=${to.toISOString()}`
+      );
+
+      if (!res.ok) throw new Error("Error al cargar disponibilidad");
+
+      const data = await res.json();
+      setSlots(data.slots || []);
+    } catch {
+      setError("No se pudo cargar la disponibilidad. Intenta de nuevo.");
+      setSlots([]);
+    } finally {
+      setLoading(false);
+    }
+  }, [weekOffset]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    fetchSlots();
+  }, [fetchSlots]);
+
+  function getSlotsForDay(day: Date): ApiSlot[] {
+    return slots.filter((s) => {
+      const slotDate = new Date(s.start);
+      return isSameDay(slotDate, day);
+    });
+  }
+
+  function handleSlotClick(slot: ApiSlot) {
+    if (!slot.available) return;
+    const date = new Date(slot.start);
+    setSelectedSlot({
+      start: slot.start,
+      end: slot.end,
+      time: formatTime(slot.start),
+      date,
+    });
     setStep("form");
     setTimeout(() => {
       document.getElementById("agendar-panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 80);
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!selectedSlot || !name.trim() || !phone.trim() || !service) return;
-    const code = generateCode();
-    setBookingCode(code);
 
-    const d = selectedSlot.date;
-    const dateStr = `${DAY_NAMES_FULL[d.getDay()]} ${d.getDate()} de ${MONTHS_FULL[d.getMonth()]} a las ${selectedSlot.time}`;
-    const msg = encodeURIComponent(
-      `Hola! Quiero confirmar mi reserva en Solkinest:\n\nCódigo: ${code}\nTratamiento: ${service}\nFecha: ${dateStr}\nNombre: ${name}\nTeléfono: ${phone}`
-    );
-    window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, "_blank");
-    setStep("success");
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          start: selectedSlot.start,
+          end: selectedSlot.end,
+          nombre: name.trim(),
+          telefono: phone.trim(),
+          tratamiento: service,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Error al crear reserva");
+      }
+
+      const data = await res.json();
+      const eventId = data.booking?.id || "";
+      setBookingEventId(eventId);
+
+      // Generate display code from event ID
+      const code = "SK-" + (eventId ? eventId.slice(-6).toUpperCase() : Math.random().toString(36).slice(-6).toUpperCase());
+      setBookingCode(code);
+
+      // Send WhatsApp confirmation
+      const d = selectedSlot.date;
+      const dateStr = `${DAY_NAMES_FULL[d.getDay()]} ${d.getDate()} de ${MONTHS_FULL[d.getMonth()]} a las ${selectedSlot.time}`;
+      const msg = encodeURIComponent(
+        `Hola! Acabo de reservar en Solkinest:\n\nCódigo: ${code}\nTratamiento: ${service}\nFecha: ${dateStr}\nNombre: ${name}\nTeléfono: ${phone}`
+      );
+      window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, "_blank");
+
+      setStep("success");
+      // Refresh slots to reflect the new booking
+      fetchSlots();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error al crear reserva");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   function handleCancelSubmit() {
@@ -142,6 +222,8 @@ export default function AgendarOnline() {
     setPhone("");
     setService("");
     setBookingCode("");
+    setBookingEventId("");
+    setError("");
   }
 
   const inputStyle = {
@@ -184,9 +266,24 @@ export default function AgendarOnline() {
             className="text-sm text-center max-w-sm leading-relaxed"
             style={{ color: "var(--color-text-body)", fontFamily: "var(--font-montserrat)" }}
           >
-            Selecciona el día y hora que prefieras. Tu reserva se confirmará por WhatsApp.
+            Selecciona el día y hora que prefieras. Tu reserva quedará registrada automáticamente y se confirmará por WhatsApp.
           </p>
         </div>
+
+        {/* Error message */}
+        {error && (
+          <div
+            className="mb-6 px-5 py-3 text-sm"
+            style={{
+              backgroundColor: "#fef2f2",
+              color: "#991b1b",
+              borderLeft: "3px solid #dc2626",
+              fontFamily: "var(--font-montserrat)",
+            }}
+          >
+            {error}
+          </div>
+        )}
 
         {/* Week tabs */}
         <div className="flex gap-2 mb-8">
@@ -214,103 +311,112 @@ export default function AgendarOnline() {
 
         {/* Calendar grid */}
         <div className="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0 mb-4">
-          <div className="grid grid-cols-6 gap-2.5 min-w-[560px]">
-            {weekDays.map((day, colIdx) => {
-              const slots = getSlotsForDate(day);
-              const todayFlag = isToday(day);
+          {loading ? (
+            <div
+              className="text-center py-16 text-sm"
+              style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-montserrat)" }}
+            >
+              Cargando disponibilidad...
+            </div>
+          ) : (
+            <div className="grid grid-cols-6 gap-2.5 min-w-[560px]">
+              {weekDays.map((day, colIdx) => {
+                const daySlots = getSlotsForDay(day);
+                const todayFlag = isToday(day);
+                const isSunday = day.getDay() === 0;
 
-              return (
-                <div key={colIdx} className="flex flex-col">
-                  {/* Day header */}
-                  <div
-                    className="text-center py-3 mb-2 border-b"
-                    style={{ borderColor: "var(--color-bg-teal-soft)" }}
-                  >
-                    <p
-                      className="text-[10px] tracking-widest uppercase font-semibold mb-0.5"
-                      style={{
-                        fontFamily: "var(--font-montserrat)",
-                        color: todayFlag ? "var(--color-primary)" : "var(--color-text-secondary)",
-                      }}
+                return (
+                  <div key={colIdx} className="flex flex-col">
+                    {/* Day header */}
+                    <div
+                      className="text-center py-3 mb-2 border-b"
+                      style={{ borderColor: "var(--color-bg-teal-soft)" }}
                     >
-                      {DAY_LABELS[colIdx]}
-                    </p>
-                    <p
-                      className="text-xs"
-                      style={{
-                        fontFamily: "var(--font-montserrat)",
-                        color: todayFlag ? "var(--color-primary-deep)" : "var(--color-text-muted)",
-                        fontWeight: todayFlag ? 600 : 400,
-                      }}
-                    >
-                      {day.getDate()} {MONTHS_SHORT[day.getMonth()]}
-                    </p>
-                    {todayFlag && (
-                      <span
-                        className="inline-block mt-1 w-1.5 h-1.5 rounded-full"
-                        style={{ backgroundColor: "var(--color-primary)" }}
-                      />
-                    )}
-                  </div>
-
-                  {/* Slots */}
-                  <div className="flex flex-col gap-1.5">
-                    {slots.length === 0 ? (
                       <p
-                        className="text-center py-4 text-[10px] tracking-wide uppercase"
-                        style={{ color: "var(--color-text-muted)", fontFamily: "var(--font-montserrat)" }}
+                        className="text-[10px] tracking-widest uppercase font-semibold mb-0.5"
+                        style={{
+                          fontFamily: "var(--font-montserrat)",
+                          color: todayFlag ? "var(--color-primary)" : "var(--color-text-secondary)",
+                        }}
                       >
-                        Cerrado
+                        {DAY_LABELS[colIdx]}
                       </p>
-                    ) : (
-                      slots.map((time) => {
-                        const past = isSlotPast(day, time);
-                        const selected =
-                          selectedSlot?.date.toDateString() === day.toDateString() &&
-                          selectedSlot.time === time;
+                      <p
+                        className="text-xs"
+                        style={{
+                          fontFamily: "var(--font-montserrat)",
+                          color: todayFlag ? "var(--color-primary-deep)" : "var(--color-text-muted)",
+                          fontWeight: todayFlag ? 600 : 400,
+                        }}
+                      >
+                        {day.getDate()} {MONTHS_SHORT[day.getMonth()]}
+                      </p>
+                      {todayFlag && (
+                        <span
+                          className="inline-block mt-1 w-1.5 h-1.5 rounded-full"
+                          style={{ backgroundColor: "var(--color-primary)" }}
+                        />
+                      )}
+                    </div>
 
-                        return (
-                          <button
-                            key={time}
-                            disabled={past}
-                            onClick={() => handleSlotClick(day, time)}
-                            className="w-full py-2 text-center transition-all duration-150"
-                            style={{
-                              fontFamily: "var(--font-montserrat)",
-                              fontWeight: 500,
-                              fontSize: "0.7rem",
-                              letterSpacing: "0.05em",
-                              ...(selected
-                                ? {
-                                    backgroundColor: "var(--color-primary)",
-                                    color: "#ffffff",
-                                    border: "1px solid var(--color-primary)",
-                                  }
-                                : past
-                                ? {
-                                    backgroundColor: "var(--color-bg-neutral)",
-                                    color: "var(--color-text-muted)",
-                                    border: "1px solid transparent",
-                                    cursor: "not-allowed",
-                                    opacity: 0.45,
-                                  }
-                                : {
-                                    backgroundColor: "var(--color-bg-teal-soft)",
-                                    color: "var(--color-primary-deep)",
-                                    border: "1px solid transparent",
-                                  }),
-                            }}
-                          >
-                            {time}
-                          </button>
-                        );
-                      })
-                    )}
+                    {/* Slots */}
+                    <div className="flex flex-col gap-1.5">
+                      {isSunday || daySlots.length === 0 ? (
+                        <p
+                          className="text-center py-4 text-[10px] tracking-wide uppercase"
+                          style={{ color: "var(--color-text-muted)", fontFamily: "var(--font-montserrat)" }}
+                        >
+                          {isSunday ? "Cerrado" : "Sin horarios"}
+                        </p>
+                      ) : (
+                        daySlots.map((slot) => {
+                          const time = formatTime(slot.start);
+                          const isSelected =
+                            selectedSlot?.start === slot.start;
+
+                          return (
+                            <button
+                              key={slot.start}
+                              disabled={!slot.available}
+                              onClick={() => handleSlotClick(slot)}
+                              className="w-full py-2 text-center transition-all duration-150"
+                              style={{
+                                fontFamily: "var(--font-montserrat)",
+                                fontWeight: 500,
+                                fontSize: "0.7rem",
+                                letterSpacing: "0.05em",
+                                ...(isSelected
+                                  ? {
+                                      backgroundColor: "var(--color-primary)",
+                                      color: "#ffffff",
+                                      border: "1px solid var(--color-primary)",
+                                    }
+                                  : !slot.available
+                                  ? {
+                                      backgroundColor: "var(--color-bg-neutral)",
+                                      color: "var(--color-text-muted)",
+                                      border: "1px solid transparent",
+                                      cursor: "not-allowed",
+                                      opacity: 0.45,
+                                    }
+                                  : {
+                                      backgroundColor: "var(--color-bg-teal-soft)",
+                                      color: "var(--color-primary-deep)",
+                                      border: "1px solid transparent",
+                                    }),
+                              }}
+                            >
+                              {time}
+                            </button>
+                          );
+                        })
+                      )}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* Legend */}
@@ -318,7 +424,7 @@ export default function AgendarOnline() {
           {[
             { bg: "var(--color-bg-teal-soft)", label: "Disponible" },
             { bg: "var(--color-primary)", label: "Seleccionado" },
-            { bg: "var(--color-bg-neutral)", label: "Pasado", dim: true },
+            { bg: "var(--color-bg-neutral)", label: "Ocupado", dim: true },
           ].map(({ bg, label, dim }) => (
             <div key={label} className="flex items-center gap-1.5">
               <div
@@ -454,20 +560,21 @@ export default function AgendarOnline() {
               <div className="pt-1">
                 <button
                   type="submit"
-                  className="w-full md:w-auto px-10 py-3.5 text-[11px] tracking-widest uppercase text-white transition-colors duration-200"
+                  disabled={submitting}
+                  className="w-full md:w-auto px-10 py-3.5 text-[11px] tracking-widest uppercase text-white transition-colors duration-200 disabled:opacity-60"
                   style={{
                     backgroundColor: "var(--color-primary)",
                     fontFamily: "var(--font-montserrat)",
                     fontWeight: 600,
                   }}
                   onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor = "var(--color-primary-hover)")
+                    !submitting && (e.currentTarget.style.backgroundColor = "var(--color-primary-hover)")
                   }
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.backgroundColor = "var(--color-primary)")
                   }
                 >
-                  Confirmar reserva → WhatsApp
+                  {submitting ? "Reservando..." : "Confirmar reserva"}
                 </button>
               </div>
             </form>
@@ -508,7 +615,7 @@ export default function AgendarOnline() {
                 className="text-[11px] tracking-[0.4em] uppercase mb-2"
                 style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
               >
-                Reserva enviada
+                Reserva confirmada
               </p>
               <h3
                 className="text-3xl md:text-4xl font-semibold mb-7"
@@ -586,7 +693,7 @@ export default function AgendarOnline() {
                 className="text-xs mb-7 max-w-xs leading-relaxed"
                 style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-montserrat)" }}
               >
-                Guarda tu código. Tu reserva se confirmará por WhatsApp a la brevedad.
+                Tu reserva ya está registrada en el calendario. Guarda tu código por si necesitas cancelar.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
@@ -628,6 +735,7 @@ export default function AgendarOnline() {
           <button
             onClick={() => setCancelOpen(!cancelOpen)}
             className="flex items-center justify-between w-full text-left gap-4"
+            aria-expanded={cancelOpen}
           >
             <span
               className="text-sm"
