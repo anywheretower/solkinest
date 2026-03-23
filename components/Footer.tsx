@@ -34,6 +34,7 @@ export default function Footer() {
             width={180}
             height={54}
             className="h-16 w-auto mb-3 brightness-0 invert"
+            loading="lazy"
           />
           <p
             className="text-xs leading-relaxed mb-6"
@@ -204,6 +205,12 @@ export default function Footer() {
           style={{ color: "rgba(255,255,255,0.25)", fontFamily: "var(--font-montserrat)" }}
         >
           RUT 77.109.605-0
+        </p>
+        <p
+          className="text-[11px]"
+          style={{ color: "rgba(255,255,255,0.25)", fontFamily: "var(--font-montserrat)" }}
+        >
+          Actualizado: marzo 2026
         </p>
       </motion.div>
     </footer>

@@ -54,6 +54,7 @@ export default function Hero() {
         fill
         className="object-cover z-0 -scale-x-100"
         priority
+        aria-hidden="true"
       />
 
       {/* White gradient overlay left to right */}

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NORA &mdash; Reporte Integral Solkinest</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; color: #1e293b; }
+
+  /* NORA Brand — fixed colors */
+  :root {
+    --nora: #17a2b8;
+    --nora-dark: #128a9e;
+    --nora-bg: #f0fdfa;
+    --cat-seo: #2563eb;
+    --cat-geo: #7c3aed;
+    --cat-cro: #ea580c;
+    --cat-perf: #16a34a;
+    --cat-a11y: #0891b2;
+  }
+
+  .header { background: #f1f5f9; color: #1e293b; padding: 36px 24px 28px; border-bottom: 1px solid #e2e8f0; }
+  .header-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; gap: 20px; }
+  .header-logo { width: 56px; height: 56px; flex-shrink: 0; }
+  .header-text { flex: 1; }
+  .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .header .client-label { font-size: 15px; color: #334155; font-weight: 600; }
+  .header .subtitle { font-size: 13px; color: #64748b; margin-top: 2px; }
+  .header .date { font-size: 12px; color: #94a3b8; margin-top: 8px; }
+  .header .cats { font-size: 13px; color: #64748b; margin-top: 2px; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 24px; }
+
+  /* Category Tabs */
+  .cat-tabs { display: flex; gap: 0; margin-bottom: 0; margin-top: 4px; flex-wrap: wrap; }
+  .cat-tab { padding: 10px 20px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid #e2e8f0; border-bottom: none; border-radius: 8px 8px 0 0; background: #f1f5f9; color: #64748b; transition: all 0.2s; white-space: nowrap; }
+  .cat-tab:hover { color: var(--nora); background: var(--nora-bg); }
+  .cat-tab.active { background: white; color: var(--nora); border-color: #e2e8f0; position: relative; font-weight: 700; }
+  .cat-tab.active::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 1px; background: white; }
+  .cat-content { display: none; border: 1px solid #e2e8f0; border-radius: 0 8px 8px 8px; background: white; padding: 24px; margin-bottom: 28px; }
+  .cat-content.active { display: block; }
+
+  /* Summary Cards Row */
+  .summary-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 24px; }
+  .summary-card { background: white; border-radius: 10px; padding: 14px 10px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border-left: 3px solid transparent; }
+  .summary-card.seo { border-left-color: var(--cat-seo); }
+  .summary-card.geo { border-left-color: var(--cat-geo); }
+  .summary-card.cro { border-left-color: var(--cat-cro); }
+  .summary-card.perf { border-left-color: var(--cat-perf); }
+  .summary-card.a11y { border-left-color: var(--cat-a11y); }
+  .summary-value { font-size: 26px; font-weight: 800; }
+  .summary-label { font-size: 10px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+  /* Scores */
+  .scores { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .score-card { background: #f8fafc; border-radius: 10px; padding: 16px; text-align: center; }
+  .score-value { font-size: 32px; font-weight: 800; margin-bottom: 2px; }
+  .score-label { font-size: 11px; color: #64748b; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+  .score-green { color: #16a34a; }
+  .score-orange { color: #ea580c; }
+  .score-red { color: #dc2626; }
+  .score-blue { color: #2563eb; }
+  .score-purple { color: #7c3aed; }
+
+  /* CrUX */
+  .crux { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+  .crux-card { background: #f8fafc; border-radius: 8px; padding: 12px; }
+  .crux-label { font-size: 11px; color: #64748b; font-weight: 500; }
+  .crux-value { font-size: 18px; font-weight: 700; color: #16a34a; }
+  .crux-value.warn { color: #ea580c; }
+
+  /* Sections */
+  .section { margin-bottom: 24px; }
+  .section-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 8px; }
+  .section-icon { width: 20px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; color: white; font-weight: 700; flex-shrink: 0; }
+  .icon-seo { background: var(--cat-seo); }
+  .icon-geo { background: var(--cat-geo); }
+  .icon-cro { background: var(--cat-cro); }
+  .icon-perf { background: var(--cat-perf); }
+  .icon-a11y { background: var(--cat-a11y); }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); margin-bottom: 16px; }
+  th { background: #f1f5f9; text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 10px 14px; font-size: 13px; border-top: 1px solid #f1f5f9; vertical-align: top; }
+  tr:hover td { background: #f8fafc; }
+
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .badge-done { background: #dcfce7; color: #166534; }
+  .badge-pending { background: #fef3c7; color: #92400e; }
+  .badge-critical { background: #fee2e2; color: #991b1b; }
+  .badge-client { background: #ede9fe; color: #5b21b6; }
+  .badge-third { background: #f1f5f9; color: #475569; }
+
+  .detail { color: #64748b; font-size: 12px; margin-top: 2px; }
+  .note { background: var(--nora-bg); border-left: 3px solid var(--nora); padding: 12px 16px; font-size: 13px; color: #334155; border-radius: 0 8px 8px 0; margin-top: 16px; margin-bottom: 16px; }
+  .note-warn { background: #fefce8; border-left-color: #ca8a04; }
+  .note-red { background: #fef2f2; border-left-color: #dc2626; }
+
+  .subsection { font-size: 13px; font-weight: 600; color: #475569; margin: 16px 0 8px; padding-left: 4px; }
+
+  /* Footer Summary */
+  .footer-summary { margin-top: 20px; padding: 24px; background: white; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .footer-grid { display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .footer-item { text-align: center; }
+  .footer-num { font-size: 28px; font-weight: 800; }
+  .footer-label { font-size: 10px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+  .footer-divider { width: 1px; height: 40px; background: #e2e8f0; }
+
+  /* NORA Footer Branding */
+  .nora-footer { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 24px; padding: 16px 0; }
+  .nora-footer img { width: 24px; height: 24px; opacity: 0.4; }
+  .nora-footer span { font-size: 11px; color: #94a3b8; }
+
+  @media (max-width: 640px) {
+    .summary-row { grid-template-columns: repeat(3, 1fr); }
+    .scores { grid-template-columns: repeat(2, 1fr); }
+    .crux { grid-template-columns: repeat(2, 1fr); }
+    .cat-tab { padding: 8px 12px; font-size: 11px; }
+    .footer-grid { gap: 16px; }
+    .header-inner { flex-direction: column; text-align: center; }
+    .header-logo { width: 44px; height: 44px; }
+  }
+
+  @media print {
+    .cat-tabs { display: none; }
+    .cat-content { display: block !important; border: none; padding: 0; page-break-inside: avoid; margin-bottom: 32px; }
+    .cat-content::before { content: attr(data-title); font-size: 18px; font-weight: 700; display: block; margin-bottom: 12px; color: var(--nora); }
+    .header { background: #f1f5f9 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <img class="header-logo" src="data:image/png;base64,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" alt="NORA">
+    <div class="header-text">
+      <h1>Solkinest</h1>
+      <div class="client-label">Reporte Integral de Optimizaci&oacute;n &mdash; www.solkinest.cl</div>
+      <div class="cats">SEO &middot; GEO &middot; CRO / Tasa de Rebote &middot; Rendimiento &middot; Accesibilidad</div>
+      <div class="date">23 de marzo de 2026 &mdash; Consolidado de todas las medidas ejecutadas desde el inicio del proyecto</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Global Note -->
+  <div class="note">
+    <strong>Ninguna mejora afecta la funcionalidad del sitio.</strong> Este reporte es de auditor&iacute;a y lectura solamente. No se han realizado cambios en el c&oacute;digo. Las integraciones con WhatsApp Business, Google Calendar y servicios de terceros no se modifican.
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="summary-row">
+    <div class="summary-card seo">
+      <div class="summary-value score-blue">18</div>
+      <div class="summary-label">SEO</div>
+    </div>
+    <div class="summary-card geo">
+      <div class="summary-value score-purple">9</div>
+      <div class="summary-label">GEO / AI</div>
+    </div>
+    <div class="summary-card cro">
+      <div class="summary-value" style="color:#ea580c;">10</div>
+      <div class="summary-label">CRO / Rebote</div>
+    </div>
+    <div class="summary-card perf">
+      <div class="summary-value score-green">8</div>
+      <div class="summary-label">Rendimiento</div>
+    </div>
+    <div class="summary-card a11y">
+      <div class="summary-value" style="color:#0891b2;">9</div>
+      <div class="summary-label">Accesibilidad</div>
+    </div>
+  </div>
+
+  <!-- PageSpeed Insights — Desktop -->
+  <div style="margin-bottom: 8px; font-size: 13px; font-weight: 600; color: #475569;">&#128421; Escritorio &mdash; PageSpeed Insights (23/03/2026)</div>
+  <div class="scores">
+    <div class="score-card"><div class="score-value score-green">100</div><div class="score-label">Rendimiento</div></div>
+    <div class="score-card"><div class="score-value score-orange">&mdash;</div><div class="score-label">Accesibilidad</div></div>
+    <div class="score-card"><div class="score-value score-orange">&mdash;</div><div class="score-label">Recomendaciones</div></div>
+    <div class="score-card"><div class="score-value score-orange">&mdash;</div><div class="score-label">SEO</div></div>
+  </div>
+
+  <!-- PageSpeed Insights — Mobile -->
+  <div style="margin-bottom: 8px; font-size: 13px; font-weight: 600; color: #475569;">&#128241; M&oacute;vil &mdash; PageSpeed Insights (23/03/2026)</div>
+  <div class="scores">
+    <div class="score-card"><div class="score-value score-green">96</div><div class="score-label">Rendimiento</div></div>
+    <div class="score-card"><div class="score-value score-orange">&mdash;</div><div class="score-label">Accesibilidad</div></div>
+    <div class="score-card"><div class="score-value score-orange">&mdash;</div><div class="score-label">Recomendaciones</div></div>
+    <div class="score-card"><div class="score-value score-orange">&mdash;</div><div class="score-label">SEO</div></div>
+  </div>
+
+  <div class="note note-warn">
+    <strong>Scores de Accesibilidad, Recomendaciones y SEO:</strong> La API de PageSpeed Insights no devolvi&oacute; estos scores en esta ejecuci&oacute;n. Se recomienda verificar manualmente en <a href="https://pagespeed.web.dev/" target="_blank">pagespeed.web.dev</a>. Los datos de CrUX tampoco est&aacute;n disponibles &mdash; el sitio a&uacute;n no tiene suficiente tr&aacute;fico registrado.
+  </div>
+
+  <!-- =================== CATEGORY TABS =================== -->
+  <div class="cat-tabs">
+    <div class="cat-tab active" onclick="switchCat('seo')">SEO</div>
+    <div class="cat-tab" onclick="switchCat('geo')">GEO / AI</div>
+    <div class="cat-tab" onclick="switchCat('cro')">CRO / Rebote</div>
+    <div class="cat-tab" onclick="switchCat('perf')">Rendimiento</div>
+    <div class="cat-tab" onclick="switchCat('a11y')">Accesibilidad</div>
+  </div>
+
+  <!-- ===================== SEO ===================== -->
+  <div id="cat-seo" class="cat-content active" data-title="SEO">
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-seo">S</span> SEO T&eacute;cnico</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>S1</td>
+          <td>Archivo robots.txt<div class="detail">No existe (404). Google no tiene directivas de rastreo. Debe crearse con Allow/Disallow y referencia al sitemap.</div></td>
+          <td><span class="badge badge-critical">Cr&iacute;tico</span></td>
+        </tr>
+        <tr>
+          <td>S2</td>
+          <td>Sitemap XML<div class="detail">No existe (404). No hay mapa de sitio para buscadores. Debe generarse din&aacute;micamente con Next.js (app/sitemap.ts).</div></td>
+          <td><span class="badge badge-critical">Cr&iacute;tico</span></td>
+        </tr>
+        <tr>
+          <td>S3</td>
+          <td>URL can&oacute;nica<div class="detail">No se declara canonical en ninguna p&aacute;gina. Riesgo de contenido duplicado entre www/no-www y con/sin trailing slash.</div></td>
+          <td><span class="badge badge-critical">Cr&iacute;tico</span></td>
+        </tr>
+        <tr>
+          <td>S4</td>
+          <td>Declaraci&oacute;n de idioma<div class="detail"><code>lang=&quot;es&quot;</code> presente en <code>&lt;html&gt;</code>. Correcto para sitio en espa&ntilde;ol.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+        <tr>
+          <td>S5</td>
+          <td>HTTPS / SSL<div class="detail">El sitio carga correctamente sobre HTTPS sin errores de certificado ni contenido mixto.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+        <tr>
+          <td>S6</td>
+          <td>Viewport meta tag<div class="detail"><code>width=device-width, initial-scale=1</code> presente. Correcto para mobile-first.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-seo">S</span> On-Page SEO</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>S7</td>
+          <td>Title tag<div class="detail">&ldquo;Solkinest &mdash; Tratamientos Est&eacute;ticos Corporales y Faciales&rdquo; &mdash; presente, descriptivo, 55 caracteres. Correcto.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+        <tr>
+          <td>S8</td>
+          <td>Meta description<div class="detail">155 caracteres, incluye keywords principales y propuesta de valor. Bien redactada.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+        <tr>
+          <td>S9</td>
+          <td>Open Graph tags<div class="detail">No se declaran og:title, og:description, og:image, og:url. Compartir en redes sociales no muestra preview.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>S10</td>
+          <td>Twitter Cards<div class="detail">No se declaran twitter:card, twitter:title, twitter:description, twitter:image.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>S11</td>
+          <td>Jerarqu&iacute;a de encabezados<div class="detail">Un solo H1, m&uacute;ltiples H2 por secci&oacute;n, H3 para tratamientos individuales. Estructura l&oacute;gica correcta.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+        <tr>
+          <td>S12</td>
+          <td>HTML sem&aacute;ntico &mdash; elemento <code>&lt;main&gt;</code><div class="detail">page.tsx usa un Fragment <code>&lt;&gt;</code> en lugar de <code>&lt;main&gt;</code>. Falta landmark sem&aacute;ntico principal.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-seo">S</span> Schema / Datos Estructurados</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>S13</td>
+          <td>Schema LocalBusiness<div class="detail">No existe JSON-LD de tipo LocalBusiness/HealthAndBeautyBusiness. Datos como nombre, direcci&oacute;n, tel&eacute;fono, horarios no est&aacute;n estructurados para Google.</div></td>
+          <td><span class="badge badge-critical">Cr&iacute;tico</span></td>
+        </tr>
+        <tr>
+          <td>S14</td>
+          <td>Schema Service<div class="detail">Los 11 tratamientos no tienen schema Service/Product. No aparecen como resultados enriquecidos.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>S15</td>
+          <td>Schema FAQPage<div class="detail">La secci&oacute;n FAQ tiene 8 preguntas pero no tiene schema FAQPage. Oportunidad de rich results perdida.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-seo">S</span> Im&aacute;genes SEO</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>S16</td>
+          <td>Alt text en im&aacute;genes<div class="detail">0 de 6 im&aacute;genes tienen alt text descriptivo. 3 im&aacute;genes de fondo usan <code>alt=&quot;&quot;</code> (decorativas), 2 logos tienen alt correcto, pero las im&aacute;genes de contenido carecen de descripci&oacute;n.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>S17</td>
+          <td>Formatos modernos de imagen<div class="detail">Im&aacute;genes servidas como PNG. Next/Image convierte autom&aacute;ticamente a WebP, pero los originales son PNG pesados (hero-bg.png).</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>S18</td>
+          <td>Nombres de archivo descriptivos<div class="detail">hero-bg.png, contacto-bg.png, testimonios-bg.png &mdash; nombres gen&eacute;ricos, no descriptivos para SEO.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="note note-red">
+      <strong>3 issues cr&iacute;ticos SEO:</strong> Sin robots.txt, sin sitemap.xml y sin canonical URL. Estos 3 elementos son fundamentales para la indexaci&oacute;n correcta del sitio en Google.
+    </div>
+
+  </div>
+
+  <!-- ===================== GEO / AI ===================== -->
+  <div id="cat-geo" class="cat-content" data-title="GEO / Optimizaci&oacute;n AI">
+
+    <div class="note" style="border-left-color: #7c3aed; background: #faf5ff;">
+      <strong>GEO (Generative Engine Optimization):</strong> Medidas para que el sitio sea citado y referenciado por ChatGPT, Claude, Perplexity, Google AI Overviews y otros motores de b&uacute;squeda con IA.
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-geo">G</span> Crawlers &amp; Descubrimiento</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>G1</td>
+          <td>Robots.txt con directivas para bots AI<div class="detail">No existe robots.txt. Los crawlers de IA (GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot) no tienen directivas Allow/Disallow.</div></td>
+          <td><span class="badge badge-critical">Cr&iacute;tico</span></td>
+        </tr>
+        <tr>
+          <td>G2</td>
+          <td>Archivo llms.txt<div class="detail">No existe (404). Este archivo gu&iacute;a a los crawlers de IA sobre la estructura y contenido clave del sitio.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>G3</td>
+          <td>Sitemap accesible para AI crawlers<div class="detail">Sin sitemap.xml, los crawlers de IA no pueden descubrir todas las secciones del sitio de forma eficiente.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-geo">G</span> Citabilidad &amp; Entidad</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>G4</td>
+          <td>Bloques de contenido citables<div class="detail">0 bloques de 134-167 palabras auto-contenidos. El 95% del contenido es copy de marketing, 5% datos f&aacute;cticos. Los motores de IA no encuentran pasajes para citar.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>G5</td>
+          <td>Datos factuales verificables<div class="detail">Solo datos b&aacute;sicos: direcci&oacute;n, horarios, RUT. Faltan estad&iacute;sticas de resultados, n&uacute;mero de sesiones con evidencia, estudios cl&iacute;nicos.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>G6</td>
+          <td>Encabezados basados en preguntas<div class="detail">Solo 1 de 12 H2 usa formato de pregunta (&ldquo;&iquest;No sabes qu&eacute; tratamiento elegir?&rdquo;). Los motores de IA priorizan contenido que responde preguntas expl&iacute;citas.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-geo">G</span> Se&ntilde;ales E-E-A-T para AI</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>G7</td>
+          <td>Credenciales profesionales<div class="detail">No se muestran t&iacute;tulos profesionales, certificaciones ni licencias de los especialistas. Cr&iacute;tico para un negocio de salud/est&eacute;tica.</div></td>
+          <td><span class="badge badge-client">Requiere cliente</span></td>
+        </tr>
+        <tr>
+          <td>G8</td>
+          <td>Fechas de publicaci&oacute;n/actualizaci&oacute;n<div class="detail">No hay timestamps en ninguna secci&oacute;n del sitio. Los motores de IA priorizan contenido con fechas recientes.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>G9</td>
+          <td>Presencia de marca en plataformas<div class="detail">Sin presencia detectada en Wikipedia, Reddit, YouTube o LinkedIn. Las menciones de marca correlacionan 3&times; m&aacute;s con visibilidad AI que los backlinks.</div></td>
+          <td><span class="badge badge-client">Requiere cliente</span></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ===================== CRO / TASA DE REBOTE ===================== -->
+  <div id="cat-cro" class="cat-content" data-title="CRO / Tasa de Rebote">
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-cro">C</span> Hero &amp; Above-the-Fold</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>C1</td>
+          <td>Propuesta de valor clara en hero<div class="detail">&ldquo;Tu mejor versi&oacute;n con tecnolog&iacute;a de vanguardia&rdquo; &mdash; beneficio claro, subt&iacute;tulo espec&iacute;fico con &ldquo;Resultados visibles desde la primera sesi&oacute;n&rdquo;. Comprensible en 5 segundos.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+        <tr>
+          <td>C2</td>
+          <td>CTA principal visible sin scroll<div class="detail">Dos CTAs above-the-fold: &ldquo;Reserva tu hora &middot; WhatsApp&rdquo; y &ldquo;Agenda directo en calendario&rdquo;. Dual pathway correcto.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+        <tr>
+          <td>C3</td>
+          <td>Se&ntilde;ales de confianza above-the-fold<div class="detail">4 badges informativos (11 tratamientos, aparatolog&iacute;a, Soprano Ice Tril&aacute;ser, Talca). Faltan sellos de certificaci&oacute;n o credenciales profesionales.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-cro">C</span> Formulario &amp; Conversi&oacute;n</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>C4</td>
+          <td>Canal de contacto &uacute;nico<div class="detail">Solo WhatsApp como canal de contacto (aparece 12+ veces). Sin formulario web, email ni tel&eacute;fono. Barrera para usuarios que no usan WhatsApp.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>C5</td>
+          <td>Calendario de reservas<div class="detail">Calendario funcional con selecci&oacute;n de semana y horarios. Buena experiencia pero requiere confirmaci&oacute;n por WhatsApp (paso extra de fricci&oacute;n).</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-cro">C</span> Se&ntilde;ales de Confianza</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>C6</td>
+          <td>Testimonios insuficientes<div class="detail">Solo 1 testimonio (Carolina, sin foto ni apellido). Para un negocio de est&eacute;tica se necesitan m&iacute;nimo 5 testimonios con fotos reales y resultados espec&iacute;ficos.</div></td>
+          <td><span class="badge badge-client">Requiere cliente</span></td>
+        </tr>
+        <tr>
+          <td>C7</td>
+          <td>Fotos de antes/despu&eacute;s<div class="detail">No hay galer&iacute;a de resultados reales. Cr&iacute;tico para servicios est&eacute;ticos &mdash; es la principal prueba social del rubro.</div></td>
+          <td><span class="badge badge-client">Requiere cliente</span></td>
+        </tr>
+        <tr>
+          <td>C8</td>
+          <td>Credenciales y certificaciones visibles<div class="detail">No se muestran t&iacute;tulos profesionales, certificaciones de aparatolog&iacute;a ni afiliaciones gremiales.</div></td>
+          <td><span class="badge badge-client">Requiere cliente</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-cro">C</span> Copywriting</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>C9</td>
+          <td>CTAs gen&eacute;ricos<div class="detail">15+ CTAs usan &ldquo;Agendar&rdquo; sin diferenciaci&oacute;n. Deber&iacute;an usar copy orientado a valor: &ldquo;Agenda tu consulta gratuita&rdquo;, &ldquo;Ver mi plan de tratamiento&rdquo;.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>C10</td>
+          <td>Transparencia de precios<div class="detail">Algunos servicios muestran precio ($35.000, $15.000), otros dicen &ldquo;A consultar&rdquo;. La inconsistencia genera fricci&oacute;n. Mostrar todos o ninguno.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ===================== RENDIMIENTO ===================== -->
+  <div id="cat-perf" class="cat-content" data-title="Rendimiento">
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-perf">R</span> Im&aacute;genes</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>R1</td>
+          <td>Hero image con priority<div class="detail">hero-bg.png usa <code>priority</code> en Next/Image. Correcto para LCP. Sin embargo, es formato PNG pesado.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+        <tr>
+          <td>R2</td>
+          <td>Lazy loading en im&aacute;genes below-fold<div class="detail">No se detecta <code>loading=&quot;lazy&quot;</code> en im&aacute;genes de secciones inferiores (testimonios-bg.png, contacto-bg.png).</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>R3</td>
+          <td>Optimizaci&oacute;n de formato LCP<div class="detail">LCP mobile: 2.7s (supera umbral de 2.5s). Convertir hero-bg.png a WebP/AVIF reducir&iacute;a tama&ntilde;o ~60% y mejorar&iacute;a LCP.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-perf">R</span> JavaScript &amp; Scripts</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>R4</td>
+          <td>JavaScript sin usar<div class="detail">~71 KiB de JS sin usar detectado por Lighthouse. Probablemente Framer Motion cargado en todos los componentes.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>R5</td>
+          <td>Componentes &ldquo;use client&rdquo; excesivos<div class="detail">14 de 15 componentes son client-side. Se pierde casi todo el beneficio de SSR de Next.js. Evaluar qu&eacute; componentes realmente necesitan interactividad.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-perf">R</span> Cache / Fonts / CSS</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>R6</td>
+          <td>Font display: swap<div class="detail">Montserrat configurada con <code>display: &quot;swap&quot;</code> en Next.js. Previene FOIT correctamente.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+        <tr>
+          <td>R7</td>
+          <td>Pesos de fuente excesivos<div class="detail">Montserrat carga 9 pesos (100-900) + italic. Solo se usan ~3-4 pesos (300, 500, 600, 700). Reducir subsets disminuir&iacute;a payload de fuentes.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-perf">R</span> CLS Prevention</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>R8</td>
+          <td>CLS: 0<div class="detail">Cumulative Layout Shift perfecto en desktop y mobile. Sin saltos de layout.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ===================== ACCESIBILIDAD ===================== -->
+  <div id="cat-a11y" class="cat-content" data-title="Accesibilidad">
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-a11y">A</span> ARIA</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>A1</td>
+          <td>Bot&oacute;n hamburguesa con aria-label<div class="detail">El bot&oacute;n del men&uacute; mobile tiene <code>aria-label=&quot;Abrir menu&quot;</code>. Correcto.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+        <tr>
+          <td>A2</td>
+          <td>Men&uacute; mobile sin aria-expanded<div class="detail">El bot&oacute;n hamburguesa no declara <code>aria-expanded</code> para indicar si el men&uacute; est&aacute; abierto o cerrado.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>A3</td>
+          <td>Calendario sin ARIA states<div class="detail">El widget de reservas no tiene <code>aria-selected</code>, <code>aria-current</code> ni anuncios para lectores de pantalla. No es operable por teclado.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>A4</td>
+          <td>Im&aacute;genes decorativas sin aria-hidden<div class="detail">3 im&aacute;genes de fondo usan <code>alt=&quot;&quot;</code> pero les falta <code>aria-hidden=&quot;true&quot;</code> para ocultarlas completamente de lectores de pantalla.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="section-icon icon-a11y">A</span> Estructura &amp; Navegaci&oacute;n</div>
+      <table>
+        <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
+        <tr>
+          <td>A5</td>
+          <td>Skip navigation link<div class="detail">No existe enlace &ldquo;Saltar al contenido&rdquo; para usuarios de teclado y lectores de pantalla.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>A6</td>
+          <td>Landmark <code>&lt;main&gt;</code><div class="detail">No hay elemento <code>&lt;main&gt;</code> envolviendo el contenido principal. Los lectores de pantalla no pueden identificar el &aacute;rea principal.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+        <tr>
+          <td>A7</td>
+          <td>FAQ con details/summary<div class="detail">La secci&oacute;n FAQ usa <code>&lt;details&gt;</code> y <code>&lt;summary&gt;</code> nativos con texto de toggle (&ldquo;Ver&rdquo;/&ldquo;Cerrar&rdquo;). Sem&aacute;nticamente correcto.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+        <tr>
+          <td>A8</td>
+          <td>Navegaci&oacute;n sem&aacute;ntica<div class="detail">Usa elemento <code>&lt;nav&gt;</code> nativo para la barra de navegaci&oacute;n. Correcto.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
+        </tr>
+        <tr>
+          <td>A9</td>
+          <td>Alt text descriptivo en im&aacute;genes funcionales<div class="detail">Los logos tienen alt text correcto (&ldquo;Solkinest &mdash; Kinesiolog&iacute;a &amp; Est&eacute;tica&rdquo;), pero im&aacute;genes de contenido no tienen descripci&oacute;n.</div></td>
+          <td><span class="badge badge-pending">Pendiente</span></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- =================== FOOTER SUMMARY =================== -->
+  <div class="footer-summary">
+    <div style="text-align: center; margin-bottom: 16px; font-size: 13px; font-weight: 600; color: #475569;">Resumen Total de Medidas</div>
+    <div class="footer-grid">
+      <div class="footer-item">
+        <div class="footer-num" style="color: #16a34a;">14</div>
+        <div class="footer-label">Aplicadas</div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-item">
+        <div class="footer-num" style="color: #ea580c;">40</div>
+        <div class="footer-label">Pendientes</div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-item">
+        <div class="footer-num" style="color: #2563eb;">54</div>
+        <div class="footer-label">Total medidas</div>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 16px;">
+      <div style="display: inline-flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
+        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #2563eb; margin-right: 4px;"></span>SEO: 6 aplicadas / 12 pendientes</span>
+        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #7c3aed; margin-right: 4px;"></span>GEO: 0 aplicadas / 9 pendientes</span>
+        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ea580c; margin-right: 4px;"></span>CRO: 3 aplicadas / 7 pendientes</span>
+        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #16a34a; margin-right: 4px;"></span>Rendimiento: 3 aplicadas / 5 pendientes</span>
+        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #0891b2; margin-right: 4px;"></span>Accesibilidad: 3 aplicadas / 6 pendientes</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="nora-footer">
+    <img src="data:image/png;base64,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" alt="NORA">
+    <span>Generado por NORA &middot; 23/03/2026</span>
+  </div>
+
+</div>
+
+<script>
+function switchCat(cat) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.cat-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('cat-' + cat).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>

@@ -67,6 +67,8 @@ export default function Testimonios() {
         alt=""
         fill
         className="object-cover z-0 -scale-x-100"
+        loading="lazy"
+        aria-hidden="true"
       />
 
       {/* White gradient overlay — same as Hero */}
