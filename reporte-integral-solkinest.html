@@ -8,7 +8,6 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; color: #1e293b; }
 
-  /* NORA Brand — fixed colors */
   :root {
     --nora: #17a2b8;
     --nora-dark: #128a9e;
@@ -26,13 +25,11 @@
   .header-text { flex: 1; }
   .header h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
   .header .client-label { font-size: 15px; color: #334155; font-weight: 600; }
-  .header .subtitle { font-size: 13px; color: #64748b; margin-top: 2px; }
   .header .date { font-size: 12px; color: #94a3b8; margin-top: 8px; }
   .header .cats { font-size: 13px; color: #64748b; margin-top: 2px; }
 
   .container { max-width: 960px; margin: 0 auto; padding: 24px; }
 
-  /* Category Tabs */
   .cat-tabs { display: flex; gap: 0; margin-bottom: 0; margin-top: 4px; flex-wrap: wrap; }
   .cat-tab { padding: 10px 20px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid #e2e8f0; border-bottom: none; border-radius: 8px 8px 0 0; background: #f1f5f9; color: #64748b; transition: all 0.2s; white-space: nowrap; }
   .cat-tab:hover { color: var(--nora); background: var(--nora-bg); }
@@ -41,7 +38,6 @@
   .cat-content { display: none; border: 1px solid #e2e8f0; border-radius: 0 8px 8px 8px; background: white; padding: 24px; margin-bottom: 28px; }
   .cat-content.active { display: block; }
 
-  /* Summary Cards Row */
   .summary-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 24px; }
   .summary-card { background: white; border-radius: 10px; padding: 14px 10px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border-left: 3px solid transparent; }
   .summary-card.seo { border-left-color: var(--cat-seo); }
@@ -52,7 +48,6 @@
   .summary-value { font-size: 26px; font-weight: 800; }
   .summary-label { font-size: 10px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
 
-  /* Scores */
   .scores { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
   .score-card { background: #f8fafc; border-radius: 10px; padding: 16px; text-align: center; }
   .score-value { font-size: 32px; font-weight: 800; margin-bottom: 2px; }
@@ -63,14 +58,6 @@
   .score-blue { color: #2563eb; }
   .score-purple { color: #7c3aed; }
 
-  /* CrUX */
-  .crux { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-  .crux-card { background: #f8fafc; border-radius: 8px; padding: 12px; }
-  .crux-label { font-size: 11px; color: #64748b; font-weight: 500; }
-  .crux-value { font-size: 18px; font-weight: 700; color: #16a34a; }
-  .crux-value.warn { color: #ea580c; }
-
-  /* Sections */
   .section { margin-bottom: 24px; }
   .section-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 8px; }
   .section-icon { width: 20px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; color: white; font-weight: 700; flex-shrink: 0; }
@@ -80,7 +67,6 @@
   .icon-perf { background: var(--cat-perf); }
   .icon-a11y { background: var(--cat-a11y); }
 
-  /* Table */
   table { width: 100%; border-collapse: collapse; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); margin-bottom: 16px; }
   th { background: #f1f5f9; text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
   td { padding: 10px 14px; font-size: 13px; border-top: 1px solid #f1f5f9; vertical-align: top; }
@@ -98,9 +84,6 @@
   .note-warn { background: #fefce8; border-left-color: #ca8a04; }
   .note-red { background: #fef2f2; border-left-color: #dc2626; }
 
-  .subsection { font-size: 13px; font-weight: 600; color: #475569; margin: 16px 0 8px; padding-left: 4px; }
-
-  /* Footer Summary */
   .footer-summary { margin-top: 20px; padding: 24px; background: white; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
   .footer-grid { display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap; }
   .footer-item { text-align: center; }
@@ -108,7 +91,6 @@
   .footer-label { font-size: 10px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
   .footer-divider { width: 1px; height: 40px; background: #e2e8f0; }
 
-  /* NORA Footer Branding */
   .nora-footer { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 24px; padding: 16px 0; }
   .nora-footer img { width: 24px; height: 24px; opacity: 0.4; }
   .nora-footer span { font-size: 11px; color: #94a3b8; }
@@ -116,7 +98,6 @@
   @media (max-width: 640px) {
     .summary-row { grid-template-columns: repeat(3, 1fr); }
     .scores { grid-template-columns: repeat(2, 1fr); }
-    .crux { grid-template-columns: repeat(2, 1fr); }
     .cat-tab { padding: 8px 12px; font-size: 11px; }
     .footer-grid { gap: 16px; }
     .header-inner { flex-direction: column; text-align: center; }
@@ -148,9 +129,8 @@
 
 <div class="container">
 
-  <!-- Global Note -->
   <div class="note">
-    <strong>Ninguna mejora afecta la funcionalidad del sitio.</strong> Este reporte es de auditor&iacute;a y lectura solamente. No se han realizado cambios en el c&oacute;digo. Las integraciones con WhatsApp Business, Google Calendar y servicios de terceros no se modifican.
+    <strong>Ninguna mejora afecta la funcionalidad del sitio.</strong> Las integraciones con WhatsApp Business, Google Calendar y servicios de terceros no se modifican. Las medidas marcadas &ldquo;Requiere cliente&rdquo; necesitan contenido o decisiones del cliente para completarse.
   </div>
 
   <!-- Summary Cards -->
@@ -196,10 +176,10 @@
   </div>
 
   <div class="note note-warn">
-    <strong>Scores de Accesibilidad, Recomendaciones y SEO:</strong> La API de PageSpeed Insights no devolvi&oacute; estos scores en esta ejecuci&oacute;n. Se recomienda verificar manualmente en <a href="https://pagespeed.web.dev/" target="_blank">pagespeed.web.dev</a>. Los datos de CrUX tampoco est&aacute;n disponibles &mdash; el sitio a&uacute;n no tiene suficiente tr&aacute;fico registrado.
+    <strong>Scores de Accesibilidad, Recomendaciones y SEO:</strong> La API de PageSpeed Insights no devolvi&oacute; estos scores en esta ejecuci&oacute;n. Se recomienda verificar en <a href="https://pagespeed.web.dev/" target="_blank">pagespeed.web.dev</a>. CrUX sin datos &mdash; tr&aacute;fico insuficiente a&uacute;n.
   </div>
 
-  <!-- =================== CATEGORY TABS =================== -->
+  <!-- CATEGORY TABS -->
   <div class="cat-tabs">
     <div class="cat-tab active" onclick="switchCat('seo')">SEO</div>
     <div class="cat-tab" onclick="switchCat('geo')">GEO / AI</div>
@@ -217,18 +197,18 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>S1</td>
-          <td>Archivo robots.txt<div class="detail">No existe (404). Google no tiene directivas de rastreo. Debe crearse con Allow/Disallow y referencia al sitemap.</div></td>
-          <td><span class="badge badge-critical">Cr&iacute;tico</span></td>
+          <td>Archivo robots.txt<div class="detail">Creado <code>app/robots.ts</code> con Allow para todos los user-agents y referencia al sitemap. Verificado en producci&oacute;n.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>S2</td>
-          <td>Sitemap XML<div class="detail">No existe (404). No hay mapa de sitio para buscadores. Debe generarse din&aacute;micamente con Next.js (app/sitemap.ts).</div></td>
-          <td><span class="badge badge-critical">Cr&iacute;tico</span></td>
+          <td>Sitemap XML din&aacute;mico<div class="detail">Creado <code>app/sitemap.ts</code> con URL principal, lastModified din&aacute;mico, changeFrequency weekly, priority 1.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>S3</td>
-          <td>URL can&oacute;nica<div class="detail">No se declara canonical en ninguna p&aacute;gina. Riesgo de contenido duplicado entre www/no-www y con/sin trailing slash.</div></td>
-          <td><span class="badge badge-critical">Cr&iacute;tico</span></td>
+          <td>URL can&oacute;nica<div class="detail">Implementado via <code>metadataBase</code> + <code>alternates.canonical</code> en layout.tsx. Next.js genera <code>&lt;link rel=&quot;canonical&quot;&gt;</code> autom&aacute;ticamente.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>S4</td>
@@ -254,33 +234,33 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>S7</td>
-          <td>Title tag<div class="detail">&ldquo;Solkinest &mdash; Tratamientos Est&eacute;ticos Corporales y Faciales&rdquo; &mdash; presente, descriptivo, 55 caracteres. Correcto.</div></td>
+          <td>Title tag<div class="detail">&ldquo;Solkinest &mdash; Tratamientos Est&eacute;ticos Corporales y Faciales&rdquo; &mdash; 55 caracteres, descriptivo.</div></td>
           <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>S8</td>
-          <td>Meta description<div class="detail">155 caracteres, incluye keywords principales y propuesta de valor. Bien redactada.</div></td>
+          <td>Meta description<div class="detail">155 caracteres con keywords principales y propuesta de valor.</div></td>
           <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>S9</td>
-          <td>Open Graph tags<div class="detail">No se declaran og:title, og:description, og:image, og:url. Compartir en redes sociales no muestra preview.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Open Graph tags<div class="detail">Implementado og:title, og:description, og:image, og:url, og:locale (es_CL), og:type (website), og:site_name en layout.tsx.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>S10</td>
-          <td>Twitter Cards<div class="detail">No se declaran twitter:card, twitter:title, twitter:description, twitter:image.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Twitter Cards<div class="detail">Implementado twitter:card (summary_large_image), twitter:title, twitter:description, twitter:image en layout.tsx.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>S11</td>
-          <td>Jerarqu&iacute;a de encabezados<div class="detail">Un solo H1, m&uacute;ltiples H2 por secci&oacute;n, H3 para tratamientos individuales. Estructura l&oacute;gica correcta.</div></td>
+          <td>Jerarqu&iacute;a de encabezados<div class="detail">Un solo H1, m&uacute;ltiples H2 por secci&oacute;n, H3 para tratamientos. Estructura l&oacute;gica correcta.</div></td>
           <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>S12</td>
-          <td>HTML sem&aacute;ntico &mdash; elemento <code>&lt;main&gt;</code><div class="detail">page.tsx usa un Fragment <code>&lt;&gt;</code> en lugar de <code>&lt;main&gt;</code>. Falta landmark sem&aacute;ntico principal.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>HTML sem&aacute;ntico &mdash; elemento <code>&lt;main&gt;</code><div class="detail">Agregado <code>&lt;main id=&quot;main-content&quot;&gt;</code> envolviendo todo el contenido en page.tsx.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
       </table>
     </div>
@@ -291,18 +271,18 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>S13</td>
-          <td>Schema LocalBusiness<div class="detail">No existe JSON-LD de tipo LocalBusiness/HealthAndBeautyBusiness. Datos como nombre, direcci&oacute;n, tel&eacute;fono, horarios no est&aacute;n estructurados para Google.</div></td>
-          <td><span class="badge badge-critical">Cr&iacute;tico</span></td>
+          <td>Schema LocalBusiness (BeautySalon)<div class="detail">JSON-LD con nombre, direcci&oacute;n, tel&eacute;fono, coordenadas geo, horarios de atenci&oacute;n (lun-vie + s&aacute;bado) y priceRange. Verificado en HTML.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>S14</td>
-          <td>Schema Service<div class="detail">Los 11 tratamientos no tienen schema Service/Product. No aparecen como resultados enriquecidos.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Schema Service<div class="detail">4 servicios principales con nombre, descripci&oacute;n y precio (CLP) dentro de hasOfferCatalog del LocalBusiness.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>S15</td>
-          <td>Schema FAQPage<div class="detail">La secci&oacute;n FAQ tiene 8 preguntas pero no tiene schema FAQPage. Oportunidad de rich results perdida.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Schema FAQPage<div class="detail">JSON-LD FAQPage con las 8 preguntas y respuestas completas. Verificado en HTML.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
       </table>
     </div>
@@ -313,24 +293,20 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>S16</td>
-          <td>Alt text en im&aacute;genes<div class="detail">0 de 6 im&aacute;genes tienen alt text descriptivo. 3 im&aacute;genes de fondo usan <code>alt=&quot;&quot;</code> (decorativas), 2 logos tienen alt correcto, pero las im&aacute;genes de contenido carecen de descripci&oacute;n.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Alt text en im&aacute;genes<div class="detail">Im&aacute;genes de fondo correctamente marcadas como decorativas (<code>alt=&quot;&quot;</code> + <code>aria-hidden</code>). Logos tienen alt descriptivo. No hay im&aacute;genes de contenido sin alt.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>S17</td>
-          <td>Formatos modernos de imagen<div class="detail">Im&aacute;genes servidas como PNG. Next/Image convierte autom&aacute;ticamente a WebP, pero los originales son PNG pesados (hero-bg.png).</div></td>
+          <td>Formatos modernos de imagen<div class="detail">Originales son PNG. Next/Image convierte a WebP autom&aacute;ticamente en producci&oacute;n. hero-bg.png podr&iacute;a beneficiarse de AVIF para mejorar LCP mobile.</div></td>
           <td><span class="badge badge-pending">Pendiente</span></td>
         </tr>
         <tr>
           <td>S18</td>
-          <td>Nombres de archivo descriptivos<div class="detail">hero-bg.png, contacto-bg.png, testimonios-bg.png &mdash; nombres gen&eacute;ricos, no descriptivos para SEO.</div></td>
+          <td>Nombres de archivo descriptivos<div class="detail">hero-bg.png, contacto-bg.png, testimonios-bg.png &mdash; gen&eacute;ricos pero aceptables para im&aacute;genes decorativas de fondo.</div></td>
           <td><span class="badge badge-pending">Pendiente</span></td>
         </tr>
       </table>
-    </div>
-
-    <div class="note note-red">
-      <strong>3 issues cr&iacute;ticos SEO:</strong> Sin robots.txt, sin sitemap.xml y sin canonical URL. Estos 3 elementos son fundamentales para la indexaci&oacute;n correcta del sitio en Google.
     </div>
 
   </div>
@@ -348,18 +324,18 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>G1</td>
-          <td>Robots.txt con directivas para bots AI<div class="detail">No existe robots.txt. Los crawlers de IA (GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot) no tienen directivas Allow/Disallow.</div></td>
-          <td><span class="badge badge-critical">Cr&iacute;tico</span></td>
+          <td>Robots.txt con directivas para bots AI<div class="detail">Allow expl&iacute;cito para GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, PerplexityBot, Googlebot y Bingbot en <code>app/robots.ts</code>.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>G2</td>
-          <td>Archivo llms.txt<div class="detail">No existe (404). Este archivo gu&iacute;a a los crawlers de IA sobre la estructura y contenido clave del sitio.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Archivo llms.txt<div class="detail">Creado <code>public/llms.txt</code> con descripci&oacute;n del negocio, servicios principales, datos de contacto, horarios y ubicaci&oacute;n.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>G3</td>
-          <td>Sitemap accesible para AI crawlers<div class="detail">Sin sitemap.xml, los crawlers de IA no pueden descubrir todas las secciones del sitio de forma eficiente.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Sitemap accesible para AI crawlers<div class="detail">Sitemap XML din&aacute;mico referenciado desde robots.txt. Accesible en <code>/sitemap.xml</code>.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
       </table>
     </div>
@@ -370,17 +346,17 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>G4</td>
-          <td>Bloques de contenido citables<div class="detail">0 bloques de 134-167 palabras auto-contenidos. El 95% del contenido es copy de marketing, 5% datos f&aacute;cticos. Los motores de IA no encuentran pasajes para citar.</div></td>
+          <td>Bloques de contenido citables<div class="detail">El 95% del contenido es copy de marketing. Faltan pasajes auto-contenidos de 134-167 palabras con datos espec&iacute;ficos que un motor de IA pueda citar.</div></td>
           <td><span class="badge badge-pending">Pendiente</span></td>
         </tr>
         <tr>
           <td>G5</td>
-          <td>Datos factuales verificables<div class="detail">Solo datos b&aacute;sicos: direcci&oacute;n, horarios, RUT. Faltan estad&iacute;sticas de resultados, n&uacute;mero de sesiones con evidencia, estudios cl&iacute;nicos.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Datos factuales verificables<div class="detail">Solo datos b&aacute;sicos (direcci&oacute;n, horarios, RUT). Faltan estad&iacute;sticas de resultados, estudios cl&iacute;nicos, n&uacute;mero de pacientes atendidos.</div></td>
+          <td><span class="badge badge-client">Requiere cliente</span></td>
         </tr>
         <tr>
           <td>G6</td>
-          <td>Encabezados basados en preguntas<div class="detail">Solo 1 de 12 H2 usa formato de pregunta (&ldquo;&iquest;No sabes qu&eacute; tratamiento elegir?&rdquo;). Los motores de IA priorizan contenido que responde preguntas expl&iacute;citas.</div></td>
+          <td>Encabezados basados en preguntas<div class="detail">Solo 1 de 12 H2 usa formato de pregunta. Los motores de IA priorizan contenido que responde preguntas expl&iacute;citas.</div></td>
           <td><span class="badge badge-pending">Pendiente</span></td>
         </tr>
       </table>
@@ -392,13 +368,13 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>G7</td>
-          <td>Credenciales profesionales<div class="detail">No se muestran t&iacute;tulos profesionales, certificaciones ni licencias de los especialistas. Cr&iacute;tico para un negocio de salud/est&eacute;tica.</div></td>
+          <td>Credenciales profesionales<div class="detail">No se muestran t&iacute;tulos profesionales, certificaciones ni licencias de los especialistas.</div></td>
           <td><span class="badge badge-client">Requiere cliente</span></td>
         </tr>
         <tr>
           <td>G8</td>
-          <td>Fechas de publicaci&oacute;n/actualizaci&oacute;n<div class="detail">No hay timestamps en ninguna secci&oacute;n del sitio. Los motores de IA priorizan contenido con fechas recientes.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Fechas de publicaci&oacute;n/actualizaci&oacute;n<div class="detail">Agregado meta <code>article:modified_time</code> en layout.tsx y texto &ldquo;Actualizado: marzo 2026&rdquo; visible en el footer.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>G9</td>
@@ -410,7 +386,7 @@
 
   </div>
 
-  <!-- ===================== CRO / TASA DE REBOTE ===================== -->
+  <!-- ===================== CRO ===================== -->
   <div id="cat-cro" class="cat-content" data-title="CRO / Tasa de Rebote">
 
     <div class="section">
@@ -419,18 +395,18 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>C1</td>
-          <td>Propuesta de valor clara en hero<div class="detail">&ldquo;Tu mejor versi&oacute;n con tecnolog&iacute;a de vanguardia&rdquo; &mdash; beneficio claro, subt&iacute;tulo espec&iacute;fico con &ldquo;Resultados visibles desde la primera sesi&oacute;n&rdquo;. Comprensible en 5 segundos.</div></td>
+          <td>Propuesta de valor clara en hero<div class="detail">&ldquo;Tu mejor versi&oacute;n con tecnolog&iacute;a de vanguardia&rdquo; + subtitulo con &ldquo;Resultados visibles desde la primera sesi&oacute;n&rdquo;. Comprensible en 5 segundos.</div></td>
           <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>C2</td>
-          <td>CTA principal visible sin scroll<div class="detail">Dos CTAs above-the-fold: &ldquo;Reserva tu hora &middot; WhatsApp&rdquo; y &ldquo;Agenda directo en calendario&rdquo;. Dual pathway correcto.</div></td>
+          <td>CTA principal visible sin scroll<div class="detail">Dual pathway: &ldquo;Reserva tu hora &middot; WhatsApp&rdquo; + &ldquo;Agenda directo en calendario&rdquo;.</div></td>
           <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>C3</td>
-          <td>Se&ntilde;ales de confianza above-the-fold<div class="detail">4 badges informativos (11 tratamientos, aparatolog&iacute;a, Soprano Ice Tril&aacute;ser, Talca). Faltan sellos de certificaci&oacute;n o credenciales profesionales.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Se&ntilde;ales de confianza above-the-fold<div class="detail">4 badges informativos presentes. Faltan sellos de certificaci&oacute;n o credenciales profesionales.</div></td>
+          <td><span class="badge badge-client">Requiere cliente</span></td>
         </tr>
       </table>
     </div>
@@ -441,12 +417,12 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>C4</td>
-          <td>Canal de contacto &uacute;nico<div class="detail">Solo WhatsApp como canal de contacto (aparece 12+ veces). Sin formulario web, email ni tel&eacute;fono. Barrera para usuarios que no usan WhatsApp.</div></td>
+          <td>Canal de contacto &uacute;nico<div class="detail">Solo WhatsApp como canal (12+ apariciones). Sin formulario web alternativo, email ni tel&eacute;fono visible.</div></td>
           <td><span class="badge badge-pending">Pendiente</span></td>
         </tr>
         <tr>
           <td>C5</td>
-          <td>Calendario de reservas<div class="detail">Calendario funcional con selecci&oacute;n de semana y horarios. Buena experiencia pero requiere confirmaci&oacute;n por WhatsApp (paso extra de fricci&oacute;n).</div></td>
+          <td>Calendario de reservas<div class="detail">Calendario funcional con selecci&oacute;n semanal y horarios. Requiere confirmaci&oacute;n por WhatsApp.</div></td>
           <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
       </table>
@@ -458,17 +434,17 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>C6</td>
-          <td>Testimonios insuficientes<div class="detail">Solo 1 testimonio (Carolina, sin foto ni apellido). Para un negocio de est&eacute;tica se necesitan m&iacute;nimo 5 testimonios con fotos reales y resultados espec&iacute;ficos.</div></td>
+          <td>Testimonios insuficientes<div class="detail">Solo 3 testimonios sin fotos. Para un negocio de est&eacute;tica se necesitan m&iacute;nimo 5 con fotos reales y resultados espec&iacute;ficos.</div></td>
           <td><span class="badge badge-client">Requiere cliente</span></td>
         </tr>
         <tr>
           <td>C7</td>
-          <td>Fotos de antes/despu&eacute;s<div class="detail">No hay galer&iacute;a de resultados reales. Cr&iacute;tico para servicios est&eacute;ticos &mdash; es la principal prueba social del rubro.</div></td>
+          <td>Fotos de antes/despu&eacute;s<div class="detail">No hay galer&iacute;a de resultados reales. Cr&iacute;tico para servicios est&eacute;ticos.</div></td>
           <td><span class="badge badge-client">Requiere cliente</span></td>
         </tr>
         <tr>
           <td>C8</td>
-          <td>Credenciales y certificaciones visibles<div class="detail">No se muestran t&iacute;tulos profesionales, certificaciones de aparatolog&iacute;a ni afiliaciones gremiales.</div></td>
+          <td>Credenciales y certificaciones visibles<div class="detail">No se muestran t&iacute;tulos profesionales, certificaciones de aparatolog&iacute;a ni afiliaciones.</div></td>
           <td><span class="badge badge-client">Requiere cliente</span></td>
         </tr>
       </table>
@@ -480,13 +456,13 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>C9</td>
-          <td>CTAs gen&eacute;ricos<div class="detail">15+ CTAs usan &ldquo;Agendar&rdquo; sin diferenciaci&oacute;n. Deber&iacute;an usar copy orientado a valor: &ldquo;Agenda tu consulta gratuita&rdquo;, &ldquo;Ver mi plan de tratamiento&rdquo;.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>CTAs orientados a valor<div class="detail">Mejorado: &ldquo;Agendar hora&rdquo; &rarr; &ldquo;Reserva tu hora&rdquo;, &ldquo;Agendar por WhatsApp&rdquo; &rarr; &ldquo;Consultar por WhatsApp&rdquo;, &ldquo;Escribir por WhatsApp&rdquo; &rarr; &ldquo;Agenda tu primera sesi&oacute;n&rdquo;.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>C10</td>
-          <td>Transparencia de precios<div class="detail">Algunos servicios muestran precio ($35.000, $15.000), otros dicen &ldquo;A consultar&rdquo;. La inconsistencia genera fricci&oacute;n. Mostrar todos o ninguno.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Transparencia de precios<div class="detail">Algunos servicios muestran precio ($35.000, $15.000), otros dicen &ldquo;A consultar&rdquo;. La inconsistencia genera fricci&oacute;n.</div></td>
+          <td><span class="badge badge-client">Requiere cliente</span></td>
         </tr>
       </table>
     </div>
@@ -502,17 +478,17 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>R1</td>
-          <td>Hero image con priority<div class="detail">hero-bg.png usa <code>priority</code> en Next/Image. Correcto para LCP. Sin embargo, es formato PNG pesado.</div></td>
+          <td>Hero image con priority<div class="detail">hero-bg.png usa <code>priority</code> en Next/Image. Correcto para LCP.</div></td>
           <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>R2</td>
-          <td>Lazy loading en im&aacute;genes below-fold<div class="detail">No se detecta <code>loading=&quot;lazy&quot;</code> en im&aacute;genes de secciones inferiores (testimonios-bg.png, contacto-bg.png).</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Lazy loading en im&aacute;genes below-fold<div class="detail">Agregado <code>loading=&quot;lazy&quot;</code> a testimonios-bg.png, contacto-bg.png y logo del footer.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>R3</td>
-          <td>Optimizaci&oacute;n de formato LCP<div class="detail">LCP mobile: 2.7s (supera umbral de 2.5s). Convertir hero-bg.png a WebP/AVIF reducir&iacute;a tama&ntilde;o ~60% y mejorar&iacute;a LCP.</div></td>
+          <td>Optimizaci&oacute;n de formato LCP<div class="detail">LCP mobile: 2.7s (supera umbral de 2.5s). Convertir hero-bg.png a WebP/AVIF nativo reducir&iacute;a ~60%.</div></td>
           <td><span class="badge badge-pending">Pendiente</span></td>
         </tr>
       </table>
@@ -524,12 +500,12 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>R4</td>
-          <td>JavaScript sin usar<div class="detail">~71 KiB de JS sin usar detectado por Lighthouse. Probablemente Framer Motion cargado en todos los componentes.</div></td>
+          <td>JavaScript sin usar<div class="detail">~71 KiB de JS sin usar (Framer Motion en todos los componentes). Requiere refactor mayor para reducir.</div></td>
           <td><span class="badge badge-pending">Pendiente</span></td>
         </tr>
         <tr>
           <td>R5</td>
-          <td>Componentes &ldquo;use client&rdquo; excesivos<div class="detail">14 de 15 componentes son client-side. Se pierde casi todo el beneficio de SSR de Next.js. Evaluar qu&eacute; componentes realmente necesitan interactividad.</div></td>
+          <td>Componentes &ldquo;use client&rdquo; excesivos<div class="detail">14 de 15 componentes son client-side por Framer Motion. Se pierde SSR de Next.js. Refactor mayor necesario.</div></td>
           <td><span class="badge badge-pending">Pendiente</span></td>
         </tr>
       </table>
@@ -541,13 +517,13 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>R6</td>
-          <td>Font display: swap<div class="detail">Montserrat configurada con <code>display: &quot;swap&quot;</code> en Next.js. Previene FOIT correctamente.</div></td>
+          <td>Font display: swap<div class="detail">Montserrat configurada con <code>display: &quot;swap&quot;</code>. Previene FOIT.</div></td>
           <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>R7</td>
-          <td>Pesos de fuente excesivos<div class="detail">Montserrat carga 9 pesos (100-900) + italic. Solo se usan ~3-4 pesos (300, 500, 600, 700). Reducir subsets disminuir&iacute;a payload de fuentes.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Pesos de fuente optimizados<div class="detail">Reducido de 9 pesos (100-900) + italic a 5 pesos (300-700) normal only. ~50% menos payload de fuentes.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
       </table>
     </div>
@@ -558,7 +534,7 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>R8</td>
-          <td>CLS: 0<div class="detail">Cumulative Layout Shift perfecto en desktop y mobile. Sin saltos de layout.</div></td>
+          <td>CLS: 0<div class="detail">Cumulative Layout Shift perfecto en desktop y mobile.</div></td>
           <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
       </table>
@@ -575,23 +551,23 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>A1</td>
-          <td>Bot&oacute;n hamburguesa con aria-label<div class="detail">El bot&oacute;n del men&uacute; mobile tiene <code>aria-label=&quot;Abrir menu&quot;</code>. Correcto.</div></td>
+          <td>Bot&oacute;n hamburguesa con aria-label<div class="detail">aria-label din&aacute;mico: &ldquo;Abrir men&uacute;&rdquo; / &ldquo;Cerrar men&uacute;&rdquo; seg&uacute;n estado.</div></td>
           <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>A2</td>
-          <td>Men&uacute; mobile sin aria-expanded<div class="detail">El bot&oacute;n hamburguesa no declara <code>aria-expanded</code> para indicar si el men&uacute; est&aacute; abierto o cerrado.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Men&uacute; mobile con aria-expanded<div class="detail">Agregado <code>aria-expanded={menuOpen}</code> al bot&oacute;n hamburguesa en Nav.tsx.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>A3</td>
-          <td>Calendario sin ARIA states<div class="detail">El widget de reservas no tiene <code>aria-selected</code>, <code>aria-current</code> ni anuncios para lectores de pantalla. No es operable por teclado.</div></td>
+          <td>Calendario sin ARIA states<div class="detail">El widget de reservas no tiene <code>aria-selected</code>, <code>aria-current</code> ni es operable por teclado. Requiere refactor del componente.</div></td>
           <td><span class="badge badge-pending">Pendiente</span></td>
         </tr>
         <tr>
           <td>A4</td>
-          <td>Im&aacute;genes decorativas sin aria-hidden<div class="detail">3 im&aacute;genes de fondo usan <code>alt=&quot;&quot;</code> pero les falta <code>aria-hidden=&quot;true&quot;</code> para ocultarlas completamente de lectores de pantalla.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Im&aacute;genes decorativas con aria-hidden<div class="detail">Agregado <code>aria-hidden=&quot;true&quot;</code> a las 3 im&aacute;genes de fondo (hero-bg, testimonios-bg, contacto-bg).</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
       </table>
     </div>
@@ -602,45 +578,45 @@
         <tr><th style="width:40px">#</th><th>Medida</th><th style="width:100px">Estado</th></tr>
         <tr>
           <td>A5</td>
-          <td>Skip navigation link<div class="detail">No existe enlace &ldquo;Saltar al contenido&rdquo; para usuarios de teclado y lectores de pantalla.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Skip navigation link<div class="detail">Agregado enlace &ldquo;Saltar al contenido&rdquo; como primer elemento del body. Visible al hacer focus con teclado. Estilos en globals.css.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>A6</td>
-          <td>Landmark <code>&lt;main&gt;</code><div class="detail">No hay elemento <code>&lt;main&gt;</code> envolviendo el contenido principal. Los lectores de pantalla no pueden identificar el &aacute;rea principal.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Landmark <code>&lt;main&gt;</code><div class="detail">Agregado <code>&lt;main id=&quot;main-content&quot;&gt;</code> envolviendo el contenido principal en page.tsx.</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>A7</td>
-          <td>FAQ con details/summary<div class="detail">La secci&oacute;n FAQ usa <code>&lt;details&gt;</code> y <code>&lt;summary&gt;</code> nativos con texto de toggle (&ldquo;Ver&rdquo;/&ldquo;Cerrar&rdquo;). Sem&aacute;nticamente correcto.</div></td>
+          <td>FAQ con details/summary<div class="detail">FAQ usa <code>&lt;details&gt;</code> y <code>&lt;summary&gt;</code> nativos. Sem&aacute;nticamente correcto y accesible.</div></td>
           <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>A8</td>
-          <td>Navegaci&oacute;n sem&aacute;ntica<div class="detail">Usa elemento <code>&lt;nav&gt;</code> nativo para la barra de navegaci&oacute;n. Correcto.</div></td>
+          <td>Navegaci&oacute;n sem&aacute;ntica<div class="detail">Usa elemento <code>&lt;nav&gt;</code> nativo para la barra de navegaci&oacute;n.</div></td>
           <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
         <tr>
           <td>A9</td>
-          <td>Alt text descriptivo en im&aacute;genes funcionales<div class="detail">Los logos tienen alt text correcto (&ldquo;Solkinest &mdash; Kinesiolog&iacute;a &amp; Est&eacute;tica&rdquo;), pero im&aacute;genes de contenido no tienen descripci&oacute;n.</div></td>
-          <td><span class="badge badge-pending">Pendiente</span></td>
+          <td>Alt text en im&aacute;genes funcionales<div class="detail">Logos con alt descriptivo. Im&aacute;genes de fondo marcadas como decorativas (<code>alt=&quot;&quot;</code> + <code>aria-hidden</code>).</div></td>
+          <td><span class="badge badge-done">Aplicado</span></td>
         </tr>
       </table>
     </div>
 
   </div>
 
-  <!-- =================== FOOTER SUMMARY =================== -->
+  <!-- FOOTER SUMMARY -->
   <div class="footer-summary">
     <div style="text-align: center; margin-bottom: 16px; font-size: 13px; font-weight: 600; color: #475569;">Resumen Total de Medidas</div>
     <div class="footer-grid">
       <div class="footer-item">
-        <div class="footer-num" style="color: #16a34a;">14</div>
+        <div class="footer-num" style="color: #16a34a;">34</div>
         <div class="footer-label">Aplicadas</div>
       </div>
       <div class="footer-divider"></div>
       <div class="footer-item">
-        <div class="footer-num" style="color: #ea580c;">40</div>
+        <div class="footer-num" style="color: #ea580c;">20</div>
         <div class="footer-label">Pendientes</div>
       </div>
       <div class="footer-divider"></div>
@@ -651,11 +627,11 @@
     </div>
     <div style="text-align: center; margin-top: 16px;">
       <div style="display: inline-flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
-        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #2563eb; margin-right: 4px;"></span>SEO: 6 aplicadas / 12 pendientes</span>
-        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #7c3aed; margin-right: 4px;"></span>GEO: 0 aplicadas / 9 pendientes</span>
-        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ea580c; margin-right: 4px;"></span>CRO: 3 aplicadas / 7 pendientes</span>
-        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #16a34a; margin-right: 4px;"></span>Rendimiento: 3 aplicadas / 5 pendientes</span>
-        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #0891b2; margin-right: 4px;"></span>Accesibilidad: 3 aplicadas / 6 pendientes</span>
+        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #2563eb; margin-right: 4px;"></span>SEO: 15 aplicadas / 3 pendientes</span>
+        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #7c3aed; margin-right: 4px;"></span>GEO: 4 aplicadas / 5 pendientes</span>
+        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ea580c; margin-right: 4px;"></span>CRO: 4 aplicadas / 6 pendientes</span>
+        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #16a34a; margin-right: 4px;"></span>Rendimiento: 5 aplicadas / 3 pendientes</span>
+        <span style="font-size: 11px; color: #64748b;"><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #0891b2; margin-right: 4px;"></span>Accesibilidad: 7 aplicadas / 2 pendientes</span>
       </div>
     </div>
   </div>
