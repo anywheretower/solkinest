@@ -56,6 +56,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={montserrat.variable}>
       <head>
+        <meta name="google-site-verification" content="R8IrBShVZm0ymxhMRZIYuzhcoOgH6jnEQfCKJ3XDGJs" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-1YH60EVHVX"
           strategy="afterInteractive"
