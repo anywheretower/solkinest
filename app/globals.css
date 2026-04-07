@@ -92,3 +92,14 @@ h5 {
   left: 8px;
   top: 8px;
 }
+
+/* Hero overlay — more white coverage on mobile for text readability */
+.hero-overlay {
+  background: linear-gradient(to right, #ffffff 0%, #ffffff 40%, rgba(255,255,255,0) 90%);
+}
+
+@media (min-width: 768px) {
+  .hero-overlay {
+    background: linear-gradient(to right, #ffffff 0%, #ffffff 20%, rgba(255,255,255,0) 70%);
+  }
+}

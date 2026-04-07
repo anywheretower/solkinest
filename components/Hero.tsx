@@ -45,7 +45,7 @@ const heroItem = {
 export default function Hero() {
   return (
     <section
-      className="relative min-h-[90vh] flex flex-col items-start justify-center overflow-hidden"
+      className="relative min-h-[100svh] md:min-h-[90vh] flex flex-col items-start justify-center overflow-hidden"
     >
       {/* Background image */}
       <Image
@@ -59,10 +59,7 @@ export default function Hero() {
 
       {/* White gradient overlay left to right */}
       <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background: "linear-gradient(to right, #ffffff 0%, #ffffff 20%, rgba(255,255,255,0) 70%)",
-        }}
+        className="absolute inset-0 z-[1] pointer-events-none hero-overlay"
       />
 
       {/* Content */}
@@ -95,7 +92,7 @@ export default function Hero() {
         {/* Main heading */}
         <motion.h1
           variants={heroItem}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[0.7] mb-4"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight md:leading-[0.7] mb-4"
           style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
         >
           Tu mejor versión con

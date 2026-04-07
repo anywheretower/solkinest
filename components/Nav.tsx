@@ -44,7 +44,7 @@ export default function Nav() {
             alt="Solkinest — Kinesiología & Estética"
             width={160}
             height={48}
-            className="h-20 w-auto transition-opacity duration-500"
+            className="h-14 md:h-20 w-auto transition-opacity duration-500"
             style={{ opacity: 1 }}
             priority
           />
@@ -119,10 +119,10 @@ export default function Nav() {
           aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={menuOpen}
         >
-          <div className="w-5 flex flex-col gap-1.5">
+          <div className="w-5 flex flex-col gap-[5px]">
             <span
               className="h-px w-full bg-current transition-all duration-300 origin-center"
-              style={{ transform: menuOpen ? "rotate(45deg) translateY(10px)" : "none" }}
+              style={{ transform: menuOpen ? "rotate(45deg) translateY(6px)" : "none" }}
             />
             <span
               className="h-px w-full bg-current transition-all duration-300"
@@ -130,7 +130,7 @@ export default function Nav() {
             />
             <span
               className="h-px w-full bg-current transition-all duration-300 origin-center"
-              style={{ transform: menuOpen ? "rotate(-45deg) translateY(-10px)" : "none" }}
+              style={{ transform: menuOpen ? "rotate(-45deg) translateY(-6px)" : "none" }}
             />
           </div>
         </button>
