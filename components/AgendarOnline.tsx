@@ -105,7 +105,21 @@ export default function AgendarOnline() {
   const [cancelPhone, setCancelPhone] = useState("");
   const [cancelOpen, setCancelOpen] = useState(false);
 
+  // Mobile: show one day at a time
+  const [mobileDayIndex, setMobileDayIndex] = useState(0);
+
   const weekDays = generateWeekDays(weekOffset);
+
+  // Auto-set mobileDayIndex to today when on current week
+  useEffect(() => {
+    if (weekOffset === 0) {
+      const today = new Date();
+      const todayIdx = weekDays.findIndex((d) => isSameDay(d, today));
+      setMobileDayIndex(todayIdx >= 0 ? todayIdx : 0);
+    } else {
+      setMobileDayIndex(0);
+    }
+  }, [weekOffset]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchSlots = useCallback(async () => {
     setLoading(true);
@@ -310,16 +324,147 @@ export default function AgendarOnline() {
         </div>
 
         {/* Calendar grid */}
-        <div className="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0 mb-4">
-          {loading ? (
-            <div
-              className="text-center py-16 text-sm"
-              style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-montserrat)" }}
-            >
-              Cargando disponibilidad...
+        {loading ? (
+          <div
+            className="text-center py-16 text-sm mb-4"
+            style={{ color: "var(--color-text-secondary)", fontFamily: "var(--font-montserrat)" }}
+          >
+            Cargando disponibilidad...
+          </div>
+        ) : (
+          <>
+            {/* ── Mobile: one day at a time ── */}
+            <div className="md:hidden mb-4">
+              {/* Day navigation */}
+              <div className="flex items-center justify-between mb-4">
+                <button
+                  onClick={() => setMobileDayIndex((i) => Math.max(0, i - 1))}
+                  disabled={mobileDayIndex === 0}
+                  className="p-2 transition-opacity disabled:opacity-25"
+                  style={{ color: "var(--color-primary-deep)" }}
+                  aria-label="Día anterior"
+                >
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                </button>
+
+                <div className="text-center">
+                  <p
+                    className="text-[10px] tracking-widest uppercase font-semibold mb-0.5"
+                    style={{
+                      fontFamily: "var(--font-montserrat)",
+                      color: isToday(weekDays[mobileDayIndex]) ? "var(--color-primary)" : "var(--color-text-secondary)",
+                    }}
+                  >
+                    {getDayLabel(weekDays[mobileDayIndex])}
+                    {isToday(weekDays[mobileDayIndex]) && " · Hoy"}
+                  </p>
+                  <p
+                    className="text-lg font-semibold"
+                    style={{
+                      fontFamily: "var(--font-montserrat)",
+                      color: isToday(weekDays[mobileDayIndex]) ? "var(--color-primary-deep)" : "var(--color-text)",
+                    }}
+                  >
+                    {weekDays[mobileDayIndex].getDate()} {MONTHS_SHORT[weekDays[mobileDayIndex].getMonth()]}
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => setMobileDayIndex((i) => Math.min(5, i + 1))}
+                  disabled={mobileDayIndex === 5}
+                  className="p-2 transition-opacity disabled:opacity-25"
+                  style={{ color: "var(--color-primary-deep)" }}
+                  aria-label="Día siguiente"
+                >
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Day dots indicator */}
+              <div className="flex justify-center gap-1.5 mb-5">
+                {weekDays.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setMobileDayIndex(i)}
+                    className="w-2 h-2 rounded-full transition-all duration-200"
+                    style={{
+                      backgroundColor: i === mobileDayIndex ? "var(--color-primary)" : "var(--color-bg-teal-soft)",
+                    }}
+                    aria-label={`Ir a ${DAY_LABELS[i]}`}
+                  />
+                ))}
+              </div>
+
+              {/* Slots for selected day */}
+              {(() => {
+                const day = weekDays[mobileDayIndex];
+                const daySlots = getSlotsForDay(day);
+                const isSunday = day.getDay() === 0;
+
+                if (isSunday || daySlots.length === 0) {
+                  return (
+                    <p
+                      className="text-center py-8 text-xs tracking-wide uppercase"
+                      style={{ color: "var(--color-text-muted)", fontFamily: "var(--font-montserrat)" }}
+                    >
+                      {isSunday ? "Cerrado" : "Sin horarios disponibles"}
+                    </p>
+                  );
+                }
+
+                return (
+                  <div className="grid grid-cols-3 gap-2">
+                    {daySlots.map((slot) => {
+                      const time = formatTime(slot.start);
+                      const isSelected = selectedSlot?.start === slot.start;
+
+                      return (
+                        <button
+                          key={slot.start}
+                          disabled={!slot.available}
+                          onClick={() => handleSlotClick(slot)}
+                          className="py-3 text-center transition-all duration-150 rounded-sm"
+                          style={{
+                            fontFamily: "var(--font-montserrat)",
+                            fontWeight: 500,
+                            fontSize: "0.8rem",
+                            letterSpacing: "0.05em",
+                            ...(isSelected
+                              ? {
+                                  backgroundColor: "var(--color-primary)",
+                                  color: "#ffffff",
+                                  border: "1px solid var(--color-primary)",
+                                }
+                              : !slot.available
+                              ? {
+                                  backgroundColor: "var(--color-bg-neutral)",
+                                  color: "var(--color-text-muted)",
+                                  border: "1px solid transparent",
+                                  cursor: "not-allowed",
+                                  opacity: 0.45,
+                                }
+                              : {
+                                  backgroundColor: "var(--color-bg-teal-soft)",
+                                  color: "var(--color-primary-deep)",
+                                  border: "1px solid transparent",
+                                }),
+                          }}
+                        >
+                          {time}
+                        </button>
+                      );
+                    })}
+                  </div>
+                );
+              })()}
             </div>
-          ) : (
-            <div className="grid grid-cols-6 gap-2.5 min-w-[560px]">
+
+            {/* ── Desktop: full week grid ── */}
+            <div className="hidden md:grid grid-cols-6 gap-2.5 mb-4">
               {weekDays.map((day, colIdx) => {
                 const daySlots = getSlotsForDay(day);
                 const todayFlag = isToday(day);
@@ -416,8 +561,8 @@ export default function AgendarOnline() {
                 );
               })}
             </div>
-          )}
-        </div>
+          </>
+        )}
 
         {/* Legend */}
         <div className="flex flex-wrap gap-5 mb-10">
