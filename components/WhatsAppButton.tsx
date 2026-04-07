@@ -9,7 +9,7 @@ export default function WhatsAppButton() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-1.5">
       <motion.a
-        href="#"
+        href="https://www.instagram.com/solkinest/"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Seguir en Instagram"

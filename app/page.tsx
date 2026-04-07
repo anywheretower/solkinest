@@ -26,7 +26,7 @@ const localBusinessSchema = {
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "1 Norte #841, Condominio Progresur, Block B-2, Depto. 3",
+    streetAddress: "Av. Las Rastras 1285, Centro Pichimapu, Piso 8, Of. 808",
     addressLocality: "Talca",
     addressRegion: "Maule",
     addressCountry: "CL",

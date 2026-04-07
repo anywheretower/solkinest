@@ -51,7 +51,9 @@ export default function Footer() {
           {/* Social icons */}
           <div className="flex items-center gap-3">
             <a
-              href="#"
+              href="https://www.instagram.com/solkinest/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram"
               className="w-9 h-9 flex items-center justify-center border transition-colors"
               style={{ borderColor: "var(--color-primary-deep)" }}
@@ -165,13 +167,13 @@ export default function Footer() {
             className="text-xs mb-1"
             style={{ color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-montserrat)" }}
           >
-            1 Norte #841, Talca
+            Av. Las Rastras 1285, esq. 2 Norte
           </p>
           <p
             className="text-xs mb-4"
             style={{ color: "rgba(255,255,255,0.45)", fontFamily: "var(--font-montserrat)" }}
           >
-            Condominio Progresur, Block B-2
+            Centro Pichimapu, Piso 8, Of. 808
           </p>
           <a
             href={WA_LINK}

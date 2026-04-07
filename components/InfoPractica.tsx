@@ -164,25 +164,25 @@ export default function InfoPractica() {
                     className="text-sm font-medium"
                     style={{ color: "var(--color-text)", fontFamily: "var(--font-montserrat)" }}
                   >
-                    1 Norte #841
+                    Av. Las Rastras 1285
                   </p>
                   <p
                     className="text-sm"
                     style={{ color: "var(--color-text-body)", fontFamily: "var(--font-montserrat)" }}
                   >
-                    Entre 1 y 2 Oriente
+                    Esquina 2 Norte
                   </p>
                   <p
                     className="text-sm mt-2"
                     style={{ color: "var(--color-text-body)", fontFamily: "var(--font-montserrat)" }}
                   >
-                    Condominio Progresur
+                    Centro Pichimapu
                   </p>
                   <p
                     className="text-sm"
                     style={{ color: "var(--color-text-body)", fontFamily: "var(--font-montserrat)" }}
                   >
-                    Block B-2, Depto. 3
+                    Piso 8, Oficina 808
                   </p>
                   <p
                     className="text-xs mt-2"
@@ -191,7 +191,7 @@ export default function InfoPractica() {
                     Talca, Chile
                   </p>
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=1+Norte+841,+Talca,+Chile"
+                    href="https://www.google.com/maps/search/?api=1&query=Avenida+Las+Rastras+1285,+Talca,+Chile"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 mt-4 px-4 py-2.5 text-[11px] tracking-widest uppercase transition-all hover:opacity-85"
