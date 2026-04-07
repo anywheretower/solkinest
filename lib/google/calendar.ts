@@ -37,28 +37,54 @@ type Slot = {
 };
 
 /**
- * Genera todos los slots posibles para un día dado
+ * Obtiene los componentes de fecha en Chile para cualquier Date (UTC o local).
  */
-function generateDaySlots(date: Date): { start: Date; end: Date }[] {
-  const day = date.getDay(); // 0=dom, 1=lun, ..., 6=sab
-  if (day === 0) return []; // domingo cerrado
+function getChileComponents(date: Date) {
+  const fmt = new Intl.DateTimeFormat("en-US", {
+    timeZone: TIMEZONE,
+    year: "numeric", month: "numeric", day: "numeric", weekday: "short",
+    hour: "numeric", minute: "numeric", hour12: false,
+  });
+  const parts = fmt.formatToParts(date);
+  const get = (type: string) => parseInt(parts.find((p) => p.type === type)?.value || "0");
+  const weekdayStr = parts.find((p) => p.type === "weekday")?.value || "";
+  const dayMap: Record<string, number> = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+  return {
+    year: get("year"),
+    month: get("month") - 1, // 0-indexed
+    day: get("day"),
+    dayOfWeek: dayMap[weekdayStr] ?? 0,
+  };
+}
 
-  const blocks = day === 6 ? SCHEDULE.saturday : SCHEDULE.weekday;
-  if (day >= 1 && day <= 5) {
-    // weekday
-  } else if (day !== 6) {
-    return [];
-  }
+/**
+ * Crea un Date UTC que representa una hora específica en Chile.
+ * Ej: dateInChile(2026, 3, 8, 11) → Date UTC que equivale a 11:00 Chile.
+ */
+function dateInChile(year: number, month: number, day: number, hour: number): Date {
+  const tentative = new Date(Date.UTC(year, month, day, hour, 0, 0, 0));
+  const fmt = new Intl.DateTimeFormat("en-US", {
+    timeZone: TIMEZONE, hour: "numeric", hour12: false,
+  });
+  const chileHour = parseInt(fmt.format(tentative));
+  const diff = (chileHour === 24 ? 0 : chileHour) - hour;
+  return new Date(tentative.getTime() - diff * 3600_000);
+}
 
+/**
+ * Genera todos los slots posibles para una fecha en Chile.
+ */
+function generateDaySlots(chile: { year: number; month: number; day: number; dayOfWeek: number }): { start: Date; end: Date }[] {
+  if (chile.dayOfWeek === 0) return []; // domingo cerrado
+
+  const blocks = chile.dayOfWeek === 6 ? SCHEDULE.saturday : SCHEDULE.weekday;
   const slots: { start: Date; end: Date }[] = [];
 
   for (const block of blocks) {
     let hour = block.start;
     while (hour < block.end) {
-      const start = new Date(date);
-      start.setHours(hour, 0, 0, 0);
-      const end = new Date(start);
-      end.setMinutes(end.getMinutes() + SLOT_DURATION);
+      const start = dateInChile(chile.year, chile.month, chile.day, hour);
+      const end = new Date(start.getTime() + SLOT_DURATION * 60_000);
       slots.push({ start, end });
       hour++;
     }
@@ -89,31 +115,41 @@ export async function getAvailableSlots(
     end: new Date(event.end?.dateTime || event.end?.date || ""),
   }));
 
-  // Generar todos los slots del rango
+  // Generar todos los slots del rango iterando por días de Chile
   const allSlots: Slot[] = [];
+  const now = new Date();
+
+  // Iterar usando UTC noon para evitar problemas de boundary de timezone
   const current = new Date(fromDate);
+  current.setUTCHours(12, 0, 0, 0);
+  const endMark = new Date(toDate);
+  endMark.setUTCHours(12, 0, 0, 0);
 
-  while (current <= toDate) {
-    const daySlots = generateDaySlots(current);
-    const now = new Date();
+  const seen = new Set<string>();
 
-    for (const slot of daySlots) {
-      // No mostrar slots pasados
-      if (slot.start <= now) continue;
+  while (current <= endMark) {
+    const chile = getChileComponents(current);
+    const key = `${chile.year}-${chile.month}-${chile.day}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      const daySlots = generateDaySlots(chile);
 
-      // Verificar si el slot choca con algún evento existente
-      const isBusy = busyTimes.some(
-        (busy) => slot.start < busy.end && slot.end > busy.start
-      );
+      for (const slot of daySlots) {
+        if (slot.start <= now) continue;
 
-      allSlots.push({
-        start: slot.start.toISOString(),
-        end: slot.end.toISOString(),
-        available: !isBusy,
-      });
+        const isBusy = busyTimes.some(
+          (busy) => slot.start < busy.end && slot.end > busy.start
+        );
+
+        allSlots.push({
+          start: slot.start.toISOString(),
+          end: slot.end.toISOString(),
+          available: !isBusy,
+        });
+      }
     }
 
-    current.setDate(current.getDate() + 1);
+    current.setUTCDate(current.getUTCDate() + 1);
   }
 
   return allSlots;
