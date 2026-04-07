@@ -64,7 +64,7 @@ export default function Hero() {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 text-left max-w-7xl w-full mx-auto px-6"
+        className="relative z-10 text-left max-w-7xl w-full mx-auto px-6 pt-28 md:pt-32"
         variants={heroStagger}
         initial="hidden"
         animate="visible"
@@ -92,7 +92,7 @@ export default function Hero() {
         {/* Main heading */}
         <motion.h1
           variants={heroItem}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight md:leading-[0.7] mb-4"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight md:leading-snug lg:leading-tight mb-4"
           style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-text)" }}
         >
           Tu mejor versión con

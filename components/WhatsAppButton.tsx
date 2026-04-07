@@ -1,13 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Instagram } from "lucide-react";
+import { Instagram, Facebook } from "lucide-react";
 
 const WA_LINK = "https://wa.me/56957394822";
 
 export default function WhatsAppButton() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-1.5">
+      <motion.a
+        href="https://www.facebook.com/Solkinest"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Seguir en Facebook"
+        className="w-12 h-12 rounded-full flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95"
+        style={{
+          backgroundColor: "#1877F2",
+          boxShadow: "0 4px 20px rgba(24,119,242,0.4)",
+        }}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 260, damping: 20, delay: 1.4 }}
+      >
+        <Facebook size={20} color="white" strokeWidth={1.5} />
+      </motion.a>
       <motion.a
         href="https://www.instagram.com/solkinest/"
         target="_blank"

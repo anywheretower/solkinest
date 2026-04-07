@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Instagram } from "lucide-react";
+import { Instagram, Facebook } from "lucide-react";
 import Image from "next/image";
 import { fadeUp, stagger, staggerItem, viewportConfig } from "@/lib/motion";
 
@@ -50,6 +50,16 @@ export default function Footer() {
           </p>
           {/* Social icons */}
           <div className="flex items-center gap-3">
+            <a
+              href="https://www.facebook.com/Solkinest"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="w-9 h-9 flex items-center justify-center border transition-colors"
+              style={{ borderColor: "var(--color-primary-deep)" }}
+            >
+              <Facebook size={16} color="rgba(255,255,255,0.35)" strokeWidth={1.5} />
+            </a>
             <a
               href="https://www.instagram.com/solkinest/"
               target="_blank"
